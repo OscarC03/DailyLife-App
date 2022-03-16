@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.cristaudo.dailylife" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Daily Life</name>
-    <description>Sample Apache Cordova App</description>
-    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+    <description>Daily Life app for my exam</description>
+    <author email="o.cristaudo.1296@vallauri.edu" href="https://www.vallauri.edu">
         Apache Cordova Team
     </author>
     <content src="index.html" />
