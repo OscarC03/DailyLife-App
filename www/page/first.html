@@ -12,26 +12,29 @@
         <title>Daily Life - FIRST</title>
     </head>
     <body>
-        <h1>Cio primno user</h1>
-        <form>
-            <div class="mb-3 mt-3">
-              <label for="email" class="form-label">Email:</label>
-              <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-            </div>
-            <div class="mb-3">
-              <label for="pwd" class="form-label">Password:</label>
-              <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-            </div>
-            <div class="form-check mb-3">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-              </label>
-            </div>
-            <button type="submit" class="btn btn-primary" id="btnRegister">Submit</button>
-          </form>
+      <header class="container">
+        <h1 class="text-center text-uppercase">Benvenuto!</h1>
+        <h3>Parlami un po di te:</h3>
+      </header>
+      <section class="container">
+        <div class="mb-3 mt-3">
+          <label for="txtNome" class="form-label">Qual'è il tuo nome?</label>
+          <input type="text" class="form-control" id="txtNome" placeholder="Inserisci il tuo nome">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="txtCognome" class="form-label">Qual'è il tuo cognome?</label>
+          <input type="text" class="form-control" id="txtCognome" placeholder="Inserisci il tuo cognome">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="txtEta" class="form-label">Quanti anni hai?</label>
+          <input type="date" class="form-control" id="txtEta" placeholder="Inserisci la tua data di nascita">
+        </div>
+        <div class="mb-3 mt-3 d-flex justify-content-center">
+          <input type="button" class="btn btn-success" id="btnRegister" value="Continua">
+        </div>
+      </section>
 
         <script src="cordova.js"></script>
-        <script src="../js/taffydb-master/taffy-min.js"></script>
         <script src="../js/jquery.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/register.js"></script>

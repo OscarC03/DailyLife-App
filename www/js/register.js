@@ -1,8 +1,12 @@
 $(()=>{
     //Inserimento Guidato dati utente
     $('#btnRegister').click(()=>{
-        let User={Name:$('#email').val(),Pwd:$('#pwd').val()};
-        localStorage.setItem('User',User);
+        let User={
+            Name:$('#txtNome').val(),
+            Cognome:$('#txtCognome').val(),
+            DataN:$('#txtEta').val()
+        };
+        localStorage.setItem('Utente',User);
         window.location.href='../index.html';
     })
 })
