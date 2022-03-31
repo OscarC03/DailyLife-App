@@ -8,35 +8,26 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/first.css">
         <title>Daily Life - FIRST</title>
     </head>
     <body>
       <header class="container">
         <h1 class="text-center text-uppercase">Benvenuto!</h1>
-        <h3>Parlami un po di te:</h3>
+        <h4 class="text-center text-uppercase" id="subTit"></h4>
       </header>
       <section class="container">
-        <div class="mb-3 mt-3">
+        <div class="mb-3 mt-3" id="info">
           <label for="txtNome" class="form-label">Qual'è il tuo nome?</label>
-          <input type="text" class="form-control" id="txtNome" placeholder="Inserisci il tuo nome">
-        </div>
-        <div class="mb-3 mt-3">
-          <label for="txtCognome" class="form-label">Qual'è il tuo cognome?</label>
-          <input type="text" class="form-control" id="txtCognome" placeholder="Inserisci il tuo cognome">
-        </div>
-        <div class="mb-3 mt-3">
-          <label for="txtEta" class="form-label">Quanti anni hai?</label>
-          <input type="date" class="form-control" id="txtEta" placeholder="Inserisci la tua data di nascita">
+          <input type="text" class="form-control" id="txtNome" placeholder="Inserisci il tuo nome" required>
         </div>
         <div class="mb-3 mt-3 d-flex justify-content-center">
-          <input type="button" class="btn btn-success" id="btnRegister" value="Continua">
+          <input type="submit" class="btn btn-success" id="btnRegister" value="Continua">
         </div>
       </section>
 
         <script src="cordova.js"></script>
         <script src="../js/jquery.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
         <script src="../js/register.js"></script>
     </body>
 </html>

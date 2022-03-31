@@ -9,15 +9,28 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="../css/login.css">
         <title>Daily Life< - LOGIN</title>
     </head>
     <body>
-        <script src="cordova.js"></script>
-        <script src="../js/taffydb-master/taffy-min.js"></script>
+        <header class="container">
+            <h1 class="text-center text-uppercase">Bentornato</h1>
+            <h4 class="text-center text-uppercase" id="subTit"></h4>
+          </header>
+          <section class="container">
+            <div class="mb-3 mt-3" id="info">
+              <label for="txtPin" class="form-label">Inserisci il pin per poter accedere</label>
+              <input type="number" class="form-control" id="txtPin" placeholder="Inserisci il tuo Pin" required>
+            </div>
+            <div class="mb-3 mt-3 d-flex justify-content-center">
+              <input type="submit" class="btn btn-success" id="btnVerify" value="Continua">
+            </div>
+          </section>
+
+        <script src="../js/cordova.js"></script>
         <script src="../js/jquery.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/index.js"></script>
+        <script src="../js/register.js"></script>
     </body>
 </html>
 
