@@ -1,4 +1,9 @@
 $(()=>{
+
+    setTimeout(function() {
+        navigator.splashscreen.hide();
+    }, 3000);
+
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=JSON.parse(localStorage.getItem('Utente'));
     if(User==null)
