@@ -14,8 +14,8 @@ $(()=>{
         if($('#btnRegister').val()!='Registrati'){
             if($('#txtNome').val().trim()!=""){
                 dati.push($('#txtNome').val());
-                $('#info').hide(1000,function(){
-                    $('#info').html('').append('<label for="txtPin" class="form-label">Inserisci un codice di 4 cifre</label><input type="number" class="form-control" id="txtPin" placeholder="Inserisci il PIN" required>').show(1000)
+                $('#info').fadeOut(1000,function(){
+                    $('#info').html('').append('<label for="txtPin" class="form-label">Inserisci un codice di 4 cifre</label><input type="number" class="form-control" id="txtPin" placeholder="Inserisci il PIN" required>').fadeIn(1000)
                     $('#btnRegister').val('Registrati')
                     $('#txtPin').focus();
                 });
@@ -46,7 +46,6 @@ $(()=>{
     //Controllo PIN Utente
     if(localStorage.getItem('Utente')!=null){
         let Nome=CryptoJS.AES.decrypt(JSON.parse(localStorage.getItem('Utente')).Nome, "d9c5a465c6f0e19878cffa1675f35de015290ace").toString(CryptoJS.enc.Utf8);
-        alert(Nome)
         $('#subTit').text('Ciao '+Nome);
     }
 
