@@ -9,7 +9,7 @@ $(()=>{
             navigator.splashscreen.hide();
         }, 3000);
     }
-
+    //Creazione nuovo USER
     $('#btnRegister').click(()=>{
         if($('#btnRegister').val()!='Registrati'){
             if($('#txtNome').val().trim()!=""){
@@ -28,7 +28,10 @@ $(()=>{
             if($('#txtPin').val().trim()!=""){
                 if($('#txtPin').val().length==4){
                     dati.push($('#txtPin').val());
-                    let User={Nome:dati[0],PIN:dati[1]};
+                    let User={
+                        Nome:String(CryptoJS.AES.encrypt(dati[0],"d9c5a465c6f0e19878cffa1675f35de015290ace")), //Nome utente criptato con AES
+                        PIN:String(CryptoJS.AES.encrypt(dati[1], "d9c5a465c6f0e19878cffa1675f35de015290ace")) //PIN utente criptato con AES
+                    };
                     localStorage.setItem('Utente',JSON.stringify(User));
                     window.location.replace('login.html');
                 }
@@ -42,12 +45,13 @@ $(()=>{
 
     //Controllo PIN Utente
     if(localStorage.getItem('Utente')!=null){
-        let Nome=JSON.parse(localStorage.getItem('Utente')).Nome;
+        let Nome=CryptoJS.AES.decrypt(JSON.parse(localStorage.getItem('Utente')).Nome, "d9c5a465c6f0e19878cffa1675f35de015290ace").toString(CryptoJS.enc.Utf8);
+        alert(Nome)
         $('#subTit').text('Ciao '+Nome);
     }
 
     $('#btnVerify').click(()=>{
-        let PIN=JSON.parse(localStorage.getItem('Utente')).PIN;
+        let PIN=CryptoJS.AES.decrypt(JSON.parse(localStorage.getItem('Utente')).PIN,"d9c5a465c6f0e19878cffa1675f35de015290ace").toString(CryptoJS.enc.Utf8);
         if($('#txtPin').val().trim()!="")
             if($('#txtPin').val().trim()==PIN){
                 sessionStorage.setItem('Available',true);
