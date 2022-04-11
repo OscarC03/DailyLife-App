@@ -1,0 +1,5 @@
+<?php 
+    require('libreria.php');
+
+    $
+?>

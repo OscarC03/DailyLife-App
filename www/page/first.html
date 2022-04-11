@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -21,8 +21,20 @@
           <label for="txtNome" class="form-label">Qual'è il tuo nome?</label>
           <input type="text" class="form-control" id="txtNome" placeholder="Inserisci il tuo nome" required autofocus>
         </div>
+        <div class="mb-3 mt-3" id="info1">
+          <label for="txtNome" class="form-label">Qual'è il tuo cognome?</label>
+          <input type="text" class="form-control" id="txtCognome" placeholder="Inserisci il tuo cognome" required autofocus>
+        </div>
+        <div class="mb-3 mt-3" id="info2">
+          <label for="txtNome" class="form-label">Qual'è il tuo username?</label>
+          <input type="text" class="form-control" id="txtUsername" placeholder="Inserisci il tuo username" required autofocus>
+        </div>
+        <div class="mb-3 mt-3" id="info3">
+          <label for="txtNome" class="form-label">Inserisci un pin di 4 cifre</label>
+          <input type="number" class="form-control" id="txtPin" placeholder="Inserisci il pin" required autofocus>
+        </div>
         <div class="mb-3 mt-3 d-flex justify-content-center">
-          <input type="submit" class="btn btn-success" id="btnRegister" value="Continua" tabindex="5">
+          <input type="submit" class="btn btn-success" id="btnRegister" value="Registrati" tabindex="5">
         </div>
       </section>
 
@@ -30,6 +42,7 @@
         <script src="../js/jquery.js"></script>
         <script src="../js/crypto.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/libreria.js"></script>
         <script src="../js/register.js"></script>
     </body>
 </html>
