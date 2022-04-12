@@ -8,24 +8,27 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/login.css">
-        <title>Daily Life< - LOGIN</title>
+        <title>Daily Life - login</title>
     </head>
     <body>
-        <header class="container">
-            <h1 class="text-center text-uppercase">Bentornato</h1>
-            <h4 class="text-center text-uppercase" id="subTit"></h4>
-          </header>
-          <section class="container">
-            <div class="mb-3 mt-3" id="info">
-              <label for="txtPin" class="form-label">Inserisci il pin per poter accedere</label>
-              <input type="number" class="form-control" id="txtPin" placeholder="Inserisci il tuo Pin" required autofocus>
-            </div>
-            <div class="mb-3 mt-3 d-flex justify-content-center">
-              <input type="submit" class="btn btn-success" id="btnVerify" value="Continua">
-            </div>
-          </section>
+      <header class="container">
+        <h1 class="text-center text-uppercase">Bentornato!</h1>
+        <h4 class="text-center text-uppercase" id="subTit"></h4>
+      </header>
+      <section class="container">
+        <div class="mb-3 mt-3" id="info2">
+          <label for="txtNome" class="form-label">Qual'è il tuo username?</label>
+          <input type="text" class="form-control" id="txtLogUsername" placeholder="Inserisci il tuo username" required autofocus>
+        </div>
+        <div class="mb-3 mt-3" id="info3">
+          <label for="txtNome" class="form-label">Inserisci il pin di 4 cifre</label>
+          <input type="number" class="form-control" id="txtLogPin" placeholder="Inserisci il pin" required autofocus>
+        </div>
+        <div class="mb-3 mt-3 d-flex justify-content-center">
+          <input type="submit" class="btn btn-success" id="btnLogRegister" value="Registrati" tabindex="5">
+        </div>
+      </section>
 
         <script src="../cordova.js"></script>
         <script src="../js/jquery.js"></script>
@@ -37,7 +40,6 @@
 </html>
 
 <!--
-    LOGIN.HTML:
-        In questa pagina servirà verificare o inserire il codice di sicurezza per l'applicazione
+FIRST.HTML:
+    Pagina principale durante il primo avvio dell'app ci sarà un inserimento guidato dei dati utente + creazione token
 -->
-

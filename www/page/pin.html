@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/login.css">
+        <title>Daily Life< - LOGIN</title>
+    </head>
+    <body>
+        <header class="container">
+            <h1 class="text-center text-uppercase">Bentornato</h1>
+            <h4 class="text-center text-uppercase" id="subTit"></h4>
+          </header>
+          <section class="container">
+            <div class="mb-3 mt-3" id="info">
+              <label for="txtPin" class="form-label">Inserisci il pin per poter accedere</label>
+              <input type="number" class="form-control" id="txtPin" placeholder="Inserisci il tuo Pin" required autofocus>
+            </div>
+            <div class="mb-3 mt-3 d-flex justify-content-center">
+              <input type="submit" class="btn btn-success" id="btnVerify" value="Continua">
+            </div>
+          </section>
+
+        <script src="../cordova.js"></script>
+        <script src="../js/jquery.js"></script>
+        <script src="../js/crypto.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/libreria.js"></script>
+        <script src="../js/register.js"></script>
+    </body>
+</html>
+
+<!--
+    LOGIN.HTML:
+        In questa pagina servirà verificare o inserire il codice di sicurezza per l'applicazione
+-->
+

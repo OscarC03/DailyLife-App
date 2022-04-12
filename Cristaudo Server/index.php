@@ -37,6 +37,9 @@
             case "getPin":
                 $sql="SELECT Password FROM Users WHERE Username='".$_POST["Username"]."'";
                 break;
+            case "getCredentials":
+                $sql="SELECT Username,Password FROM Users WHERE Username='".$_POST["Username"]."'";
+                break;
         }
         echo(json_encode(eseguiQuery($con,$sql)));
     }

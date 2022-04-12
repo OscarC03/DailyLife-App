@@ -40,11 +40,9 @@ $(()=>{
             $('#txtCognome').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
 
         if($('#txtUsername').val().trim()!=""){
-            alert("Entro dentro il txtuser")
             let username=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/getUsername','POST',{Username:$('#txtUsername').val()})
             username.done((srvData)=>{
                 if(srvData[0].UserExist==0){
-                    alert(srvData[0].UserExist);
                     dati.push($('#txtUsername').val());
 
                     if($('#txtPin').val().trim()!="" && !error){
@@ -53,8 +51,9 @@ $(()=>{
                             //Aggiunta campi sul db
                             let Utente=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/newUser','POST',{Nome:dati[0],Cognome:dati[1],Username:dati[2],PIN:dati[3]})
                             Utente.done((srvData)=>{
+                                localStorage.clear();
                                 localStorage.setItem('Username',dati[2]);
-                                window.location.replace('login.html'); 
+                                window.location.replace('../page/pin.html'); 
                             })
                             Utente.fail((jqXHR)=>{history.go(0);})
                         }
@@ -98,4 +97,52 @@ $(()=>{
             alert(jqXHR)
         })
     })
+
+    $('#btnLog').click(()=>{
+        if(localStorage.getItem('Username')!=null)
+            window.location.replace('../page/pin.html');
+        else
+            window.location.replace('../page/login.html');
+    })
+
+    $('#btnReg').click(()=>{
+        localStorage.clear();
+        window.location.replace('../page/first.html');
+    })
+
+    $('#btnLogRegister').click(()=>{
+        let dati=[];
+        if($('#txtLogUsername').val().trim()!=""){
+            dati.push($('#txtLogUsername').val());
+        }
+        else
+            $('#txtLogUsername').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
+        
+        if($('#txtLogPin').val().trim()!=""){
+            dati.push($('#txtLogPin').val());
+        }
+        else
+            $('#txtLogPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
+
+        if(dati.length>0){
+            let logUser=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/getCredentials','POST',{Username:dati[0]});
+
+            logUser.done((srvData)=>{
+                if(srvData[0].Username!=dati[0]){
+                    $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
+                }
+                else if(srvData[0].Password!=dati[1]){
+                    $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
+                }
+                else{
+                    localStorage.setItem("Username",dati[0]);
+                    window.location.replace('../page/pin.html');
+                }
+            });
+
+            logUser.fail((jqXHR)=>{
+                alert("Errore: "+jqXHR);
+            });
+        }
+    });
 })
