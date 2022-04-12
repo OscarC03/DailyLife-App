@@ -1,4 +1,5 @@
 $(()=>{
+    localStorage.clear();
     setTimeout(function() {
         navigator.splashscreen.hide();
     }, 3000);

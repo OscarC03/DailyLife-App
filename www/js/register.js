@@ -128,15 +128,22 @@ $(()=>{
             let logUser=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/getCredentials','POST',{Username:dati[0]});
 
             logUser.done((srvData)=>{
-                if(srvData[0].Username!=dati[0]){
-                    $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
-                }
-                else if(srvData[0].Password!=dati[1]){
-                    $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
+                if(srvData.length>0){
+                    console.log(srvData);
+                    if(srvData[0].Username!=dati[0]){
+                        $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
+                    }
+                    else if(srvData[0].Password!=dati[1]){
+                        $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
+                    }
+                    else{
+                        localStorage.setItem("Username",dati[0]);
+                        window.location.replace('../page/pin.html');
+                    }
                 }
                 else{
-                    localStorage.setItem("Username",dati[0]);
-                    window.location.replace('../page/pin.html');
+                    $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
+                    $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
                 }
             });
 
