@@ -1,8 +1,5 @@
 $(()=>{
     localStorage.clear();
-    setTimeout(function() {
-        navigator.splashscreen.hide();
-    }, 3000);
 
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
@@ -13,4 +10,8 @@ $(()=>{
         if(sessionStorage.getItem('Available')==null)
             window.location.href="../page/pin.html";
     }
+
+    setTimeout(function() {
+        navigator.splashscreen.hide();
+    }, 3000);
 })

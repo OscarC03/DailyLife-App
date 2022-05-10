@@ -7,21 +7,22 @@ $(()=>{
         setTimeout(function() {
             navigator.splashscreen.hide();
         }, 3000);
-    }
-
-    //Richiesta nome utente
-    if(localStorage.getItem('Username')!=undefined){
-        console.log(localStorage.getItem('Username'));
-        let User=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/getUser','POST',{Username:localStorage.getItem('Username')})
-
-        User.done((srvData)=>{
-            if(srvData[0].Nome!=undefined)
-                $('#subTit').text('Ciao '+srvData[0].Nome);
-        });
-
-        User.fail((jqXHR)=>{
-            alert("Error: "+jqXHR);
-        })
+        
+        //Richiesta nome utente
+        if(localStorage.getItem('Username')!=undefined){
+            console.log(localStorage.getItem('Username'));
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+            
+            function(srvData){
+                console.log("Inizio: "+srvData)
+                if(srvData.data[0].Nome!=undefined)
+                    $('#subTit').text('Ciao '+srvData[0].Nome);
+            },
+            
+            function(jqXHR){
+                alert("Error: "+jqXHR.error);
+            })
+        }
     }
 
     //Creazione nuovo USER
@@ -40,22 +41,26 @@ $(()=>{
             $('#txtCognome').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
 
         if($('#txtUsername').val().trim()!=""){
-            let username=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/getUsername','POST',{Username:$('#txtUsername').val()})
-            username.done((srvData)=>{
-                if(srvData[0].UserExist==0){
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUsername',{method:'POST',data:{Username:$('#txtUsername').val()}},
+            function(srvData){
+                if(srvData.data[0].UserExist==0){
                     dati.push($('#txtUsername').val());
 
                     if($('#txtPin').val().trim()!="" && !error){
                         if($('#txtPin').val().length==4){
                             dati.push($('#txtPin').val());
                             //Aggiunta campi sul db
-                            let Utente=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/newUser','POST',{Nome:dati[0],Cognome:dati[1],Username:dati[2],PIN:dati[3]})
-                            Utente.done((srvData)=>{
+                            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/newUser',{method:'POST',data:{Nome:dati[0],Cognome:dati[1],Username:dati[2],PIN:dati[3]}},
+                            function(srvData){
                                 localStorage.clear();
                                 localStorage.setItem('Username',dati[2]);
                                 window.location.replace('../page/pin.html'); 
+                            },
+                            
+                            function(jqXHR){
+                                alert(jqXHR.error);
+                                history.go(0);
                             })
-                            Utente.fail((jqXHR)=>{history.go(0);})
                         }
                         else
                             $('#txtPin').attr("placeholder", "Inserire un pin di 4 cifre").addClass('error').focus().val('');
@@ -67,9 +72,10 @@ $(()=>{
                     error=true;
                     $('#txtUsername').attr("placeholder", "Username già presente").addClass('error').focus();
                 }
-            })
-            username.fail(()=>{
-                alert("Username errore")
+            },
+            
+            function(jqXHR){
+                alert(jqXHR.error);
             })
         }
         else
@@ -78,23 +84,22 @@ $(()=>{
 
     $('#btnVerify').click(()=>{
         //Verifica del pin
-        let User=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/getPin','POST',{Username:localStorage.getItem('Username')})
-        
-        User.done((srvData)=>{
+        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPin',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+        function(srvData){
             if($('#txtPin').val().trim()!="")
-                if($('#txtPin').val().trim()==srvData[0].Password){
+                if($('#txtPin').val().trim()==srvData.data[0].Password){
                     sessionStorage.setItem('Available',true);
                     navigator.splashscreen.show();
                     window.location.replace('../index.html');
                 }
+                else
+                    $('#txtPin').attr("placeholder", "PIN errato").addClass('error').focus().val('');
             else
-                $('#txtPin').attr("placeholder", "PIN errato").addClass('error').focus().val('');
-        else
             $('#txtPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
-        });
+        },
         
-        User.fail((jqXHR)=>{
-            alert(jqXHR)
+        function(jqXHR){
+            alert(jqXHR.error);
         })
     })
 
@@ -125,15 +130,18 @@ $(()=>{
             $('#txtLogPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
 
         if(dati.length>0){
-            let logUser=sendRequestNoCallback('https://cristaudo.altervista.org/index.php/getCredentials','POST',{Username:dati[0]});
-
-            logUser.done((srvData)=>{
-                if(srvData.length>0){
-                    console.log(srvData);
-                    if(srvData[0].Username!=dati[0]){
+            const options = {
+                method: "POST",
+                data: {Username:dati[0]}
+              };
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getCredentials',options,
+            function(srvData){
+                if(srvData.data.length>0){
+                    console.log(options);
+                    if(srvData.data.Username!=dati[0]){
                         $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
                     }
-                    else if(srvData[0].Password!=dati[1]){
+                    else if(srvData.data.Password!=dati[1]){
                         $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
                     }
                     else{
@@ -145,10 +153,10 @@ $(()=>{
                     $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
                     $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
                 }
-            });
-
-            logUser.fail((jqXHR)=>{
-                alert("Errore: "+jqXHR);
+            },
+            
+            function(jqXHR){
+                alert(jqXHR.error);
             });
         }
     });

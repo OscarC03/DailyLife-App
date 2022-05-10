@@ -15,6 +15,8 @@
   "devDependencies": {
     "cordova-android": "^10.1.1",
     "cordova-browser": "^6.0.0",
+    "cordova-plugin-advanced-http": "^3.3.1",
+    "cordova-plugin-file": "^7.0.0",
     "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-splashscreen": "^6.0.0"
   },
@@ -25,7 +27,10 @@
     ],
     "plugins": {
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-advanced-http": {
+        "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
+      }
     }
   }
 }
