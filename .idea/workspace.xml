@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6f6cbcc6-c7d0-4fa6-8719-0085f6eafe5d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/www/Assets/IMG/BG-LOGIN.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/page/first.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/first.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/page/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/page/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/page/pin.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/pin.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/www/css/login.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/www/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/www/js/index.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/www/js/register.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/www/page/first.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/www/page/main.html" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28wDt3KObFl7NhEUCVMoU7ArofB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.EditorConfig"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="DailyLife-App" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="DailyLife-App" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6f6cbcc6-c7d0-4fa6-8719-0085f6eafe5d" name="Changes" comment="" />
+      <created>1652118987530</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652118987530</updated>
+      <workItem from="1652118995890" duration="2385000" />
+      <workItem from="1652195679421" duration="206000" />
+      <workItem from="1652195945239" duration="140000" />
+      <workItem from="1652196107670" duration="796000" />
+      <workItem from="1652196937167" duration="193000" />
+      <workItem from="1652197148609" duration="8400000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
