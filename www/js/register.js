@@ -1,28 +1,27 @@
 $(()=>{
+    $(document).ready(()=>{
+        navigator.splashscreen.show();
+    })
     //Inserimento Guidato dati utente PRIMO AVVIO
     document.addEventListener('deviceready',onDeviceReady,false)
     //Schermata di caricamento
     function onDeviceReady(){
-        navigator.splashscreen.show();
-        setTimeout(function() {
-            navigator.splashscreen.hide();
-        }, 3000);
-        
-        //Richiesta nome utente
-        if(localStorage.getItem('Username')!=undefined){
-            console.log(localStorage.getItem('Username'));
-            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
-            
-            function(srvData){
-                console.log("Inizio: "+srvData)
-                if(srvData.data[0].Nome!=undefined)
-                    $('#subTit').text('Ciao '+srvData[0].Nome);
-            },
-            
-            function(jqXHR){
-                alert("Error: "+jqXHR.error);
-            })
-        }
+        navigator.splashscreen.hide();
+    }
+    //Richiesta nome utente
+    if(localStorage.getItem('Username')!=undefined){
+        console.log(localStorage.getItem('Username'));
+        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+                
+        function(srvData){
+            let Result=JSON.parse(srvData.data)[0];
+            if(Result.Nome!=undefined)
+                $('#subTit').text('Ciao '+Result.Nome);
+        },
+                
+        function(jqXHR){
+            alert("Error: "+jqXHR.error);
+        })
     }
 
     //Creazione nuovo USER
@@ -43,7 +42,8 @@ $(()=>{
         if($('#txtUsername').val().trim()!=""){
             cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUsername',{method:'POST',data:{Username:$('#txtUsername').val()}},
             function(srvData){
-                if(srvData.data[0].UserExist==0){
+                let Result=JSON.parse(srvData.data)[0];
+                if(Result.UserExist==0){
                     dati.push($('#txtUsername').val());
 
                     if($('#txtPin').val().trim()!="" && !error){
@@ -86,8 +86,9 @@ $(()=>{
         //Verifica del pin
         cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPin',{method:'POST',data:{Username:localStorage.getItem('Username')}},
         function(srvData){
+            let Result=JSON.parse(srvData.data)[0]
             if($('#txtPin').val().trim()!="")
-                if($('#txtPin').val().trim()==srvData.data[0].Password){
+                if($('#txtPin').val().trim()==Result.Password){
                     sessionStorage.setItem('Available',true);
                     navigator.splashscreen.show();
                     window.location.replace('../index.html');
@@ -130,18 +131,15 @@ $(()=>{
             $('#txtLogPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
 
         if(dati.length>0){
-            const options = {
-                method: "POST",
-                data: {Username:dati[0]}
-              };
-            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getCredentials',options,
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getCredentials',{method: "POST", data: {Username:dati[0]}},
             function(srvData){
-                if(srvData.data.length>0){
-                    console.log(options);
-                    if(srvData.data.Username!=dati[0]){
+                let Result=JSON.parse(srvData.data)[0];
+                if(Result!=undefined){
+                    console.log(Result);
+                    if(Result.Username!=dati[0]){
                         $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
                     }
-                    else if(srvData.data.Password!=dati[1]){
+                    else if(Result.Password!=dati[1]){
                         $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
                     }
                     else{

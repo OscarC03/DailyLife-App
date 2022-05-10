@@ -1,5 +1,4 @@
 $(()=>{
-    localStorage.clear();
 
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
