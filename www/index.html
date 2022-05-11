@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<h
+        tml>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'">
@@ -7,6 +8,7 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/index.css">
         <title>Daily Life</title>
@@ -14,18 +16,16 @@
     <body>
         <h1>Ciao sei gia loggato</h1>
 
-        <nav class="bg-dark fixed-bottom">
-            <div class="d-flex justify-content-center row">
-                <div class="col-sm-4">
-                    <a href="#">1</a>
+        <nav class="nav fixed-bottom d-flex justify-content-around">
+                <div class="btnBottom">
+                    <button class="btn" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
                 </div>
-                <div class="col-sm-4">
-                    <a href="#">1</a>
+                <div class="btnTop">
+                    <button class="btn" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
                 </div>
-                <div class="col-sm-4">
-                    <a href="#">1</a>
+                <div class="btnBottom">
+                    <button class="btn" id="btnList"><i class="fa-solid fa-rectangle-list"></i></button>
                 </div>
-            </div>
           </nav>
         <script src="cordova.js"></script>
         <script src="js/crypto.js"></script>

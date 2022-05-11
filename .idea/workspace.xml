@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f6cbcc6-c7d0-4fa6-8719-0085f6eafe5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/www/Assets/IMG/BG-LOGIN.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/page/first.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/first.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/page/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/page/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/page/pin.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/page/pin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,15 +28,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.EditorConfig"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.EditorConfig&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="DailyLife-App" />
@@ -72,7 +65,8 @@
       <workItem from="1652195945239" duration="140000" />
       <workItem from="1652196107670" duration="796000" />
       <workItem from="1652196937167" duration="193000" />
-      <workItem from="1652197148609" duration="8400000" />
+      <workItem from="1652197148609" duration="8955000" />
+      <workItem from="1652281090943" duration="4000" />
     </task>
     <servers />
   </component>
