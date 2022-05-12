@@ -1,8 +1,16 @@
+body{
+    background-image:linear-gradient(rgba(180, 255, 159,0.4), rgba(168, 255, 144, 0.4)), url('../Assets/IMG/Sunflour.jpg');  
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+        
+}
+
 #btnInsert{
     text-decoration: none;
     font-weight: bold;
-    border: 1px solid #B4FF9F;
-    background-color: #B4FF9F;
+    border: 1px solid #83BD75;
+    background-color: #83BD75;
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
@@ -28,12 +36,12 @@
     box-shadow: none !important;
 }
 
-#btnInsert:hover:active{color: #26b662;}
-#btnMap:hover:active{color: #26b662;}
-#btnList:hover:active{color: #26b662;}
+#btnInsert:hover:active{color: #26b662 !important;}
+#btnMap:hover:active{color: #26b662 !important;}
+#btnList:hover:active{color: #26b662 !important;}
 
 .btn{
-    color: white;
+    color: white !important;
 }
 
 .btnBottom{
@@ -49,5 +57,5 @@
 }
 
 .nav{
-    background-color: #B4FF9F;
+    background-color: #83BD75;
  }

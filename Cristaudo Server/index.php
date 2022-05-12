@@ -8,7 +8,7 @@
     
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $url = explode( '/', $url);
-	$_POST = json_decode(file_get_contents("php://input"), true);
+	//$_POST = json_decode(file_get_contents("php://input"), true);
 
     switch($_SERVER['REQUEST_METHOD']){
         case "POST":
