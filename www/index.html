@@ -14,23 +14,31 @@
         <title>Daily Life</title>
     </head>
     <body>
-        <h1 class="text-center" id="txtName"></h1>
+        <div class="dTitle"><h1 class="text-center text-white-50" id="txtName">Daily Life</h1></div>
 
         <section></section>
 
         <section></section>
-        
+        <div class="bg-div">
+
+        </div>
         <nav class="nav fixed-bottom d-flex justify-content-around">
-                <div class="btnBottom">
-                    <button class="btn" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
-                </div>
-                <div class="btnTop">
-                    <button class="btn" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="btnBottom">
-                    <button class="btn" id="btnList"><i class="fa-solid fa-rectangle-list"></i></button>
-                </div>
-          </nav>
+            <div class="btnBottom">
+                <button class="btn btn-menu" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
+            </div>
+            <div class="btnBottom">
+                <button class="btn btn-menu" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
+            </div>
+            <div class="btnTop">
+                <button class="btn" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="btnBottom">
+                <button class="btn btn-menu" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
+            </div>
+            <div class="btnBottom">
+                <button class="btn btn-menu" id="btnOption"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </nav>
         <script src="cordova.js"></script>
         <script src="js/crypto.js"></script>
         <script src="js/bootstrap.min.js"></script>

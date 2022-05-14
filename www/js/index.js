@@ -14,6 +14,6 @@ $(window).on("load",()=>{
         //controllo reinserimento pc a chiusura app
         if(sessionStorage.getItem('Available')==null)
             window.location.replace("../page/pin.html");
-        $('#txtName').text(localStorage.getItem("Username"));
+        //$('#txtName').text(localStorage.getItem("Username"));
     }
 })

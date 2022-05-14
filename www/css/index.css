@@ -9,36 +9,50 @@ body{
 #btnInsert{
     text-decoration: none;
     font-weight: bold;
-    border: 1px solid #83BD75;
-    background-color: #83BD75;
+    /*border: 1px solid #83BD75;*/
+    background-color: #50CB93;
     border-radius: 50%;
-    width: 6rem;
-    height: 6rem;
-    font-size: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 3.5rem;
     line-height: 50%;
     outline: none !important;
     box-shadow: none !important;
+    padding: 0;
 }
 
-#btnMap{
+.btn-menu{
     text-decoration: none;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 2.1rem;
     outline: none !important;
     box-shadow: none !important;
 }
 
-#btnList{
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 2rem;
-    outline: none !important;
-    box-shadow: none !important;
+.dTitle{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
+
+#txtName{
+    font-family: "DL-Title";
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 0 3px black;
 }
 
 #btnInsert:hover:active{color: #26b662 !important;}
 #btnMap:hover:active{color: #26b662 !important;}
 #btnList:hover:active{color: #26b662 !important;}
+#btnCalendar:hover:active{color: #26b662 !important;}
+#btnOption:hover:active{color: #26b662 !important;}
 
 .btn{
     color: white !important;
@@ -52,10 +66,28 @@ body{
 }
 
 .btnTop{
-    position: absolute;
-    bottom: 10px;
+    /*margin-bottom: 0.2rem;*/
+    padding: 0;
 }
 
 .nav{
-    background-color: #83BD75;
+    /*background-color: #83BD75;*/
+    background-color: transparent;
  }
+
+ .bg-div{
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+     height: 2rem;
+    background-color: #50CB93;
+ }
+
+ i{
+     text-shadow: 0 0 5px black;
+ }
+
+ @font-face {
+    font-family: "DL-Title";
+    src: url("../Assets/Font/Pacifico-Regular.ttf");
+}
