@@ -5,7 +5,7 @@ $(document).ready(()=>{
         navigator.splashscreen.hide();
 })
 
-$(window).on("load",()=>{
+$(window).on("load",()=>{ 
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
     if(User==null)
@@ -14,6 +14,11 @@ $(window).on("load",()=>{
         //controllo reinserimento pc a chiusura app
         if(sessionStorage.getItem('Available')==null)
             window.location.replace("../page/pin.html");
-        //$('#txtName').text(localStorage.getItem("Username"));
+        //$('#txtName').text(localStorage.getItem("Username"));   
     }
+
+    $("#btnCalendar").click(()=>{
+        window.location.replace("../page/calendar.html");
+        navigator.splashscreen.show();
+    })
 })
