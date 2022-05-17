@@ -16,9 +16,11 @@
     "cordova-android": "^10.1.1",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-advanced-http": "^3.3.1",
+    "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-file": "^7.0.0",
     "cordova-plugin-fingerprint-aio": "^5.0.1",
     "cordova-plugin-inappbrowser": "^5.0.0",
+    "cordova-plugin-network-information": "^3.0.0",
     "cordova-plugin-splashscreen": "^6.0.0"
   },
   "cordova": {
@@ -32,7 +34,9 @@
       "cordova-plugin-advanced-http": {
         "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
       },
-      "cordova-plugin-fingerprint-aio": {}
+      "cordova-plugin-fingerprint-aio": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-dialogs": {}
     }
   }
 }

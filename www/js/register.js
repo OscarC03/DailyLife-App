@@ -1,3 +1,4 @@
+let connected=true;
 $(window).on("load",()=>{
     navigator.splashscreen.hide();
 
@@ -13,7 +14,9 @@ $(window).on("load",()=>{
             },
 
             function(jqXHR){
-                alert("Error: "+jqXHR.error);
+                connected=false;
+                navigator.notification.beep(1);
+                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             })
     }
 
@@ -51,8 +54,8 @@ $(window).on("load",()=>{
                                     },
 
                                     function(jqXHR){
-                                        alert(jqXHR.error);
-                                        history.go(0);
+                                        navigator.notification.beep(1);
+                                        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                                     })
                             }
                             else
@@ -68,7 +71,8 @@ $(window).on("load",()=>{
                 },
 
                 function(jqXHR){
-                    alert(jqXHR.error);
+                    navigator.notification.beep(1);
+                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 })
         }
         else
@@ -93,8 +97,10 @@ $(window).on("load",()=>{
             },
 
             function(jqXHR){
-                alert(jqXHR.error);
-            })
+                navigator.notification.beep(1);
+                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+            }
+        )
     })
 
     $('#btnLog').click(()=>{
@@ -147,13 +153,15 @@ $(window).on("load",()=>{
                 },
 
                 function(jqXHR){
-                    alert(jqXHR.error);
-                });
+                    navigator.notification.beep(1);
+                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                }
+            );
         }
     });
 
 
-    if(sessionStorage.getItem("Available")==null && localStorage.getItem("Username")!=null){
+    if(sessionStorage.getItem("Available")==null && localStorage.getItem("Username")!=null && connected){
         Fingerprint.isAvailable(isAvailableSuccess, isAvailableError);
 
         function isAvailableSuccess(result) {
@@ -175,5 +183,3 @@ $(window).on("load",()=>{
         function isAvailableError(error) {}
     }
 })
-
-

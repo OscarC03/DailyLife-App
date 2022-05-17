@@ -69,12 +69,16 @@ body{
  }
 
  .bg-div{
-     position: absolute;
-     bottom: 0;
-     width: 100%;
-     height: 2rem;
+    width: 100%;
+    height: 2rem;
     background-color: #50CB93;
+    overflow: auto;
  }
+
+/*.clContainer{
+    height: 300px;
+    overflow:auto;
+}*/
 
  i{
      text-shadow: 0 0 5px black;

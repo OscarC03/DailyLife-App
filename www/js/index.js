@@ -21,4 +21,9 @@ $(window).on("load",()=>{
         window.location.replace("../page/calendar.html");
         navigator.splashscreen.show();
     })
+
+    $("#btnOption").click(()=>{
+        window.location.replace("../page/calendar.html");
+        navigator.splashscreen.show();
+    });
 })
