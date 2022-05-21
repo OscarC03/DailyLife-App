@@ -17,6 +17,8 @@ $(window).on("load",()=>{
         //$('#txtName').text(localStorage.getItem("Username"));   
     }
 
+    $('#imgHumor').attr('src','../Assets/IMG/E-Sad.png');
+
     $("#btnCalendar").click(()=>{
         window.location.replace("../page/calendar.html");
         navigator.splashscreen.show();
@@ -26,4 +28,9 @@ $(window).on("load",()=>{
         window.location.replace("../page/calendar.html");
         navigator.splashscreen.show();
     });
+
+    $('#btnList').click(()=>{
+        window.location.replace('../page/list.html');
+        navigator.splashscreen.show();
+    })
 })

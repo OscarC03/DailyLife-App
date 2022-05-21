@@ -41,6 +41,16 @@ body{
     text-shadow: 0 0 5px black;
 }
 
+#scActivities{
+    height: 20%;
+    background-color: #50CB93;
+}
+
+#imgP{
+    max-width: 30px;
+    max-height: 60px;
+}
+
 #btnInsert:hover:active{color: #26b662 !important;}
 #btnMap:hover:active{color: #26b662 !important;}
 #btnList:hover:active{color: #26b662 !important;}
@@ -75,12 +85,30 @@ body{
     overflow: auto;
  }
 
+.divHeader{
+    height: 3rem;
+    font-size: 1.5rem;
+    background-color: #50CB93;
+    color: white;
+}
+
+.divHeader i, .divHeader h5{
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-top: 0.75rem;
+    text-shadow: 0 0 5px black;
+}
+
+.main-content{
+    margin-top: 5rem !important;
+}
+
 /*.clContainer{
     height: 300px;
     overflow:auto;
 }*/
 
- i{
+ .btnShadow{
      text-shadow: 0 0 5px black;
  }
 

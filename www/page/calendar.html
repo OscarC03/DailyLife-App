@@ -13,7 +13,13 @@
         <title>Daily Life - CALENDAR</title>
     </head>
     <body>
-        <section class="m-4">
+        <header class="divHeader fixed-top">
+            <div class="d-flex justify-content-start my-auto h-100">
+                <i class="fa-solid fa-arrow-left" id="btnBack"></i>
+                <h5 id="txtPosition">Calendario</h5>
+            </div> 
+        </header>
+        <section class="m-4 main-content">
             <select class="form-control">
                 <option value="ALL-0">Tutto</option>
                 <option value="S-1">Una Settimana</option>
@@ -73,19 +79,19 @@
             <div class="fixed-bottom bg-div"></div>
             <nav class="nav fixed-bottom d-flex justify-content-around">
                 <div class="btnBottom">
-                    <button class="btn btn-menu" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
+                    <button class="btn btn-menu btnShadow" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
                 </div>
                 <div class="btnBottom">
-                    <button class="btn btn-menu" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
+                    <button class="btn btn-menu btnShadow" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
                 </div>
                 <div class="btnTop">
-                    <button class="btn" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
+                    <button class="btn btnShadow" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div class="btnBottom">
-                    <button class="btn btn-menu" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
+                    <button class="btn btn-menu btnShadow" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
                 </div>
                 <div class="btnBottom">
-                    <button class="btn btn-menu" id="btnOption"><i class="fa-solid fa-gear"></i></button>
+                    <button class="btn btn-menu btnShadow" id="btnOption"><i class="fa-solid fa-gear"></i></button>
                 </div>
             </nav>
         </footer>
