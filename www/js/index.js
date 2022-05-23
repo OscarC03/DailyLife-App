@@ -6,6 +6,13 @@ $(document).ready(()=>{
 })
 
 $(window).on("load",()=>{ 
+
+    cordova.plugins.notification.local.schedule({
+        title: 'My first notification',
+        text: 'Thats pretty easy...',
+        foreground: true
+    });
+
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
     if(User==null)
