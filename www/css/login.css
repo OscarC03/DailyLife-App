@@ -17,7 +17,7 @@ h1{
     color: white;
 }
 
-input[type="text"],input[type="number"]{
+input[type="text"],input[type="number"],input[type="password"]{
     height: 60px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: lighter;

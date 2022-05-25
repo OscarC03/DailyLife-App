@@ -1,7 +1,12 @@
 let connected=true;
-$(window).on("load",()=>{
-    navigator.splashscreen.hide();
 
+$(document).ready(()=>{
+    navigator.splashscreen.hide();
+})
+
+$(window).on("load",()=>{
+    $('#divUserPin').hide();
+    $('#divNewUser').show();
     //Richiesta nome utente
     if(localStorage.getItem('Username')!=undefined){
         console.log(localStorage.getItem('Username'));
@@ -15,9 +20,11 @@ $(window).on("load",()=>{
 
             function(jqXHR){
                 connected=false;
+                localStorage.clear();
                 navigator.notification.beep(1);
                 navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
-            })
+            }
+        )
     }
 
     //Creazione nuovo USER
@@ -42,15 +49,16 @@ $(window).on("load",()=>{
                     if(Result.UserExist==0){
                         dati.push($('#txtUsername').val());
 
-                        if($('#txtPin').val().trim()!="" && !error){
-                            if($('#txtPin').val().length==4){
-                                dati.push($('#txtPin').val());
+                        if($('#txtPassword').val().trim()!="" && $('#txtPassword').val()==$('#txtPassword2').val() && !error){
+                            if($('#txtPassword').val().length>=4){
+                                dati.push($('#txtPassword').val());
                                 //Aggiunta campi sul db
-                                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/newUser',{method:'POST',data:{Nome:dati[0],Cognome:dati[1],Username:dati[2],PIN:dati[3]}},
+                                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/newUser',{method:'POST',data:{Nome:dati[0],Cognome:dati[1],Username:dati[2],Password:dati[3]}},
                                     function(srvData){
                                         localStorage.clear();
                                         localStorage.setItem('Username',dati[2]);
-                                        window.location.replace('../page/pin.html');
+                                        $('#divUserPin').show();
+                                        $('#divNewUser').hide();
                                     },
 
                                     function(jqXHR){
@@ -59,10 +67,10 @@ $(window).on("load",()=>{
                                     })
                             }
                             else
-                                $('#txtPin').attr("placeholder", "Inserire un pin di 4 cifre").addClass('error').focus().val('');
+                                $('#txtPassword').attr("placeholder", "Inserire una password valida").addClass('error').focus().val('');
                         }
                         else
-                            $('#txtPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
+                            $('#txtPassword').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
                     }
                     else{
                         error=true;
@@ -79,28 +87,27 @@ $(window).on("load",()=>{
             $('#txtUsername').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
     })
 
+    $('#btnCreatePin').click(()=>{
+        if($('#txtPin').val().trim().length==4){
+            localStorage.setItem("PIN",CryptoJS.MD5($('#txtPin').val()))
+            window.location.replace('../page/pin.html');
+        }
+        else
+            $('#txtPin').attr("placeholder", "Inserire un PIN di 4 cifre").addClass('error').focus().val('');
+    })
+
     $('#btnVerify').click(()=>{
         //Verifica del pin
-        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPin',{method:'POST',data:{Username:localStorage.getItem('Username')}},
-            function(srvData){
-                let Result=JSON.parse(srvData.data)[0]
-                if($('#txtPin').val().trim()!="")
-                    if($('#txtPin').val().trim()==Result.Password){
-                        sessionStorage.setItem('Available',true);
-                        navigator.splashscreen.show();
-                        window.location.replace('../index.html');
-                    }
-                    else
-                        $('#txtPin').attr("placeholder", "PIN errato").addClass('error').focus().val('');
-                else
-                    $('#txtPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
-            },
-
-            function(jqXHR){
-                navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+        if($('#txtPin').val().trim()!="")
+            if(CryptoJS.MD5($('#txtPin').val().trim())==localStorage.getItem("PIN")){
+                sessionStorage.setItem('Available',true);
+                navigator.splashscreen.show();
+                window.location.replace('../index.html');
             }
-        )
+            else
+                $('#txtPin').attr("placeholder", "PIN errato").addClass('error').focus().val('');
+        else
+            $('#txtPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
     })
 
     $('#btnLog').click(()=>{
@@ -130,21 +137,14 @@ $(window).on("load",()=>{
             $('#txtLogPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
 
         if(dati.length>0){
-            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getCredentials',{method: "POST", data: {Username:dati[0]}},
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getCredentials',{method: "POST", data: {Username:dati[0],Password:dati[1]}},
                 function(srvData){
-                    let Result=JSON.parse(srvData.data)[0];
-                    if(Result!=undefined){
-                        console.log(Result);
-                        if(Result.Username!=dati[0]){
-                            $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
-                        }
-                        else if(Result.Password!=dati[1]){
-                            $('#txtLogPin').attr("placeholder", "PinErrato").addClass('error').focus();
-                        }
-                        else{
-                            localStorage.setItem("Username",dati[0]);
-                            window.location.replace('../page/pin.html');
-                        }
+                    let Result=srvData.data;
+                    console.log(srvData);
+                    if(Result!=undefined && Result=="Login OK"){
+                        localStorage.setItem("Username",dati[0]);
+                        $('#divUserPin').show();
+                        $('#divLoginUser').hide();
                     }
                     else{
                         $('#txtLogUsername').attr("placeholder", "Username Errato").addClass('error').focus();
@@ -154,7 +154,7 @@ $(window).on("load",()=>{
 
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{/*window.location.replace("../page/main.html");*/}, "Attenzione", ["Chiudi"]);
                 }
             );
         }
@@ -174,7 +174,7 @@ $(window).on("load",()=>{
                 sessionStorage.setItem('Available',true);
                 navigator.splashscreen.show();
                 window.location.replace('../index.html');
-            }
+            }   
 
             function errorCallback(error){}
 

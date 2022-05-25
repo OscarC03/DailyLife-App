@@ -16,17 +16,26 @@
         <h1 class="text-center text-uppercase">Bentornato!</h1>
         <h4 class="text-center text-uppercase" id="subTit"></h4>
       </header>
-      <section class="container">
+      <section class="container" id="divLoginUser">
         <div class="mb-3 mt-3" id="info2">
           <label for="txtNome" class="form-label">Qual'è il tuo username?</label>
           <input type="text" class="form-control" id="txtLogUsername" placeholder="Inserisci il tuo username" required autofocus>
         </div>
         <div class="mb-3 mt-3" id="info3">
-          <label for="txtNome" class="form-label">Inserisci il pin di 4 cifre</label>
-          <input type="number" class="form-control" id="txtLogPin" placeholder="Inserisci il pin" required autofocus>
+          <label for="txtNome" class="form-label">Inserisci la tua password</label>
+          <input type="password" class="form-control" id="txtLogPin" placeholder="Inserisci la tua password" required autofocus>
         </div>
         <div class="mb-3 mt-3 d-flex justify-content-center">
-          <input type="submit" class="btn btn-success" id="btnLogRegister" value="Entra" tabindex="5">
+          <input type="submit" class="btn btn-success btn-lg" id="btnLogRegister" value="Entra" tabindex="5">
+        </div>
+      </section>
+      <section class="container ui-section" id="divUserPin">
+        <div class="mb-3 mt-3" id="info5">
+          <label for="txtNome" class="form-label">Inserisci Un PIN</label>
+          <input type="number" class="form-control" id="txtPin" placeholder="Inserisci un PIN di 4 cifre" required autofocus>
+        </div>
+        <div class="mb-3 mt-3 d-flex justify-content-center">
+          <input type="submit" class="btn btn-success btn-lg" id="btnCreatePin" value="Continua" tabindex="5">
         </div>
       </section>
 
@@ -34,6 +43,7 @@
         <script src="../js/crypto.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="../js/crypto.js"></script>
         <script src="../js/register.js"></script>
     </body>
 </html>

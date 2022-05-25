@@ -6,13 +6,6 @@ $(document).ready(()=>{
 })
 
 $(window).on("load",()=>{ 
-
-    cordova.plugins.notification.local.schedule({
-        title: 'My first notification',
-        text: 'Thats pretty easy...',
-        foreground: true
-    });
-
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
     if(User==null)
@@ -24,6 +17,26 @@ $(window).on("load",()=>{
         //$('#txtName').text(localStorage.getItem("Username"));   
     }
 
+    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreference',{method:'POST',data:{}},
+
+    function(srvData){
+        let Result=JSON.parse(srvData.data);
+        for(let i=0;i<2;i++)
+            if(i==0)
+                $('#itemCarousel').append('<div class="carousel-item active"><img class="img-fluid" src="'+Result[i].IMG+'" alt="First slide"></div>')
+            else                
+                $('#itemCarousel').append('<div class="carousel-item"><img class="img-fluid" src="'+Result[i].IMG+'" alt="First slide"></div>')
+
+    },
+
+    function(jqXHR){
+        connected=false;
+        localStorage.clear();
+        navigator.notification.beep(1);
+        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+    }
+)
+    
     $('#imgHumor').attr('src','../Assets/IMG/E-Sad.png');
 
     $("#btnCalendar").click(()=>{

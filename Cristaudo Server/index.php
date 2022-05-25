@@ -26,7 +26,7 @@
         $con=connection("my_cristaudo");
         switch($url[2]){
             case "newUser":
-                $sql="INSERT INTO Users (Nome,Cognome,Username,Password) VALUES ('".$_POST["Nome"]."','".$_POST["Cognome"]."','".$_POST["Username"]."','".$_POST["PIN"]."')";
+                $sql="INSERT INTO Users (Nome,Cognome,Username,Password) VALUES ('".$_POST["Nome"]."','".$_POST["Cognome"]."','".$_POST["Username"]."','".md5($_POST["PIN"])."')";
                 break;
             case "getUser":
                 $sql="SELECT Nome FROM Users WHERE Username='".$_POST["Username"]."'";
@@ -39,6 +39,12 @@
                 break;
             case "getCredentials":
                 $sql="SELECT Username,Password FROM Users WHERE Username='".$_POST["Username"]."'";
+                $userData=eseguiQuery($con,$sql);
+                if($userData["Username"]==$_POST["Username"] && $userData["Password"]==$_POST["Password"])
+                	echo(json_encode({resp:"Login OK"}));
+                else
+                	echo(json_encode({resp:"Error"}));
+                exit;
                 break;
         }
         echo(json_encode(eseguiQuery($con,$sql)));
