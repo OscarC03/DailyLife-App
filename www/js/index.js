@@ -21,11 +21,11 @@ $(window).on("load",()=>{
 
     function(srvData){
         let Result=JSON.parse(srvData.data);
-        for(let i=0;i<2;i++)
+        for(let i=0;i<5;i++)
             if(i==0)
-                $('#itemCarousel').append('<div class="carousel-item active"><img class="img-fluid" src="'+Result[i].IMG+'" alt="First slide"></div>')
+                $('#itemCarousel').append('<div class="carousel-item active"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="slide"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
             else                
-                $('#itemCarousel').append('<div class="carousel-item"><img class="img-fluid" src="'+Result[i].IMG+'" alt="First slide"></div>')
+                $('#itemCarousel').append('<div class="carousel-item"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="slide"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
 
     },
 
@@ -35,7 +35,7 @@ $(window).on("load",()=>{
         navigator.notification.beep(1);
         navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
     }
-)
+    )
     
     $('#imgHumor').attr('src','../Assets/IMG/E-Sad.png');
 

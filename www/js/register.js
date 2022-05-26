@@ -7,6 +7,9 @@ $(document).ready(()=>{
 $(window).on("load",()=>{
     $('#divUserPin').hide();
     $('#divNewUser').show();
+
+
+
     //Richiesta nome utente
     if(localStorage.getItem('Username')!=undefined){
         console.log(localStorage.getItem('Username'));
@@ -90,7 +93,7 @@ $(window).on("load",()=>{
     $('#btnCreatePin').click(()=>{
         if($('#txtPin').val().trim().length==4){
             localStorage.setItem("PIN",CryptoJS.MD5($('#txtPin').val()))
-            window.location.replace('../page/pin.html');
+            window.location.replace('../page/preference.html');
         }
         else
             $('#txtPin').attr("placeholder", "Inserire un PIN di 4 cifre").addClass('error').focus().val('');

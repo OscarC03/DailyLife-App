@@ -112,6 +112,10 @@ body{
      text-shadow: 0 0 5px black;
  }
 
+ .row{
+     margin:0 auto;
+ }
+
  @font-face {
     font-family: "DL-Title";
     src: url("../Assets/Font/Pacifico-Regular.ttf");
