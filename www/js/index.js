@@ -36,8 +36,6 @@ $(window).on("load",()=>{
             navigator.notification.confirm("Qualcosa è andato storto: aaaaaaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
     )
-    
-    $('#imgHumor').attr('src','../Assets/IMG/E-Sad.png');
 
     $("#btnCalendar").click(()=>{
         window.location.replace("../page/calendar.html");
