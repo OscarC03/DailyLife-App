@@ -17,7 +17,7 @@ $(window).on("load",()=>{
         //$('#txtName').text(localStorage.getItem("Username"));   
     }
 
-    /*cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreference',{method:'POST',data:{}},
+    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreferenceUser',{method:'POST',data:{User:localStorage.getItem('IDU')}},
 
         function(srvData){
             let Result=JSON.parse(srvData.data);
@@ -35,7 +35,7 @@ $(window).on("load",()=>{
             navigator.notification.beep(1);
             navigator.notification.confirm("Qualcosa è andato storto: aaaaaaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
-    )*/
+    )
     
     $('#imgHumor').attr('src','../Assets/IMG/E-Sad.png');
 

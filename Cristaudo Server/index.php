@@ -53,7 +53,7 @@
                 	echo("Error: Username o Password errate ".$userData[0]["Password"]." - ".md5($_POST["Password"]));
                 break;
             case "insertPreference":
-            	$sql="INSERT INTO PreferenzeUser (IDPreferenza,IDUser) VALUES (".$_POST["IDP1"].",".$_POST["IDU"]."),(".$_POST["IDP2"].",".$_POST["IDU"]."),(".$_POST["IDP3"].",".$_POST["IDU"]."),(".$_POST["IDP4"].",".$_POST["IDU"]."),(".$_POST["IDP5"].",".$_POST["IDU"].")";
+            	$sql="INSERT INTO PreferenzeUser (IDPreferenza,IDUser) VALUES (".intval($_POST["IDP1"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP2"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP3"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP4"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP5"]).",".intval($_POST["IDU"]).")";
             	break;
             case "getPreference":
                 $sql="SELECT * FROM Preferenze";

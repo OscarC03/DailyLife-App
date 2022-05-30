@@ -1,4 +1,5 @@
 let connected=true;
+var today = new Date();
 
 $(document).ready(()=>{
     navigator.splashscreen.hide();
@@ -66,6 +67,7 @@ $(window).on("load",()=>{
                                                 let Result=JSON.parse(srvData.data)[0];
                                                 if(Result.Nome!=undefined)
                                                     localStorage.setItem('IDU',Result.IDUser)
+                                                    localStorage.setItem('key',CryptoJS.SHA256(dati[2]+dati[3]+today.getHours()+today.getMinutes()+today.getSeconds()+today.getMilliseconds()))
                                             },
                             
                                             function(jqXHR){
@@ -166,6 +168,24 @@ $(window).on("load",()=>{
                     if(Result!=undefined && Result=="Login OK"){
                         localStorage.setItem("Username",dati[0]);
                         localStorage.setItem("JustUser",true);
+
+                        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+
+                            function(srvData){
+                                let Result=JSON.parse(srvData.data)[0];
+                                if(Result.Nome!=undefined)
+                                    localStorage.setItem('IDU',Result.IDUser);
+                                localStorage.setItem('key',CryptoJS.SHA256(dati[0]+dati[1]+today.getHours()+today.getMinutes()+today.getSeconds()+today.getMilliseconds()))
+                            },
+        
+                            function(jqXHR){
+                                connected=false;
+                                localStorage.clear();
+                                navigator.notification.beep(1);
+                                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                            }
+                        )
+
                         $('#divUserPin').show();
                         $('#divLoginUser').hide();
                     }

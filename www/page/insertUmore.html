@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/index.css">
+        <title>Daily Life - InsertHumor</title>
+    </head>
+    <body>
+        <header class="divHeader fixed-top">
+            <div class="d-flex justify-content-start my-auto h-100">
+                <i class="fa-solid fa-arrow-left" id="btnBack"></i>
+                <h5 id="txtPosition">Inserimento Umore</h5>
+            </div> 
+        </header>
+        <section class="container main-content">
+            <h3 class="text-center text-white">Umore</h3>
+            <p class="text-center text-white">Come ti senti oggi?</p>
+        </section>
+        <section class="container mt-2">
+            <div class="row">
+                <div class="col-4" id="btnSad"><img class="img-fluid" src="../Assets/IMG/E-Sad.png"><p class="text-center text-white">Non bene</p></div>
+                <div class="col-4" id="btnNeutral"><img class="img-fluid" src="../Assets/IMG/E-Neutral.png"><p class="text-center text-white">Neutrale</p></div>
+                <div class="col-4" id="btnHappy"><img class="img-fluid" src="../Assets/IMG/E-Happy.png"><p class="text-center text-white">Molto bene</p></div>
+            </div>
+        </section>
+        <section class="container mt-2" id="scDatiUmore">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center text-white">Da 1 a 10 qual'è il tuo livello di stress?</p>
+                    <div class="d-flex justify-content-around">
+                        <input type="range" class="form-range" min="1" max="10" id="rngStress">
+                        <p class="text-center text-white font-responsive ps-2" id="txtStress"></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="text-center text-white">Da 1 a 10 qual'è il tuo livello di felicità?</p>
+                    <div class="d-flex justify-content-around">
+                        <input type="range" class="form-range" min="1" max="10" id="rngFelicita">
+                        <p class="text-center text-white font-responsive ps-2" id="txtFelicita"></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="text-center text-white">Da 1 a 10 qual'è il tuo livello di stanchezza fisica?</p>
+                    <div class="d-flex justify-content-around">
+                        <input type="range" class="form-range" min="1" max="10" id="rngFisica">
+                        <p class="text-center text-white font-responsive ps-2" id="txtFisica"></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="text-center text-white">Da 1 a 10 qual'è il tuo livello di stanchezza mentale?</p>
+                    <div class="d-flex justify-content-around">
+                        <input type="range" class="form-range" min="1" max="10" id="rngMentale">
+                        <p class="text-center text-white font-responsive ps-2" id="txtMentale"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 mt-3 d-flex justify-content-center">
+                <input type="submit" class="btn btn-success btn-lg" id="btnInsertHumor" value="Inserisci" tabindex="5">
+              </div>
+        </section>
+        <footer class="main-content">
+            <div class="fixed-bottom bg-div"></div>
+            <nav class="nav fixed-bottom d-flex justify-content-around">
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
+                </div>
+                <div class="btnTop">
+                    <button class="btn btnShadow" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnOption"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </nav>
+        </footer>
+        <script src="../cordova.js"></script>
+        <script src="../js/crypto.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="../js/humor.js"></script>
+    </body>
+</html>
+
+<!--
+CALENDAR.HTML:
+    Calendario di tutte le attività e dell'umore dell'utente
+-->

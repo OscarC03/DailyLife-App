@@ -33,7 +33,16 @@
         </div>
         <div class="row">
             <div class="col">
-
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                      Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Link 1</a></li>
+                      <li><a class="dropdown-item" href="#">Link 2</a></li>
+                      <li><a class="dropdown-item" href="#">Link 3</a></li>
+                    </ul>
+                  </div>
             </div>
         </div>
 
@@ -48,8 +57,12 @@
                 <div class="btnBottom">
                     <button class="btn btn-menu btnShadow" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
                 </div>
-                <div class="btnTop">
-                    <button class="btn btnShadow" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
+                <div class="btnTop dropup">
+                    <button class="btn btnShadow" data-bs-toggle="dropdown" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
+                    <ul class="dropdown-menu d-flex justify-content-around">
+                        <li><a class="dropdown-item" href="page/insertActivities.html">attività</a></li>
+                        <li><a class="dropdown-item" href="page/insertUmore.html">Umore</a></li>
+                      </ul>
                 </div>
                 <div class="btnBottom">
                     <button class="btn btn-menu btnShadow" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
@@ -61,7 +74,7 @@
         </footer>
         <script src="cordova.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>

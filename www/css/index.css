@@ -3,6 +3,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    height: 100%;
 }
 
 #btnInsert{
@@ -49,6 +50,17 @@ body{
     max-width: 30px;
     max-height: 60px;
 }
+
+.font-responsive{
+    font-size: clamp(16px, 5vw, 34px);
+}
+
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+    background-color: white;
+}
+
 
 #btnInsert:hover:active{color: #26b662 !important;}
 #btnMap:hover:active{color: #26b662 !important;}
