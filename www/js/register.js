@@ -25,7 +25,7 @@ $(window).on("load",()=>{
                 connected=false;
                 localStorage.clear();
                 navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                navigator.notification.confirm("Qualcosa è andato storto: aaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
         )
     }
@@ -60,6 +60,21 @@ $(window).on("load",()=>{
                                     function(srvData){
                                         localStorage.clear();
                                         localStorage.setItem('Username',dati[2]);
+                                        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+
+                                            function(srvData){
+                                                let Result=JSON.parse(srvData.data)[0];
+                                                if(Result.Nome!=undefined)
+                                                    localStorage.setItem('IDU',Result.IDUser)
+                                            },
+                            
+                                            function(jqXHR){
+                                                connected=false;
+                                                localStorage.clear();
+                                                navigator.notification.beep(1);
+                                                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                                            }
+                                        )
                                         $('#divUserPin').show();
                                         $('#divNewUser').hide();
                                     },
@@ -67,7 +82,8 @@ $(window).on("load",()=>{
                                     function(jqXHR){
                                         navigator.notification.beep(1);
                                         navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
-                                    })
+                                    }
+                                )
                             }
                             else
                                 $('#txtPassword').attr("placeholder", "Inserire una password valida").addClass('error').focus().val('');
@@ -93,7 +109,10 @@ $(window).on("load",()=>{
     $('#btnCreatePin').click(()=>{
         if($('#txtPin').val().trim().length==4){
             localStorage.setItem("PIN",CryptoJS.MD5($('#txtPin').val()))
-            window.location.replace('../page/preference.html');
+            if(localStorage.getItem('JustUser')==null)
+                window.location.replace('../page/preference.html');
+            else
+                window.location.replace('../index.html');
         }
         else
             $('#txtPin').attr("placeholder", "Inserire un PIN di 4 cifre").addClass('error').focus().val('');
@@ -146,6 +165,7 @@ $(window).on("load",()=>{
                     console.log(srvData);
                     if(Result!=undefined && Result=="Login OK"){
                         localStorage.setItem("Username",dati[0]);
+                        localStorage.setItem("JustUser",true);
                         $('#divUserPin').show();
                         $('#divLoginUser').hide();
                     }

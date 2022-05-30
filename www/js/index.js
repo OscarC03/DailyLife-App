@@ -17,25 +17,25 @@ $(window).on("load",()=>{
         //$('#txtName').text(localStorage.getItem("Username"));   
     }
 
-    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreference',{method:'POST',data:{}},
+    /*cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreference',{method:'POST',data:{}},
 
-    function(srvData){
-        let Result=JSON.parse(srvData.data);
-        for(let i=0;i<5;i++)
-            if(i==0)
-                $('#itemCarousel').append('<div class="carousel-item active"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="slide"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
-            else                
-                $('#itemCarousel').append('<div class="carousel-item"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="slide"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
+        function(srvData){
+            let Result=JSON.parse(srvData.data);
+            for(let i=0;i<5;i++)
+                if(i==0)
+                    $('#itemCarousel').append('<div class="carousel-item active"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="slide"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
+                else                
+                    $('#itemCarousel').append('<div class="carousel-item"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="slide"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
 
-    },
+        },
 
-    function(jqXHR){
-        connected=false;
-        localStorage.clear();
-        navigator.notification.beep(1);
-        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
-    }
-    )
+        function(jqXHR){
+            connected=false;
+            localStorage.clear();
+            navigator.notification.beep(1);
+            navigator.notification.confirm("Qualcosa è andato storto: aaaaaaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+        }
+    )*/
     
     $('#imgHumor').attr('src','../Assets/IMG/E-Sad.png');
 

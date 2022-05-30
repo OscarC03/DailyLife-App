@@ -3,6 +3,7 @@
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Max-Age: 86400');
     header("Access-Control-Allow-Headers: *");
+    header("Content-type: image/jpeg");
     
     require('libreria.php');
     
@@ -23,13 +24,17 @@
     }
 
     function manageData($url){
+        $exit=false;
         $con=connection("my_cristaudo");
         switch($url[2]){
             case "newUser":
-                $sql="INSERT INTO Users (Nome,Cognome,Username,Password) VALUES ('".$_POST["Nome"]."','".$_POST["Cognome"]."','".$_POST["Username"]."','".md5($_POST["PIN"])."')";
+                $sql="INSERT INTO Users (Nome,Cognome,Username,Password) VALUES ('".$_POST["Nome"]."','".$_POST["Cognome"]."','".$_POST["Username"]."','".md5($_POST["Password"])."')";
                 break;
             case "getUser":
-                $sql="SELECT Nome FROM Users WHERE Username='".$_POST["Username"]."'";
+                $sql="SELECT Nome,IDUser FROM Users WHERE Username='".$_POST["Username"]."'";
+                break;
+            case "getPreferenceUser":
+                $sql="SELECT * FROM Preferenze AS P,PreferenzeUser AS PU,Users AS U WHERE U.IDUser=PU.IDUser AND P.IDPreferenza=PU.IDPreferenza AND U.IDUser=".$_POST["User"];
                 break;
             case "getUsername":
                 $sql="SELECT COUNT(IDUser) AS UserExist FROM Users WHERE Username='".$_POST["Username"]."'";
@@ -38,16 +43,30 @@
                 $sql="SELECT Password FROM Users WHERE Username='".$_POST["Username"]."'";
                 break;
             case "getCredentials":
+            	$exit=true;
                 $sql="SELECT Username,Password FROM Users WHERE Username='".$_POST["Username"]."'";
-                $userData=eseguiQuery($con,$sql);
-                if($userData["Username"]==$_POST["Username"] && $userData["Password"]==$_POST["Password"])
-                	echo(json_encode({resp:"Login OK"}));
+            	$userData=eseguiQuery($con,$sql);
+                
+                if($userData[0]["Username"]==$_POST["Username"] && $userData[0]["Password"]==md5($_POST["Password"]))
+                	echo("Login OK");
                 else
-                	echo(json_encode({resp:"Error"}));
-                exit;
+                	echo("Error: Username o Password errate ".$userData[0]["Password"]." - ".md5($_POST["Password"]));
+                break;
+            case "insertPreference":
+            	$sql="INSERT INTO PreferenzeUser (IDPreferenza,IDUser) VALUES (".$_POST["IDP1"].",".$_POST["IDU"]."),(".$_POST["IDP2"].",".$_POST["IDU"]."),(".$_POST["IDP3"].",".$_POST["IDU"]."),(".$_POST["IDP4"].",".$_POST["IDU"]."),(".$_POST["IDP5"].",".$_POST["IDU"].")";
+            	break;
+            case "getPreference":
+                $sql="SELECT * FROM Preferenze";
+                break;
+            default:
+                exit(404);
                 break;
         }
-        echo(json_encode(eseguiQuery($con,$sql)));
+        
+        if(!$exit){
+        	echo(json_encode(eseguiQuery($con,$sql)));
+        	exit(200);
+        }
     }
 
     function modifyData($url){
