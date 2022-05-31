@@ -9,7 +9,7 @@ $(window).on('load',()=>{
         let key=localStorage.getItem('key');
         let Result=JSON.parse(srvData.data);
         for(let item of Result)
-            $('#scRiepilogoUmore').append('<div class="col-12 mb-2"><div class="d-flex justify-content-start bg-success ps-2 pe-2 pt-2 pb-2"><h3 class="text-white text-center font-responsive">'+item.Data+'</h3></div><div class="d-flex justify-content-evenly bg-white ps-2 pe-2 pt-2 pb-2"><h3 class="text-black font-responsive text-center">Felicità: '+item.Felicita+'/10</h3><h3 class="text-black font-responsive text-center">Stress: '+item.Stress+'/10</h3><h3 class="text-black font-responsive text-center">Fisico: '+item.Fisico+'/10</h3><h3 class="text-black font-responsive text-center">Mentale: '+item.Mentale+'/10</h3></div></div>')
+            $('#scRiepilogoUmore').append('<div class="col-12 mb-2"><div class="d-flex justify-content-start bg-success ps-2 pe-2 pt-2 pb-2"><h3 class="text-white text-center font-responsive">'+item.Data+'</h3></div><div class="d-flex justify-content-evenly bg-white ps-2 pe-2 pt-2 pb-2"><h3 class="text-black font-responsive text-center">Felicità: '+window.atob(item.Felicita)+'/10</h3><h3 class="text-black font-responsive text-center">Stress: '+window.atob(item.Stress)+'/10</h3><h3 class="text-black font-responsive text-center">Fisico: '+window.atob(item.Fisico)+'/10</h3><h3 class="text-black font-responsive text-center">Mentale: '+window.atob(item.Mentale)+'/10</h3></div></div>')
     },
 
     function(jqXHR){

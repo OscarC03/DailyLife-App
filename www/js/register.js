@@ -67,6 +67,7 @@ $(window).on("load",()=>{
                                                 let Result=JSON.parse(srvData.data)[0];
                                                 if(Result.Nome!=undefined)
                                                     localStorage.setItem('IDU',Result.IDUser)
+                                                localStorage.setItem('key',CryptoJS.MD5(dati[2]+dati[3]))
                                             },
                             
                                             function(jqXHR){
@@ -174,6 +175,7 @@ $(window).on("load",()=>{
                                 let Result=JSON.parse(srvData.data)[0];
                                 if(Result.Nome!=undefined)
                                     localStorage.setItem('IDU',Result.IDUser);
+                                localStorage.setItem('key',CryptoJS.MD5(dati[0]+dati[1]))
                             },
         
                             function(jqXHR){

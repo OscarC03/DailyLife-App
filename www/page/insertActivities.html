@@ -7,11 +7,69 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/index.css">
         <title>Daily Life - INSERT</title>
     </head>
     <body>
+        <header class="divHeader fixed-top">
+            <div class="d-flex justify-content-start my-auto h-100">
+                <i class="fa-solid fa-arrow-left" id="btnBack"></i>
+                <h5 id="txtPosition">Inserimento Attività</h5>
+            </div> 
+        </header>
+        <section class="container main-content">
+            <h2 class="text-center text-white">Attività</h2>
+            <p class="text-center text-white">Inserimento attività</p>
+        </section>
+        <section class="container mt-2" id="scDatiAttivita">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center text-white">Cosa devi fare oggi?</p>
+                    <div class="d-flex justify-content-around">
+                        <input type="text" placeholder="Attività" class="form-control" id="txtTitolo">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="text-center text-white">Data dell'attività:</p>
+                    <div class="d-flex justify-content-around">
+                        <input type="date" placeholder="Data" class="form-control" id="dtpData">
+                        <p class="text-center text-white font-responsive ps-2" id="txtFelicita"></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="text-center text-white">Ora dell'attività:</p>
+                    <div class="d-flex justify-content-around">
+                        <input type="time" placeholder="Ora" class="form-control" id="dtpOra">
+                        <p class="text-center text-white font-responsive ps-2" id="txtFelicita"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 mt-3 d-flex justify-content-center">
+                <input type="submit" class="btn btn-success btn-lg" id="btnInsertAttivita" value="Inserisci" tabindex="5">
+              </div>
+        </section>
+        <footer class="main-content">
+            <div class="fixed-bottom bg-div"></div>
+            <nav class="nav fixed-bottom d-flex justify-content-around">
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
+                </div>
+                <div class="btnTop">
+                    <button class="btn btnShadow" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnOption"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </nav>
+        </footer>
         <script src="cordova.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
