@@ -4,11 +4,13 @@ $(document).ready(()=>{
 $(window).on('load',()=>{
 
     $('#btnInsertAttivita').click(()=>{
-        if($('#txtTitolo').text()!="" || $('#dtpData').text()!="" || $('#dtpOra').text()!=""){
-            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertAttivita',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Activity:$('#dtpData').text()}},
+        
+        if($('#txtTitolo').text()!="" || $('#dtpData').val()!="" || $('#dtpOra').val()!=""){
+            let data=new Date($('#dtpData').val()).toISOString().slice(0, 10);
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertAttivita',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Attivita:$('#txtTitolo').val(),Data:data,Ora:$('#dtpOra').val()}},
                 function(srvData){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Complimenti il tuo umore è stato registrato", ()=>{window.location.replace('../index.html');}, "Complimenti", ["Fine"])
+                    navigator.notification.confirm("Complimenti la tua attività è stata registrata", ()=>{window.location.replace('../index.html');}, "Complimenti", ["Fine"])
                 },
     
                 function(jqXHR){
