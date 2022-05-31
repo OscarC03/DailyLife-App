@@ -58,6 +58,18 @@
             case "getPreference":
                 $sql="SELECT * FROM Preferenze";
                 break;
+            case "insertUmore":
+            	$sql="INSERT INTO UmoreUtente (IDUtente,Stress,Felicita,Fisico,Mentale,Media,Data) VALUES (".intval($_POST["IDU"]).",'".$_POST["Stress"]."','".$_POST["Felicita"]."','".$_POST["Fisico"]."','".$_POST["Mentale"]."','".$_POST["Media"]."','".$_POST["Data"]."')";
+            	break;
+            case "insertAttivita":
+            	$sql="INSERT INTO Calendar (IDUser,Activity,Data,Ora) VALUES (".intval($_POST["IDU"]).",'".$_POST["Attivita"]."','".$_POST["Data"]."','".$_POST["Ora"]."')";
+            	break;
+            case "getUmoreUtente":
+            	$sql="SELECT * FROM UmoreUtente WHERE IDUtente=".intval($_POST['IDU']);
+            	break;
+            case "getAttivita":
+            	$sql="SELECT * FROM Calendar WHERE IDUser=".intval($_POST['IDU']);
+            	break;
             default:
                 exit(404);
                 break;

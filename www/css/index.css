@@ -52,7 +52,7 @@ body{
 }
 
 .font-responsive{
-    font-size: clamp(16px, 5vw, 34px);
+    font-size: clamp(16px, 5vw, 34px) !important;
 }
 
 .disabledDiv {
@@ -126,6 +126,15 @@ body{
  .row{
      margin:0 auto;
  }
+
+ .fc{
+     background-color: white;
+     color: black;
+ }
+
+ .fc a{
+    color: black;
+}
 
  @font-face {
     font-family: "DL-Title";
