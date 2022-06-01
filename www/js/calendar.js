@@ -1,12 +1,22 @@
+var deviceHeight;
+
 $(document).ready(()=>{
     navigator.splashscreen.hide();
+    deviceHeight = Math.max(window.screen.height, window.innerHeight);
 })
 
 $(window).on('load',()=>{
     var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        contentHeight: 'auto'
+    var calendar = new FullCalendar.Calendar(calendarEl, {  
+        initialView: 'timeGridDay',
+        themeSystem: 'bootstrap5',
+        contentHeight: deviceHeight-288,
+
+        eventClick:function(info){
+            $('#eventTitle').text(info.event.title);
+            $('#eventBody').text("ciao");
+            $('#infoEvento').modal('show');
+        }
     });
     calendar.render();
     $('.fc-toolbar-title').addClass('font-responsive');

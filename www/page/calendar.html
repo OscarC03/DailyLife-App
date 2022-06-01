@@ -9,6 +9,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
         <!--calendar style-->
         <link rel="stylesheet" href="../css/main.min.css">
         <link rel="stylesheet" href="../css/index.css">
@@ -21,18 +22,7 @@
                 <h5 id="txtPosition">Calendario</h5>
             </div> 
         </header>
-        <section class="m-4 main-content">
-            <select class="form-control">
-                <option value="ALL-0">Tutto</option>
-                <option value="S-1">Una Settimana</option>
-                <option value="S-2">Due Settimane</option>
-                <option value="S-3">Tre Settimane</option>
-                <option value="M-1">Un mese</option>
-                <option value="M-2">Due mesi</option>
-                <option value="M-3">Tre mesi</option>
-            </select>
-        </section>
-        <div class="container" id="calendar">
+        <div class="container main-content" id="calendar">
              
         </div>
 
@@ -56,6 +46,32 @@
                 </div>
             </nav>
         </footer>
+
+
+
+        <!--Modal-->
+
+        <div class="modal fade" id="infoEvento">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="eventTitle"></h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body" id="eventBody">
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-bs-dismiss="modal">Chiudi</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+
         <script src="../cordova.js"></script>
         <script src="../js/crypto.js"></script>
         <!--calendar -->

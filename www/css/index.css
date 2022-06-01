@@ -127,8 +127,8 @@ body{
      margin:0 auto;
  }
 
- .fc{
-     background-color: white;
+ .fc-view-harness{
+     background-color: #FFFC;
      color: black;
  }
 

@@ -5,7 +5,7 @@ $(document).ready(()=>{
         navigator.splashscreen.hide();
 })
 
-$(window).on("load",()=>{ 
+$(window).on("load",()=>{
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
     if(User==null)
