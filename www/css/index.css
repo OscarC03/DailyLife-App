@@ -33,6 +33,10 @@ body{
     margin-top: 20%;
 }
 
+#calendar{
+    margin-top: 3rem;
+}
+
 #txtName{
     font-family: "DL-Title";
     font-size: 4rem;
@@ -101,6 +105,26 @@ body{
     font-size: 1.5rem;
     background-color: #50CB93;
     color: white;
+}
+
+.customdd{
+    position: absolute;
+    top:0;
+    right: 0;
+    margin-right: 0.3rem;
+    margin-left: 1rem;
+    margin-top: 0.75rem;
+    padding: 0;
+}
+
+.btnDropDownCalendar{
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    background: none;
+    border: none;
+    text-decoration: none;
 }
 
 .divHeader i, .divHeader h5{

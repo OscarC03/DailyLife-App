@@ -20,39 +20,26 @@
             <div class="d-flex justify-content-start my-auto h-100">
                 <i class="fa-solid fa-arrow-left" id="btnBack"></i>
                 <h5 id="txtPosition">Calendario</h5>
-            </div> 
+                <div class="d-flex justify-content-end my-auto h-100 customdd">
+                    <div class="dropdown">
+                        <i class="fa-solid fa-bars" id="btnOPT"  data-bs-toggle="dropdown"></i>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" value="M" id="MW">Visualizzazione Mese</a></li>
+                          <li><a class="dropdown-item" value="S" id="WW">Visualizzazione Settimana</a></li>
+                          <li><a class="dropdown-item" value="G" id="GW">Visualizzazione Giorno</a></li>
+                        </ul>
+                      </div>
+                </div> 
+            </div>
         </header>
-        <div class="container main-content" id="calendar">
+        <div id="calendar">
              
         </div>
-
-        <footer class="main-content">
-            <div class="fixed-bottom bg-div"></div>
-            <nav class="nav fixed-bottom d-flex justify-content-around">
-                <div class="btnBottom">
-                    <button class="btn btn-menu btnShadow" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
-                </div>
-                <div class="btnBottom">
-                    <button class="btn btn-menu btnShadow" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
-                </div>
-                <div class="btnTop">
-                    <button class="btn btnShadow" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="btnBottom">
-                    <button class="btn btn-menu btnShadow" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
-                </div>
-                <div class="btnBottom">
-                    <button class="btn btn-menu btnShadow" id="btnOption"><i class="fa-solid fa-gear"></i></button>
-                </div>
-            </nav>
-        </footer>
-
-
 
         <!--Modal-->
 
         <div class="modal fade" id="infoEvento">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title" id="eventTitle"></h4>
@@ -76,7 +63,8 @@
         <script src="../js/crypto.js"></script>
         <!--calendar -->
         <script src="../js/main.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/swiped-events.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="../js/calendar.js"></script>
     </body>
