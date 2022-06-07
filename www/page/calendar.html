@@ -51,8 +51,20 @@
                 </div>
           
                 <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal">Chiudi</button>
+                <div class="modal-footer d-flex justify-content-center" id="eventFooter">
+                  <div id="firstFooter">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Chiudi</button>
+                    <button type="button" class="btn btn-warning" id="btnModifica">Modifica</button>
+                    <button type="button" class="btn btn-danger" id="btnElimina">Elimina</button>
+                  </div>
+                  <div id="secondFooter">
+                    <button type="button" class="btn btn-success" id="btnSuccessModifica">Modifica</button>
+                    <button type="button" class="btn btn-secondary" id="btnAnnulla" data-bs-dismiss="modal">Annulla</button>
+                  </div>
+                  <div id="thirdFooter">
+                    <button type="button" class="btn btn-success" id="btnSuccessDelete" data-bs-dismiss="modal">SI</button>
+                    <button type="button" class="btn btn-danger" id="btnUndo" data-bs-dismiss="modal">NO</button>
+                  </div>
                 </div>
           
               </div>
