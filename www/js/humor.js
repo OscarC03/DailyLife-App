@@ -32,7 +32,7 @@ $(window).on('load',()=>{
             let Felicita=window.btoa($('#rngFelicita').val().toString()).toString();
             let Fisica=window.btoa($('#rngFisica').val().toString()).toString();
             let Mentale=window.btoa($('#rngMentale').val().toString()).toString();
-            let Media=window.btoa((((parseInt($('#rngStress').val())+parseInt($('#rngFelicita').val())+parseInt($('#rngFisico').val())+parseInt($('#rngMentale').val()))*10)/40).toString(),key).toString()
+            let Media=window.btoa(((parseInt($('#rngStress').val())+parseInt($('#rngFelicita').val())+parseInt($('#rngFisica').val())+parseInt($('#rngMentale').val()))*10)/40).toString()
     
             cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertUmore',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Stress:Stress,Felicita:Felicita,Fisico:Fisica,Mentale:Mentale,Media:Media,Data:new Date().toISOString().slice(0, 10)}},
                 function(srvData){

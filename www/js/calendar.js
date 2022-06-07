@@ -10,6 +10,8 @@ $(window).on('load',()=>{
     $('#secondFooter').hide();
     $('#thirdFooter').hide();
 
+    let key=localStorage.getItem('key');
+
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {  
         initialView: 'timeGridDay',
@@ -19,7 +21,7 @@ $(window).on('load',()=>{
         headerToolbar: false,
         footerToolbar: false,
         locale: 'it',
-        contentHeight: deviceHeight-200,
+        contentHeight: deviceHeight-260,
 
         buttonText:{
             today:    'Oggi',
@@ -82,9 +84,10 @@ $(window).on('load',()=>{
 
     cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getAttivita',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU'))}},
         function(srvData){
+            console.log("Key => "+key);
             let Result=JSON.parse(srvData.data);
             for(let item of Result)
-                calendar.addEvent({title: item.Activity,start: item.Data,end: item.Data,description: item.Descrizione,backgroundColor:item.Color,id:item.IDCalendar})
+                calendar.addEvent({title: CryptoJS.AES.decrypt(item.Activity,key).toString(CryptoJS.enc.Utf8),start: item.Data,end: item.Data,description: CryptoJS.AES.decrypt(item.Descrizione,key).toString(CryptoJS.enc.Utf8),backgroundColor:item.Color,id:item.IDCalendar})
         },
 
         function(jqXHR){
@@ -142,7 +145,7 @@ $(window).on('load',()=>{
     })
 
     $('#btnSuccessModifica').click(()=>{
-        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEvent',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Event:$('#txtTitoloEvento').val(),Descr:$('#txtDescrEvento').val(),ID:eventID}},
+        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEvent',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Event:CryptoJS.AES.encrypt($('#txtTitoloEvento').val(),key),Descr:CryptoJS.AES.encrypt($('#txtDescrEvento').val(),key),ID:eventID}},
             function(srvData){
                 window.location.reload();
             },

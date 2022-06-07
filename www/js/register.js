@@ -67,7 +67,7 @@ $(window).on("load",()=>{
                                                 let Result=JSON.parse(srvData.data)[0];
                                                 if(Result.Nome!=undefined)
                                                     localStorage.setItem('IDU',Result.IDUser)
-                                                localStorage.setItem('key',CryptoJS.MD5(dati[2]+dati[3]))
+                                                localStorage.setItem('key',CryptoJS.MD5(dati[2]+dati[3]).toString())
                                             },
                             
                                             function(jqXHR){
@@ -175,7 +175,7 @@ $(window).on("load",()=>{
                                 let Result=JSON.parse(srvData.data)[0];
                                 if(Result.Nome!=undefined)
                                     localStorage.setItem('IDU',Result.IDUser);
-                                localStorage.setItem('key',CryptoJS.MD5(dati[0]+dati[1]))
+                                localStorage.setItem('key',CryptoJS.MD5(dati[0]+dati[1]).toString())
                             },
         
                             function(jqXHR){
