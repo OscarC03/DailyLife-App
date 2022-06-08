@@ -10,7 +10,6 @@ $(window).on('load',()=>{
             latitude=position.coords.latitude;
             longitude=position.coords.longitude; 
             console.log(latitude+" - "+longitude);
-
             cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/reverse?format=json&lon=${longitude}&lat=${latitude}`,{method:'GET',data:{}},
 
             function(srvData){
@@ -31,46 +30,66 @@ $(window).on('load',()=>{
                 })
               });
             
-              cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/reverse?format=json&lon=${longitude}&lat=${latitude}`,{method:'GET',data:{}},
-                function(srvData){
-                    let Citta=JSON.parse(srvData.data);
-                    console.log(Citta.address.village);
-                    cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/search?amenity=bus_station&city=fossano&format=jsonv2`,{method:'POST',data:{}},
-
-                        function(Data){
-                            let Result=JSON.parse(Data.data);
-                            console.log(Result);
-                        },
-                
-                        function(jqXHR){
-                            navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: aaaaaaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
-                        }
-                    )
-                },
-        
-                function(jqXHR){
-                    navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: aaaaaaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
-                }
-              )
               //Aggiunge un layer con tutti i marker
               var markers = new ol.layer.Vector({
                 source: new ol.source.Vector(),
                 style: new ol.style.Style({
                   image: new ol.style.Icon({
                     anchor: [0.5, 1],
-                    src: '../Assets/IMG/E-Sad.png'
+                    src: '../Assets/IMG/b1.png'
                   })
                 })
               });
               map.addLayer(markers);
               console.log(markers);
+
+              cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/reverse?format=json&lon=${longitude}&lat=${latitude}`,{method:'GET',data:{}},
+                function(srvData){
+                    let Citta=JSON.parse(srvData.data);
+                    console.log(Citta.address.village);
+                    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreferenceUser',{method:'POST',data:{User:localStorage.getItem('IDU')}},
+
+                        function(srvData){
+                            let Result=JSON.parse(srvData.data);
+                            console.log(Result);
+                            for(let i=0;i<Result.length;i++){
+                              console.log("Key ==> "+Result[i].Key);
+                              cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/search.php?q=${Result[i].Key}+${Citta.address.village}&format=jsonv2`,{method:'GET',data:{}},
+
+                                  function(srvData){
+                                      let Place=JSON.parse(srvData.data);
+                                      console.log(Place);
+                                      for(let item of Place){
+                                        console.log("Coordinate marker ==> "+item.lon+" - "+item.lat);
+                                        var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([item.lon,item.lat])));
+                                        marker.name = Place[i].display_name;
+                                        markers.getSource().addFeature(marker);
+                                      }
+                                  },
+                          
+                                  function(jqXHR){
+                                      navigator.notification.beep(1);
+                                      navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{}, "Attenzione", ["Chiudi"])
+                                  }
+                              )
+                            }
+                        },
+                
+                        function(jqXHR){
+                            navigator.notification.beep(1);
+                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{}, "Attenzione", ["Chiudi"])
+                        }
+                    )
+                },
+        
+                function(jqXHR){
+                    navigator.notification.beep(1);
+                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{}, "Attenzione", ["Chiudi"])
+                }
+              )
+
     
               //Aggiunge un singolo marker
-              var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([longitude,latitude])));
-              marker.name = "classeB";
-              markers.getSource().addFeature(marker);
     
               /*var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([7.6782969, 45.0625393])));
               marker.name = "classeA";
@@ -201,4 +220,8 @@ $(window).on('load',()=>{
             alert('Error: '+e);
         }  
     });*/
+
+    $('#btnBack').click(()=>{
+      window.location.replace('../index.html');
+    });
 })

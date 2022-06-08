@@ -18,11 +18,11 @@ $(window).on('load',()=>{
         let humor=getCookie('Humor');
         if(humor==""){
             let key=localStorage.getItem('key');
-            let Stress=CryptoJS.AES.encrypt($('#rngStress').val().toString(),key);
-            let Felicita=CryptoJS.AES.encrypt($('#rngFelicita').val().toString(),key);
-            let Fisica=CryptoJS.AES.encrypt($('#rngFisica').val().toString(),key);
-            let Mentale=CryptoJS.AES.encrypt($('#rngMentale').val().toString(),key);
-            let Media=CryptoJS.AES.encrypt((((parseInt($('#rngStress').val())+parseInt($('#rngFelicita').val())+parseInt($('#rngFisica').val())+parseInt($('#rngMentale').val()))*10)/40).toString(),key)
+            let Stress=CryptoJS.AES.encrypt($('#rngStress').val().toString(),key).toString();
+            let Felicita=CryptoJS.AES.encrypt($('#rngFelicita').val().toString(),key).toString();
+            let Fisica=CryptoJS.AES.encrypt($('#rngFisica').val().toString(),key).toString();
+            let Mentale=CryptoJS.AES.encrypt($('#rngMentale').val().toString(),key).toString();
+            let Media=CryptoJS.AES.encrypt((((parseInt($('#rngStress').val())+parseInt($('#rngFelicita').val())+parseInt($('#rngFisica').val())+parseInt($('#rngMentale').val()))*10)/40).toString(),key).toString()
     
             cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertUmore',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Stress:Stress,Felicita:Felicita,Fisico:Fisica,Mentale:Mentale,Media:Media,Data:new Date().toISOString().slice(0, 10)}},
                 function(srvData){

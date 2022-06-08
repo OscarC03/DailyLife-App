@@ -145,7 +145,7 @@ $(window).on('load',()=>{
     })
 
     $('#btnSuccessModifica').click(()=>{
-        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEvent',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Event:CryptoJS.AES.encrypt($('#txtTitoloEvento').val(),key),Descr:CryptoJS.AES.encrypt($('#txtDescrEvento').val(),key),ID:eventID}},
+        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEvent',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Event:CryptoJS.AES.encrypt($('#txtTitoloEvento').val(),key).toString(),Descr:CryptoJS.AES.encrypt($('#txtDescrEvento').val(),key).toString(),ID:eventID}},
             function(srvData){
                 window.location.reload();
             },
