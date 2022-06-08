@@ -1,5 +1,5 @@
 body{
-    background-image:linear-gradient(rgba(180, 255, 159,0.4), rgba(168, 255, 144, 0.4)), url('../Assets/IMG/Sunflour.jpg');  
+    background-image: url('../Assets/IMG/Sunflour.jpg');  
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -59,12 +59,24 @@ body{
     font-size: clamp(16px, 5vw, 34px) !important;
 }
 
+.font-humor{
+    font-size: clamp(12px, 3vw, 30px) !important;
+}
+
 .disabledDiv {
     pointer-events: none;
     opacity: 0.4;
     background-color: white;
 }
 
+.map{
+    margin-top: 3rem;
+    width:100%;
+    height: calc(100% - 3rem);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
 
 #btnInsert:hover:active{color: #26b662 !important;}
 #btnMap:hover:active{color: #26b662 !important;}

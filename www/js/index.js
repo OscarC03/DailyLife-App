@@ -51,4 +51,8 @@ $(window).on("load",()=>{
         window.location.replace('../page/list.html');
         navigator.splashscreen.show();
     })
+
+    $('#btnMap').click(()=>{
+        window.location.replace('../page/map.html');
+    })
 })

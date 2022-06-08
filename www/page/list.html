@@ -17,6 +17,9 @@
             <div class="d-flex justify-content-start my-auto h-100">
                 <i class="fa-solid fa-arrow-left" id="btnBack"></i>
                 <h5 id="txtPosition">Impegni</h5>
+                <div class="d-flex justify-content-end my-auto h-100 customdd">
+                    <i class="fa-solid fa-bars" id="btnInfo" data-bs-toggle="modal" data-bs-target="#info"></i>
+                </div> 
             </div> 
         </header>
         <section class="container main-content">
@@ -48,6 +51,51 @@
                 </div>
             </nav>
         </footer>
+        
+        <div class="modal fade" id="info">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Legenda</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6 text-success font-humor text-center"><i class="fa-regular fa-face-grin-beam"></i> Felice</div>
+                        <div class="col-6 text-danger font-humor text-center"><i class="fa-regular fa-face-frown"></i> Triste</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-6 text-success font-humor text-center"><i class="fa-regular fa-face-grin"></i> Non Stressato</div>
+                        <div class="col-6 text-danger font-humor text-center"><i class="fa-regular fa-face-frown"></i> Stressato</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-6 text-success font-humor text-center"><i class="fa-solid fa-heart-pulse"></i> Riposato Fisicamente</div>
+                        <div class="col-6 text-danger font-humor text-center"><i class="fa-solid fa-heart-crack"></i> Stanco Fisicamente</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-6 text-success font-humor text-center"><i class="fa-solid fa-brain"></i> Riposato Mentalmente</div>
+                        <div class="col-6 text-danger font-humor text-center"><i class="fa-regular fa-face-flushed"></i> Stanco Mentalmente</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-12 text-warning font-humor text-center"><i class="fa-regular fa-face-meh"></i> In Bilico</div>
+                    </div>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer d-flex justify-content-center">       
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Chiudi</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+
         <script src="../cordova.js"></script>
         <script src="../js/crypto.js"></script>
         <script src="../js/bootstrap.min.js"></script>

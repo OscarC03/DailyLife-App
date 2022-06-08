@@ -2,7 +2,8 @@ $(document).ready(()=>{
 })
 
 $(window).on('load',()=>{
-
+    let key=localStorage.getItem('key');
+    
     $('#btnInsertAttivita').click(()=>{
         
         if($('#txtTitolo').text()!="" || $('#dtpData').val()!="" || $('#dtpOra').val()!=""){
@@ -10,7 +11,7 @@ $(window).on('load',()=>{
 
             console.log({IDU:parseInt(localStorage.getItem('IDU')),Attivita:$('#txtTitolo').val(),Descrizione:$('#txtDescrizione').val(),Data:data,Color:$('#inpColor').val()});
 
-            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertAttivita',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Attivita:$('#txtTitolo').val(),Descrizione:$('#txtDescrizione').val(),Data:data,Color:$('#inputColor').val()}},
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertAttivita',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Attivita:CryptoJS.AES.encrypt($('#txtTitolo').val(),key),Descrizione:CryptoJS.AES.encrypt($('#txtDescrizione').val(),key),Data:data,Color:$('#inputColor').val()}},
                 function(srvData){
                     navigator.notification.beep(1);
                     navigator.notification.confirm("Complimenti la tua attività è stata registrata", ()=>{window.location.replace('../index.html');}, "Complimenti", ["Fine"])
