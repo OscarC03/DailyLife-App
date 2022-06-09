@@ -8,7 +8,8 @@ $(window).on('load',()=>{
     navigator.geolocation.getCurrentPosition(
         (position)=>{
             latitude=position.coords.latitude;
-            longitude=position.coords.longitude; 
+            longitude=position.coords.longitude;
+            var Markers;
             console.log(latitude+" - "+longitude);
             cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/reverse?format=json&lon=${longitude}&lat=${latitude}`,{method:'GET',data:{}},
 
@@ -29,19 +30,6 @@ $(window).on('load',()=>{
                   zoom: 18
                 })
               });
-            
-              //Aggiunge un layer con tutti i marker
-              var markers = new ol.layer.Vector({
-                source: new ol.source.Vector(),
-                style: new ol.style.Style({
-                  image: new ol.style.Icon({
-                    anchor: [0.5, 1],
-                    src: '../Assets/IMG/b1.png'
-                  })
-                })
-              });
-              map.addLayer(markers);
-              console.log(markers);
 
               cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/reverse?format=json&lon=${longitude}&lat=${latitude}`,{method:'GET',data:{}},
                 function(srvData){
@@ -53,52 +41,60 @@ $(window).on('load',()=>{
                             let Result=JSON.parse(srvData.data);
                             console.log(Result);
                             for(let i=0;i<Result.length;i++){
-                              console.log("Key ==> "+Result[i].Key);
-                              cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/search.php?q=${Result[i].Key}+${Citta.address.village}&format=jsonv2`,{method:'GET',data:{}},
+                              Markers=null;
+                              //Aggiunge un layer con tutti i marker
+                              Markers = new ol.layer.Vector({
+                                source: new ol.source.Vector(),
+                                style: new ol.style.Style({
+                                  image: new ol.style.Icon({
+                                    anchor: [0.5, 1],
+                                    src: `http://cristaudo.altervista.org/IMG/Markers/${Result[i].Marker}`
+                                  })
+                                })
+                              });
+
+                              cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/search.php?q=${Result[i].Key}+fossano&format=jsonv2`,{method:'GET',data:{}},
 
                                   function(srvData){
                                       let Place=JSON.parse(srvData.data);
                                       console.log(Place);
-                                      for(let item of Place){
-                                        console.log("Coordinate marker ==> "+item.lon+" - "+item.lat);
-                                        var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([item.lon,item.lat])));
-                                        marker.name = Place[i].display_name;
-                                        markers.getSource().addFeature(marker);
+                                      if(Place.length>0){
+                                        for(let item of Place){
+                                          console.log(Result[i].Marker + " - " + Place[i].display_name);
+                                          var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([item.lon,item.lat])));
+                                          marker.name = item.display_name;
+                                          Markers.getSource().addFeature(marker);
+                                        }
                                       }
                                   },
                           
                                   function(jqXHR){
                                       navigator.notification.beep(1);
-                                      navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{}, "Attenzione", ["Chiudi"])
+                                      navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                                   }
                               )
+                              console.log(Markers);
+                              map.addLayer(Markers);
                             }
                         },
                 
                         function(jqXHR){
                             navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{}, "Attenzione", ["Chiudi"])
+                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                         }
                     )
                 },
         
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{}, "Attenzione", ["Chiudi"])
+                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                 }
               )
-
-    
-              //Aggiunge un singolo marker
-    
-              /*var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([7.6782969, 45.0625393])));
-              marker.name = "classeA";
-              markers.getSource().addFeature(marker);*/
     
               //Gestisco il click sulla mappa
               map.on('click', function (evt) {
                 //Prelevo la feature cliccata
-                const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+                let feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
                   return feature;
                 });
                 //Se esiste la feature
@@ -107,22 +103,6 @@ $(window).on('load',()=>{
                 } else {
                  
                 }
-              });
-    
-              //Quando il mouse è sopra al marker 
-              map.on('pointermove', function (e) {
-                const pixel = map.getEventPixel(e.originalEvent);
-                const hit = map.hasFeatureAtPixel(pixel);
-                //Controllo se ho colpito un marker
-                if(hit){
-                  //Possono verificare quale marker è stato toccato con la funzione  map.forEachFeatureAtPixel(pixel, function (feature){...});
-                  console.log("Sono sopra al marker");
-                }
-              });
-    
-              //Intercetto il movimento della mappa o facendo zoom
-              map.on('movestart', function () {
-                console.log("Stai muovendo la mappa");
               });
             },
     

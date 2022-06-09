@@ -21,7 +21,7 @@ $(window).on('load',()=>{
         headerToolbar: false,
         footerToolbar: false,
         locale: 'it',
-        contentHeight: deviceHeight-267,
+        contentHeight: deviceHeight-198,
 
         buttonText:{
             today:    'Oggi',
