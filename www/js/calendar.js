@@ -189,5 +189,58 @@ $(window).on('load',()=>{
         $('#thirdFooter').hide();
         $('#secondFooter').hide();
         $('#firstFooter').show();
-      })
+    })
+
+    $('#btnRiorganizza').click(()=>{
+        let vEvent=[];
+        let vEventHour=[];
+        let vFinal=[];
+        let today=new Date();
+        let data=today.toISOString().split('T')[0];
+        console.log(data);
+        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getAttivitaByEnergy',{method:'POST',data:{IDU:localStorage.getItem('IDU')}},
+        function(srvData){
+            vEvent=[];
+            vEventHour=[];
+            vFinal=[];
+            let Result=JSON.parse(srvData.data);
+            for(let item of Result){
+                if(item.Data.split(' ')[0]==data)
+                    vEvent.push(item);
+            }
+            /*console.log("Prima");*/
+            for(let item of vEvent){
+                vEventHour.push(new Date(item.Data));
+            }
+            vFinal=vEvent.sort((a, b) => a.Energy - b.Energy);
+            for(let i=0;i<vFinal.length;i++){
+                vFinal[i].Data=vEventHour[i].toISOString().replace('T', ' ').split('.')[0];
+            }
+            /*console.log("Dopo");*/
+            console.log(vEventHour);
+            console.log(vEvent);
+            console.log(vFinal);
+
+            for(let j=0;j<vFinal.length;j++){
+                console.log({ID:vFinal[j].IDCalendar,IDU:localStorage.getItem('IDU'),Event:vFinal[j].Activity,Descr:vFinal[j].Descrizione,Data:vFinal[j].Data,Color:vFinal[j].Color,Energy:vFinal[j].Energy});
+                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEventByEnergy',{method:'POST',data:{ID:vFinal[j].IDCalendar,IDU:localStorage.getItem('IDU'),Event:vFinal[j].Activity,Descr:vFinal[j].Descrizione,Data:vFinal[j].Data,Color:vFinal[j].Color,Energy:vFinal[j].Energy}},
+                    function(srvData){
+                        console.log("OK "+j);
+                    },
+    
+                    function(jqXHR){
+                        navigator.notification.beep(1);
+                        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                    }
+                )
+            }
+            //window.location.reload();
+        },
+
+        function(jqXHR){
+            navigator.notification.beep(1);
+            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+        }
+    )
+    })
 })

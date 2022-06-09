@@ -11,7 +11,7 @@ $(window).on('load',()=>{
 
             console.log({IDU:parseInt(localStorage.getItem('IDU')),Attivita:$('#txtTitolo').val(),Descrizione:$('#txtDescrizione').val(),Data:data,Color:$('#inpColor').val()});
 
-            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertAttivita',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Attivita:CryptoJS.AES.encrypt($('#txtTitolo').val(),key).toString(),Descrizione:CryptoJS.AES.encrypt($('#txtDescrizione').val(),key).toString(),Data:data,Color:$('#inputColor').val()}},
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertAttivita',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Attivita:CryptoJS.AES.encrypt($('#txtTitolo').val(),key).toString(),Descrizione:CryptoJS.AES.encrypt($('#txtDescrizione').val(),key).toString(),Data:data,Color:$('#inputColor').val(),Energy:$('#rngEnergy').val()}},
                 function(srvData){
                     navigator.notification.beep(1);
                     navigator.notification.confirm("Complimenti la tua attività è stata registrata", ()=>{window.location.replace('../index.html');}, "Complimenti", ["Fine"])
@@ -28,6 +28,10 @@ $(window).on('load',()=>{
             navigator.notification.confirm("Compila tutti i campi!", ()=>{}, "Attenzione", ["Chiudi"])
         }
     });
+
+    $('#rngEnergy').change(()=>{
+        $('#txtEnergy').text($('#rngEnergy').val());
+    })
 
     $('#inputColor').change(()=>{
         $('#inputColor').css({backgroundColor:$('#inputColor').val()});
