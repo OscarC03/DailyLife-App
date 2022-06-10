@@ -87,7 +87,7 @@ $(window).on('load',()=>{
             console.log("Key => "+key);
             let Result=JSON.parse(srvData.data);
             for(let item of Result)
-                calendar.addEvent({title: CryptoJS.AES.decrypt(item.Activity,key).toString(CryptoJS.enc.Utf8),start: item.Data,end: item.Data,description: CryptoJS.AES.decrypt(item.Descrizione,key).toString(CryptoJS.enc.Utf8),backgroundColor:item.Color,id:item.IDCalendar})
+                calendar.addEvent({title: CryptoJS.AES.decrypt(item.Activity,key).toString(CryptoJS.enc.Utf8)+" "+item.Energy,start: item.Data,end: item.Data,description: CryptoJS.AES.decrypt(item.Descrizione,key).toString(CryptoJS.enc.Utf8),backgroundColor:item.Color,id:item.IDCalendar})
         },
 
         function(jqXHR){
@@ -197,35 +197,44 @@ $(window).on('load',()=>{
         let vFinal=[];
         let today=new Date();
         let data=today.toISOString().split('T')[0];
-        console.log(data);
+        //console.log(data);
         cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getAttivitaByEnergy',{method:'POST',data:{IDU:localStorage.getItem('IDU')}},
         function(srvData){
             vEvent=[];
             vEventHour=[];
             vFinal=[];
+
+            var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+            var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+            console.log("Data Giusta: "+localISOTime);
+
             let Result=JSON.parse(srvData.data);
             for(let item of Result){
                 if(item.Data.split(' ')[0]==data)
                     vEvent.push(item);
             }
-            /*console.log("Prima");*/
-            for(let item of vEvent){
-                vEventHour.push(new Date(item.Data));
-            }
-            vFinal=vEvent.sort((a, b) => a.Energy - b.Energy);
-            for(let i=0;i<vFinal.length;i++){
-                vFinal[i].Data=vEventHour[i].toISOString().replace('T', ' ').split('.')[0];
-            }
-            /*console.log("Dopo");*/
-            console.log(vEventHour);
-            console.log(vEvent);
-            console.log(vFinal);
 
-            for(let j=0;j<vFinal.length;j++){
-                console.log({ID:vFinal[j].IDCalendar,IDU:localStorage.getItem('IDU'),Event:vFinal[j].Activity,Descr:vFinal[j].Descrizione,Data:vFinal[j].Data,Color:vFinal[j].Color,Energy:vFinal[j].Energy});
-                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEventByEnergy',{method:'POST',data:{ID:vFinal[j].IDCalendar,IDU:localStorage.getItem('IDU'),Event:vFinal[j].Activity,Descr:vFinal[j].Descrizione,Data:vFinal[j].Data,Color:vFinal[j].Color,Energy:vFinal[j].Energy}},
+            for(let item of vEvent){
+                let cDate=new Date(item.Data)
+                vEventHour.push(new Date(cDate - tzoffset).toISOString().slice(0, -1));
+            }
+            /*console.log("iniziale");
+            console.log(vEvent);*/
+            vFinal=vEvent.sort((a, b) => parseInt(a.Energy) - parseInt(b.Energy));
+
+            for(let i=0;i<vFinal.length;i++){
+                vFinal[i].Data=vEventHour[i].replace('T', ' ').split('.')[0];
+                console.log(vFinal[i].Data);
+            }
+            /*console.log(vEventHour);
+            console.log("FINALE");
+            console.log(vFinal);*/
+
+            vFinal.forEach(function(item,j){
+                console.log({ID:item.IDCalendar,IDU:localStorage.getItem('IDU'),Data:item.Data,Energy:item.Energy})
+                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEventByEnergy',{method:'POST',data:{ID:item.IDCalendar,IDU:localStorage.getItem('IDU'),Data:item.Data}},
                     function(srvData){
-                        console.log("OK "+j);
+                        console.log(JSON.parse(srvData.data));
                     },
     
                     function(jqXHR){
@@ -233,14 +242,14 @@ $(window).on('load',()=>{
                         navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                     }
                 )
-            }
-            //window.location.reload();
+            })
         },
 
         function(jqXHR){
             navigator.notification.beep(1);
             navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
-    )
+        )
+        
     })
 })
