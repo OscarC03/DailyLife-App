@@ -1,4 +1,8 @@
 body{
+    background-image: url('../Assets/IMG/BG-Test.png');  
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     color: black;
     background-color: #B4FF9F;    position: absolute;
     position: absolute;
