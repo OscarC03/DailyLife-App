@@ -8,13 +8,16 @@ $(document).ready(()=>{
 $(window).on("load",()=>{
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
-    if(User==null)
+    if(User==null){
+        navigator.splashscreen.show();
         window.location.replace("../page/main.html");
+    }
     else{
+        navigator.splashscreen.show();   
         //controllo reinserimento pc a chiusura app
         if(sessionStorage.getItem('Available')==null)
             window.location.replace("../page/pin.html");
-        //$('#txtName').text(localStorage.getItem("Username"));   
+        //$('#txtName').text(localStorage.getItem("Username"));
     }
 
     cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreferenceUser',{method:'POST',data:{User:localStorage.getItem('IDU')}},
@@ -39,17 +42,17 @@ $(window).on("load",()=>{
 
     $("#btnCalendar").click(()=>{
         window.location.replace("../page/calendar.html");
-        navigator.splashscreen.show();
+        //navigator.splashscreen.show();
     })
 
     $("#btnOption").click(()=>{
         window.location.replace("../page/calendar.html");
-        navigator.splashscreen.show();
+        //navigator.splashscreen.show();
     });
 
     $('#btnList').click(()=>{
         window.location.replace('../page/list.html');
-        navigator.splashscreen.show();
+        //navigator.splashscreen.show();
     })
 
     $('#btnMap').click(()=>{

@@ -116,13 +116,6 @@ body{
     overflow: auto;
  }
 
-.divHeader{
-    height: 3rem;
-    font-size: 1.5rem;
-    background-color: #50CB93;
-    color: white;
-}
-
 .customdd{
     position: absolute;
     top:0;
@@ -141,6 +134,13 @@ body{
     background: none;
     border: none;
     text-decoration: none;
+}
+
+.divHeader{
+    height: 3rem;
+    font-size: 1.5rem;
+    background-color: #50CB93;
+    color: white;
 }
 
 .divHeader i, .divHeader h5{

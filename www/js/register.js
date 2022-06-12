@@ -2,10 +2,11 @@ let connected=true;
 var today = new Date();
 
 $(document).ready(()=>{
-    navigator.splashscreen.hide();
+    //navigator.splashscreen.hide();
 })
 
 $(window).on("load",()=>{
+    navigator.splashscreen.hide();
     $('#divUserPin').hide();
     $('#divNewUser').show();
 
@@ -54,7 +55,7 @@ $(window).on("load",()=>{
                         dati.push($('#txtUsername').val());
 
                         if($('#txtPassword').val().trim()!="" && $('#txtPassword').val()==$('#txtPassword2').val() && !error){
-                            if($('#txtPassword').val().length>=4){
+                            if($('#txtPassword').val().length>=8){
                                 dati.push($('#txtPassword').val());
                                 //Aggiunta campi sul db
                                 cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/newUser',{method:'POST',data:{Nome:dati[0],Cognome:dati[1],Username:dati[2],Password:dati[3]}},
@@ -88,7 +89,7 @@ $(window).on("load",()=>{
                                 )
                             }
                             else
-                                $('#txtPassword').attr("placeholder", "Inserire una password valida").addClass('error').focus().val('');
+                                $('#txtPassword').attr("placeholder", "La password deve avere più di 8 caratteri").addClass('error').focus().val('');
                         }
                         else
                             $('#txtPassword').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
@@ -125,7 +126,7 @@ $(window).on("load",()=>{
         if($('#txtPin').val().trim()!="")
             if(CryptoJS.MD5($('#txtPin').val().trim())==localStorage.getItem("PIN")){
                 sessionStorage.setItem('Available',true);
-                navigator.splashscreen.show();
+                //navigator.splashscreen.show();
                 window.location.replace('../index.html');
             }
             else
@@ -138,12 +139,12 @@ $(window).on("load",()=>{
         if(localStorage.getItem('Username')!=null)
             window.location.replace('../page/pin.html');
         else
-            window.location.replace('../page/login.html');
+            window.location.href='../page/login.html';
     })
 
     $('#btnReg').click(()=>{
         localStorage.clear();
-        window.location.replace('../page/first.html');
+        window.location.href='../page/first.html';
     })
 
     $('#btnLogRegister').click(()=>{
@@ -197,7 +198,7 @@ $(window).on("load",()=>{
 
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{/*window.location.replace("../page/main.html");*/}, "Attenzione", ["Chiudi"]);
+                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 }
             );
         }
@@ -215,7 +216,7 @@ $(window).on("load",()=>{
 
             function successCallback(){
                 sessionStorage.setItem('Available',true);
-                navigator.splashscreen.show();
+                //navigator.splashscreen.show();
                 window.location.replace('../index.html');
             }   
 
