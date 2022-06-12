@@ -127,6 +127,7 @@ $(window).on("load",()=>{
             if(CryptoJS.MD5($('#txtPin').val().trim())==localStorage.getItem("PIN")){
                 sessionStorage.setItem('Available',true);
                 //navigator.splashscreen.show();
+                localStorage.setItem('Indexed',true);
                 window.location.replace('../index.html');
             }
             else

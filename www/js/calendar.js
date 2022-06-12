@@ -2,6 +2,10 @@ var deviceHeight=Math.max(window.screen.height, window.innerHeight);
 var eventTitle="";
 var eventDescr="";
 var eventID;
+
+var vIndex=0;
+let vFinal=[];
+
 $(document).ready(()=>{
     navigator.splashscreen.hide();
 })
@@ -194,7 +198,6 @@ $(window).on('load',()=>{
     $('#btnRiorganizza').click(()=>{
         let vEvent=[];
         let vEventHour=[];
-        let vFinal=[];
         let today=new Date();
         let data=today.toISOString().split('T')[0];
         //console.log(data);
@@ -202,7 +205,6 @@ $(window).on('load',()=>{
         function(srvData){
             vEvent=[];
             vEventHour=[];
-            vFinal=[];
 
             var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
             var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
@@ -213,6 +215,7 @@ $(window).on('load',()=>{
                 if(item.Data.split(' ')[0]==data)
                     vEvent.push(item);
             }
+            console.log(vEvent);
 
             for(let item of vEvent){
                 let cDate=new Date(item.Data)
@@ -220,21 +223,33 @@ $(window).on('load',()=>{
             }
             /*console.log("iniziale");
             console.log(vEvent);*/
-            vFinal=vEvent.sort((a, b) => parseInt(a.Energy) - parseInt(b.Energy));
+
+            const sortFunc = (a, b) => {
+                const diff = b.Energy - a.Energy;
+                switch (diff) {
+                  case 0:
+                      return -1;
+                  default:
+                      return diff;
+                }
+            }
+
+            vFinal=vEvent.sort(sortFunc);
+            vEventHour.sort();
 
             for(let i=0;i<vFinal.length;i++){
                 vFinal[i].Data=vEventHour[i].replace('T', ' ').split('.')[0];
                 console.log(vFinal[i].Data);
             }
-            /*console.log(vEventHour);
-            console.log("FINALE");
-            console.log(vFinal);*/
+            console.log(vFinal);
 
             vFinal.forEach(function(item,j){
                 console.log({ID:item.IDCalendar,IDU:localStorage.getItem('IDU'),Data:item.Data,Energy:item.Energy})
                 cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyEventByEnergy',{method:'POST',data:{ID:item.IDCalendar,IDU:localStorage.getItem('IDU'),Data:item.Data}},
                     function(srvData){
                         console.log(JSON.parse(srvData.data));
+                        vIndex++;
+                        checkReload();
                     },
     
                     function(jqXHR){
@@ -252,4 +267,9 @@ $(window).on('load',()=>{
         )
         
     })
+
+    function checkReload(){
+        if(vIndex==vFinal.length-1)
+            window.location.reload();
+    }
 })
