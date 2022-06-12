@@ -1,3 +1,5 @@
+let vSplash=[];
+
 $(document).ready(()=>{
 })
 
@@ -101,6 +103,8 @@ $(window).on('load',()=>{
                                   }
                               }
                             }
+                            vSplash.push(true);
+                            removeSplash();
                         },
               
                         function(jqXHR){
@@ -143,6 +147,8 @@ $(window).on('load',()=>{
                                 }
                               }
                             }
+                            vSplash.push(true);
+                            removeSplash();
                         },
               
                         function(jqXHR){
@@ -181,6 +187,8 @@ $(window).on('load',()=>{
                                   }
                                 }
                               }
+                              vSplash.push(true);
+                              removeSplash();
                         },
               
                         function(jqXHR){
@@ -223,6 +231,8 @@ $(window).on('load',()=>{
                                 }
                               }
                             }
+                            vSplash.push(true);
+                            removeSplash();
                         },
               
                         function(jqXHR){
@@ -256,6 +266,12 @@ $(window).on('load',()=>{
     $('#btnBack').click(()=>{
       window.location.replace('../index.html');
     });
+
+    function removeSplash(){
+      if(vSplash.length==4){
+        navigator.splashscreen.hide();
+      }
+    }
 })
 
 /*cordova.plugin.http.sendRequest(`http://overpass-api.de/api/interpreter?data=[out:json];(node[%22amenity%22](around:2000,${PlaceData.lat},${PlaceData.lon});way[%22amenity%22](around:2000,${PlaceData.lat},${PlaceData.lon});relation[%22amenity%22](around:2000,${PlaceData.lat},${PlaceData.lon}););out;%3E;`,{method:'GET',data:{}},

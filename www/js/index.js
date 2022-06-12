@@ -12,11 +12,12 @@ $(window).on("load",()=>{
         navigator.splashscreen.show();
         window.location.replace("../page/main.html");
     }
-    else{
-        navigator.splashscreen.show();   
+    else{   
         //controllo reinserimento pc a chiusura app
-        if(sessionStorage.getItem('Available')==null)
+        if(sessionStorage.getItem('Available')==null){
+            navigator.splashscreen.show();
             window.location.replace("../page/pin.html");
+        }
         //$('#txtName').text(localStorage.getItem("Username"));
     }
 
@@ -26,9 +27,9 @@ $(window).on("load",()=>{
             let Result=JSON.parse(srvData.data);
             for(let i=0;i<5;i++)
                 if(i==0)
-                    $('#itemCarousel').append('<div class="carousel-item active"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
+                    $('#itemCarousel').append('<div class="carousel-item active"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem;"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
                 else                
-                    $('#itemCarousel').append('<div class="carousel-item"><img class="img-fluid" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
+                    $('#itemCarousel').append('<div class="carousel-item"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem;"><div class="carousel-caption"><h3 class="text-center">'+Result[i].Tipo+'</h3></div></div>')
 
         },
 
@@ -36,7 +37,60 @@ $(window).on("load",()=>{
             connected=false;
             localStorage.clear();
             navigator.notification.beep(1);
-            navigator.notification.confirm("Qualcosa è andato storto: aaaaaaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+            navigator.notification.confirm("Qualcosa è andato storto:"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+        }
+    )
+
+    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUmoreUtente',{method:'POST',data:{IDU:localStorage.getItem('IDU')}},
+
+        function(srvData){
+            let key=localStorage.getItem('key');
+            let Result=JSON.parse(srvData.data);
+            console.log(Result);
+            let vHumor=[];
+            let vDate=[];
+            Result.forEach((item,index,array)=>{
+                vDate.push(item.Data);
+                vHumor.push(CryptoJS.AES.decrypt(item.Media,key).toString(CryptoJS.enc.Utf8))
+            })
+
+            const ctx = document.getElementById('humorChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: vDate,
+                    datasets: [{
+                        label: 'Media parametrica umore:',
+                        data: vHumor,
+                        backgroundColor:"rgb(80,203,147)",
+                    }]
+                },
+                animations: {
+                  tension: {
+                    duration: 1000,
+                    easing: 'linear',
+                    from: 1,
+                    to: 0,
+                    loop: true
+                  }
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        },
+
+        function(jqXHR){
+            connected=false;
+            localStorage.clear();
+            navigator.notification.beep(1);
+            navigator.notification.confirm("Qualcosa è andato storto:"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
     )
 
@@ -56,6 +110,7 @@ $(window).on("load",()=>{
     })
 
     $('#btnMap').click(()=>{
+        navigator.splashscreen.show();
         window.location.replace('../page/map.html');
     })
 })

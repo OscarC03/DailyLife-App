@@ -13,40 +13,29 @@
         <title>Daily Life</title>
     </head>
     <body>
-        <div class="dTitle mb-3"><h1 class="text-center text-white" id="txtName">Daily Life</h1></div>
+        <div class="dTitle"><h1 class="text-center text-white" id="txtName">Daily Life</h1></div>
         <div class="row">
             <div class="col">
-                <img src="Assets/IMG/E-Happy.png" class="img-fluid">
-            </div>
-            <div class="col">
-                <div id="demo" class="carousel slide" data-bs-ride="carousel">
+                <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner" id="itemCarousel">
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
+                        <i class="fa-solid fa-angle-left text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
+                        <i class="fa-solid fa-angle-right text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                      Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Link 1</a></li>
-                      <li><a class="dropdown-item" href="#">Link 2</a></li>
-                      <li><a class="dropdown-item" href="#">Link 3</a></li>
-                    </ul>
-                  </div>
+
+        <div class="row mt-4">            
+            <h2 class="text-center text-white font-responsive mb-4 mt-4" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Riepilogo umore</h2>
+            <div class="col" style="height:20rem;">
+                <canvas id="humorChart" width="inherit" height="50rem"></canvas>
             </div>
         </div>
-
-        <div class="fixed-bottom bg-div">
+        
 
         <footer>
             <div class="fixed-bottom bg-div"></div>
@@ -56,13 +45,13 @@
                 </div>
                 <div class="btnBottom">
                     <button class="btn btn-menu btnShadow" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
-                </div>
+                </div>                
                 <div class="btnTop dropup">
                     <button class="btn btnShadow" data-bs-toggle="dropdown" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
                     <ul class="dropdown-menu d-flex justify-content-around">
                         <li><a class="dropdown-item" href="page/insertActivities.html">attività</a></li>
                         <li><a class="dropdown-item" href="page/insertUmore.html">Umore</a></li>
-                      </ul>
+                    </ul>
                 </div>
                 <div class="btnBottom">
                     <button class="btn btn-menu btnShadow" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
@@ -73,7 +62,9 @@
             </nav>
         </footer>
         <script src="cordova.js"></script>
+        <script src="js/crypto.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/index.js"></script>
     </body>

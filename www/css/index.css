@@ -31,6 +31,7 @@ body{
 
 .dTitle{
     margin-top: 20%;
+    margin-bottom: 5rem;
 }
 
 #calendar{
@@ -87,6 +88,11 @@ body{
 #btnList:hover:active{color: #26b662 !important;}
 #btnCalendar:hover:active{color: #26b662 !important;}
 #btnOption:hover:active{color: #26b662 !important;}
+
+#humorChart{
+    background-color: #FFFC;
+    border-radius: 10px 10px 10px 10px ;
+}
 
 .btn{
     color: white !important;
