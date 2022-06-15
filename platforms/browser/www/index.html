@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Daily Life</title>
+    </head>
+    <body>
+        <div class="dTitle"><h1 class="text-center text-white" id="txtName" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Daily Life</h1></div>
+        <div class="row">
+            <div class="col">
+                <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="itemCarousel">
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <i class="fa-solid fa-angle-left text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <i class="fa-solid fa-angle-right text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">            
+            <h2 class="text-center text-white font-responsive mb-4 mt-4" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Riepilogo umore</h2>
+            <div class="col" style="width:inherit; height:20rem;">
+                <canvas id="humorChart" width="inherit" height="50rem"></canvas>
+            </div>
+        </div>
+        
+
+        <footer>
+            <div class="fixed-bottom bg-div"></div>
+            <nav class="nav fixed-bottom d-flex justify-content-around">
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnMap"><i class="fa-solid fa-map-location-dot"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnCalendar"><i class="fa-solid fa-calendar-days"></i></button>
+                </div>                
+                <div class="btnTop text-center dropup">
+                    <button class="btn btnShadow" data-bs-toggle="dropdown" id="btnInsert"><i class="fa-solid fa-plus"></i></button>
+                    <ul class="dropdown-menu d-flex justify-content-around dropdown-menu-center">
+                        <li><a class="dropdown-item" href="page/insertActivities.html"><i class="fa-regular fa-calendar-check"></i>&nbsp;Attività</a></li>
+                        <li><a class="dropdown-item" href="page/insertUmore.html"><i class="fa-regular fa-face-grin-beam"></i>&nbsp;Umore</a></li>
+                    </ul>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnList"><i class="fa-solid fa-list-ol"></i></button>
+                </div>
+                <div class="btnBottom">
+                    <button class="btn btn-menu btnShadow" id="btnOption"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </nav>
+        </footer>
+        <script src="cordova.js"></script>
+        <script src="js/crypto.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
+
+
+<!--
+INDEX.HTML:
+    In questa pagina (principale) saranno visualizate 
+        1)una serie di attività gratis e non da poter fare a seconda dell'umore inserito.
+        2)Lumore del giorno precedente
+        3)Pulsante di aggiunta dell'umore della giornata
+-->
+
+

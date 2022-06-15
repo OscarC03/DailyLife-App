@@ -1,0 +1,17 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Daily Life",
+  "short_name": "Daily Life",
+  "version": "com.cristaudo.dailylife",
+  "description": "Daily Life app for my exam",
+  "author": "Apache Cordova Team",
+  "icons": [
+    {
+      "src": "res/icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
+  "start_url": "index.html"
+}

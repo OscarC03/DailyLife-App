@@ -1,0 +1,55 @@
+body{
+    background-image: url('../Assets/IMG/BG-Test.png');  
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: black;
+    background-color: #B4FF9F;    position: absolute;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+h1{
+    font-family: "DL-Title";
+    /*font-size: 9vw;*/
+    /*font-weight: 700;*/
+    color: white;
+}
+
+input[type="text"],input[type="number"],input[type="password"]{
+    height: 60px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    font-style: italic;
+    font-size: larger;
+    text-align: center;
+}
+
+input[type="number"]{
+    -webkit-text-security: disc;
+    -moz-webkit-text-security: disc;
+    -moz-text-security: disc;
+}
+
+label{text-align: center;}
+
+.error:focus{border: 3px solid red !important;}
+.error{border: 3px solid red !important;}
+
+.font-responsive{
+    font-size: clamp(16px, 5vw, 34px) !important;
+}
+
+.font-humor{
+    font-size: clamp(12px, 3vw, 30px) !important;
+}
+
+@font-face {
+    font-family: "DL-Title";
+    src: url("../Assets/Font/Pacifico-Regular.ttf");
+}
