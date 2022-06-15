@@ -25,11 +25,11 @@ $(window).on('load',()=>{
     })
     $('#rngFelicita').change(()=>{
         if($('#rngFelicita').val()<6)
-            $('#rngFelicita').css({backgroundColor:'lime'});
+            $('#rngFelicita').css({backgroundColor:'red'});
         else if($('#rngFelicita').val()>=6 && $('#rngFelicita').val()<7)
             $('#rngFelicita').css({backgroundColor:'yellow'});
         else
-            $('#rngFelicita').css({backgroundColor:'red'});
+            $('#rngFelicita').css({backgroundColor:'lime'});
 
         $('#txtFelicita').text($('#rngFelicita').val())
     })
