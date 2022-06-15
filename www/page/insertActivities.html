@@ -20,53 +20,53 @@
             </div> 
         </header>
         <section class="container main-content">
-            <h2 class="text-center text-white">Attività</h2>
-            <p class="text-center text-white">Inserimento attività</p>
+            <h2 class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Attività</h2>
+            <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Inserimento attività</p>
         </section>
         <section class="container mt-2" id="scDatiAttivita">
             <div class="row">
-                <div class="col-12">
-                    <p class="text-center text-white">Cosa devi fare oggi?</p>
+                <div class="col-12 mb-2">
+                    <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Cosa devi fare oggi?</p>
                     <div class="d-flex justify-content-around">
-                        <input type="text" placeholder="Attività" class="form-control" id="txtTitolo">
+                        <input type="text" placeholder="Attività" class="form-control" id="txtTitolo" style="border:1px solid black ;">
                     </div>
                 </div>
-                <div class="col-12">
-                    <p class="text-center text-white">Descrivi la tua attività:</p>
+                <div class="col-12 mb-2">
+                    <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Descrivi la tua attività:</p>
                     <div class="d-flex justify-content-around">
-                        <input type="text" placeholder="Attività" class="form-control" id="txtDescrizione">
+                        <input type="text" placeholder="Attività" class="form-control" id="txtDescrizione" style="border:1px solid black ;">
                     </div>
                 </div>
-                <div class="col-12">
-                    <p class="text-center text-white">Data dell'attività:</p>
+                <div class="col-12 mb-2">
+                    <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Data dell'attività:</p>
                     <div class="d-flex justify-content-around">
-                        <input type="datetime-local" placeholder="Data" class="form-control" id="dtpData">
-                        <p class="text-center text-white font-responsive ps-2" id="txtFelicita"></p>
+                        <input type="datetime-local" placeholder="Data" class="form-control" id="dtpData" style="border:1px solid black ;">
+                        <p class="text-center text-white font-responsive ps-2" id="txtFelicita" style="text-shadow: 0 0 5px black;"></p>
                     </div>
                 </div>
-                <div class="col-12">
-                    <p class="text-center text-white">Da 1 a 10 quante energie richiede questa attività?</p>
+                <div class="col-12 mb-2">
+                    <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Da 1 a 10 quante energie richiede questa attività?</p>
                     <div class="d-flex justify-content-around">
-                        <input type="range" class="form-range" min="1" max="10" id="rngEnergy">
-                        <p class="text-center text-white font-responsive ps-2" id="txtEnergy"></p>
+                        <input type="range" class="slider" min="1" max="10" id="rngEnergy">
+                        <p class="text-center text-white font-responsive ps-2" id="txtEnergy" style="text-shadow: 0 0 5px black;"></p>
                     </div>
                 </div>
-                <div class="col-12">
-                    <p class="text-center text-white">Colore:</p>
+                <div class="col-12 mb-2">
+                    <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Colore:</p>
                     <div class="d-flex justify-content-around">
-                        <select class="form-select" id="inputColor">
-                            <option value="#92B4EC" class="text-center text-uppercase" style="background-color:#92B4EC;">Blue</option>
-                            <option value="#5FD068" class="text-center text-uppercase" style="background-color:#5FD068;">Verde</option>
-                            <option value="#F24C4C" class="text-center text-uppercase" style="background-color:#F24C4C;">Rosso</option>
-                            <option value="#F6C6EA" class="text-center text-uppercase" style="background-color:#F6C6EA;">Rosa</option>
-                            <option value="#FBCB0A" class="text-center text-uppercase" style="background-color:#FBCB0A;">Giallo</option>
+                        <select class="form-select" id="inputColor" style="border:1px solid black;">
+                            <option value="#92B4EC" class="text-center text-uppercase" style="color:#92B4EC;">Blue</option>
+                            <option value="#5FD068" class="text-center text-uppercase" style="color:#5FD068;">Verde</option>
+                            <option value="#F24C4C" class="text-center text-uppercase" style="color:#F24C4C;">Rosso</option>
+                            <option value="#F6C6EA" class="text-center text-uppercase" style="color:#F6C6EA;">Rosa</option>
+                            <option value="#FBCB0A" class="text-center text-uppercase" style="color:#FBCB0A;">Giallo</option>
                         </select>
                         <p class="text-center text-white font-responsive ps-2" id="txtFelicita"></p>
                     </div>
                 </div>
             </div>
             <div class="mb-3 mt-3 d-flex justify-content-center">
-                <input type="submit" class="btn btn-success btn-lg" id="btnInsertAttivita" value="Inserisci" tabindex="5">
+                <input type="submit" class="btn btn-success btn-lg" id="btnInsertAttivita" value="Inserisci" tabindex="5" style="border:1px solid black ;">
               </div>
         </section>
         <footer class="main-content">

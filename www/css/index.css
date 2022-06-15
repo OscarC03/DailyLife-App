@@ -69,7 +69,8 @@ body{
 }
 
 .disabledDiv {
-    pointer-events: none;
+    /*pointer-events: none;*/
+    border:1px solid yellow;
     opacity: 0.4;
     background-color: white;
 }
@@ -82,6 +83,40 @@ body{
     top: 0px;
     left: 0px;
 }
+
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 1.3rem;
+    border-radius: 1.3rem; 
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border: 1px solid black;
+    /*text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);*/
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%; 
+    background: #50CB93; /* Green background */
+    border: 1px solid white;
+    cursor: pointer; /* Cursor on hover */
+}
+  
+.slider::-moz-range-thumb {
+    width: 1.5rem; /* Set a specific slider handle width */
+    height: 1.5rem; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+  
 
 #btnInsert:hover:active{color: #26b662 !important;}
 #btnMap:hover:active{color: #26b662 !important;}
@@ -130,6 +165,29 @@ body{
     margin-left: 1rem;
     margin-top: 0.75rem;
     padding: 0;
+}
+
+.dropdown-menu-center {
+    left: 50% !important;
+    right: auto !important;
+    text-align: center !important;
+    transform: translate(-50%, 0) !important;
+    margin-bottom: 5rem !important;
+    background-color: #50CB93 !important;
+    font-size: 1.6rem !important;
+    border-radius: 20px 20px 20px 20px !important;
+    border: 2px solid white !important;
+}
+
+.dropdown-menu-center a{
+    color: white !important;
+    text-shadow: 0 0 5px black !important;
+}
+
+.dropdown-menu-center a:active{
+    color: #26b662 !important;
+    background-color: transparent !important;
+    border: none !important;
 }
 
 .btnDropDownCalendar{

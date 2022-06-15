@@ -26,7 +26,8 @@
     "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-local-notification": "github:katzer/cordova-plugin-local-notifications",
     "cordova-plugin-network-information": "^3.0.0",
-    "cordova-plugin-splashscreen": "^6.0.0"
+    "cordova-plugin-splashscreen": "^6.0.0",
+    "skwas-cordova-plugin-datetimepicker": "^3.0.1"
   },
   "cordova": {
     "platforms": [
@@ -48,7 +49,8 @@
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-geolocation": {
         "GPS_REQUIRED": "true"
-      }
+      },
+      "skwas-cordova-plugin-datetimepicker": {}
     }
   }
 }

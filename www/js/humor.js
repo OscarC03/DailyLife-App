@@ -8,14 +8,55 @@ $(document).ready(()=>{
 })
 
 $(window).on('load',()=>{
+    $('#rngStress').val(1)
+    $('#rngFelicita').val(1)
+    $('#rngFisica').val(1)
+    $('#rngMentale').val(1)
 
-    $('#rngStress').change(()=>{$('#txtStress').text($('#rngStress').val())})
-    $('#rngFelicita').change(()=>{$('#txtFelicita').text($('#rngFelicita').val())})
-    $('#rngFisica').change(()=>{$('#txtFisica').text($('#rngFisica').val())})
-    $('#rngMentale').change(()=>{$('#txtMentale').text($('#rngMentale').val())})
+    $('#rngStress').change(()=>{
+        if($('#rngStress').val()<6)
+            $('#rngStress').css({backgroundColor:'lime'});
+        else if($('#rngStress').val()>=6 && $('#rngStress').val()<7)
+            $('#rngStress').css({backgroundColor:'yellow'});
+        else
+            $('#rngStress').css({backgroundColor:'red'});
+
+        $('#txtStress').text($('#rngStress').val())
+    })
+    $('#rngFelicita').change(()=>{
+        if($('#rngFelicita').val()<6)
+            $('#rngFelicita').css({backgroundColor:'lime'});
+        else if($('#rngFelicita').val()>=6 && $('#rngFelicita').val()<7)
+            $('#rngFelicita').css({backgroundColor:'yellow'});
+        else
+            $('#rngFelicita').css({backgroundColor:'red'});
+
+        $('#txtFelicita').text($('#rngFelicita').val())
+    })
+    $('#rngFisica').change(()=>{
+        if($('#rngFisica').val()<6)
+            $('#rngFisica').css({backgroundColor:'lime'});
+        else if($('#rngFisica').val()>=6 && $('#rngFisica').val()<7)
+            $('#rngFisica').css({backgroundColor:'yellow'});
+        else
+            $('#rngFisica').css({backgroundColor:'red'});
+
+        $('#txtFisica').text($('#rngFisica').val())
+    })
+    $('#rngMentale').change(()=>{
+        if($('#rngMentale').val()<6)
+            $('#rngMentale').css({backgroundColor:'lime'});
+        else if($('#rngFisica').val()>=6 && $('#rngMentale').val()<7)
+            $('#rngMentale').css({backgroundColor:'yellow'});
+        else
+            $('#rngMentale').css({backgroundColor:'red'});
+
+        $('#txtMentale').text($('#rngMentale').val())
+    })
 
     $('#btnInsertHumor').click(()=>{
         let humor=getCookie('Humor');
+
         if(humor==""){
             let key=localStorage.getItem('key');
             let Stress=CryptoJS.AES.encrypt($('#rngStress').val().toString(),key).toString();

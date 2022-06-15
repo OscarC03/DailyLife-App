@@ -3,7 +3,7 @@ $(document).ready(()=>{
 
 $(window).on('load',()=>{
     let key=localStorage.getItem('key');
-    
+    $('#rngEnergy').val(1)
     $('#btnInsertAttivita').click(()=>{
         
         if($('#txtTitolo').text()!="" || $('#dtpData').val()!="" || $('#dtpOra').val()!=""){
@@ -30,6 +30,13 @@ $(window).on('load',()=>{
     });
 
     $('#rngEnergy').change(()=>{
+        if($('#rngEnergy').val()<6)
+            $('#rngEnergy').css({backgroundColor:'lime'});
+        else if($('#rngEnergy').val()>=6 && $('#rngEnergy').val()<7)
+            $('#rngEnergy').css({backgroundColor:'yellow'});
+        else
+            $('#rngEnergy').css({backgroundColor:'red'});
+
         $('#txtEnergy').text($('#rngEnergy').val());
     })
 
