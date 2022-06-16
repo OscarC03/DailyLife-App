@@ -3,6 +3,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    background-color: #4e944f;
     height: 100%;
 }
 
@@ -239,6 +240,33 @@ body{
  .fc a{
     color: black;
 }
+
+.container-image {
+    position: relative;
+    width: 50%;
+  }
+  
+  /* Make the image responsive */
+  .container-image img {
+    width: 100%;
+    height: auto;
+    max-width: 12rem;
+    max-height: 12rem;
+    border: 2px solid white;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .container-image .btn-image {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px 10px 10px 10px;
+  }
 
  @font-face {
     font-family: "DL-Title";

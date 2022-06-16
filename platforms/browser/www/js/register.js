@@ -6,7 +6,6 @@ $(document).ready(()=>{
 })
 
 $(window).on("load",()=>{
-    navigator.splashscreen.hide();
     $('#divUserPin').hide();
     $('#divNewUser').show();
 
@@ -101,6 +100,7 @@ $(window).on("load",()=>{
                 },
 
                 function(jqXHR){
+                    localStorage.clear();
                     navigator.notification.beep(1);
                     navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 })
@@ -197,7 +197,8 @@ $(window).on("load",()=>{
                     }
                 },
 
-                function(jqXHR){
+                function(jqXHR){                    
+                    localStorage.clear();
                     navigator.notification.beep(1);
                     navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 }
@@ -226,5 +227,10 @@ $(window).on("load",()=>{
         }
 
         function isAvailableError(error) {}
+    }    
+    
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        navigator.splashscreen.hide();
     }
 })

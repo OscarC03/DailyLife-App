@@ -71,7 +71,7 @@ $(window).on('load',()=>{
                       }
                       console.log(vPreferenze);
 
-                      cordova.plugin.http.sendRequest(`http://overpass-api.de/api/interpreter?data=[out:json];(node[%22amenity%22](around:2000,${e.latitude},${e.longitude});way[%22amenity%22](around:2000,${e.latitude},${e.longitude});relation[%22amenity%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
+                      cordova.plugin.http.sendRequest(`https://maps.mail.ru/osm/tools/overpass/api/interpreter?data=[out:json];(node[%22amenity%22](around:2000,${e.latitude},${e.longitude});way[%22amenity%22](around:2000,${e.latitude},${e.longitude});relation[%22amenity%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
 
                         function(srvData){
                             let amenities=JSON.parse(srvData.data);
@@ -108,12 +108,13 @@ $(window).on('load',()=>{
                         },
               
                         function(jqXHR){
+                          console.log(jqXHR.error);
                             navigator.notification.beep(1);
                             navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
                         }
                       )
 
-                      cordova.plugin.http.sendRequest(`http://overpass-api.de/api/interpreter?data=[out:json];(node[%22leisure%22](around:2000,${e.latitude},${e.longitude});way[%22leisure%22](around:2000,${e.latitude},${e.longitude});relation[%22leisure%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
+                      cordova.plugin.http.sendRequest(`https://maps.mail.ru/osm/tools/overpass/api/interpreter?data=[out:json];(node[%22leisure%22](around:2000,${e.latitude},${e.longitude});way[%22leisure%22](around:2000,${e.latitude},${e.longitude});relation[%22leisure%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
 
                         function(srvData){
                             let leisure=JSON.parse(srvData.data);
@@ -152,12 +153,13 @@ $(window).on('load',()=>{
                         },
               
                         function(jqXHR){
+                          console.log(jqXHR.error);
                             navigator.notification.beep(1);
                             navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{/*window.location.replace('../index.html')*/}, "Attenzione", ["Chiudi"])
                         }
                       )
 
-                      cordova.plugin.http.sendRequest(`http://overpass-api.de/api/interpreter?data=[out:json];(node[%22natural%22](around:2000,${e.latitude},${e.longitude});way[%22natural%22](around:2000,${e.latitude},${e.longitude});relation[%22natural%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
+                      cordova.plugin.http.sendRequest(`https://maps.mail.ru/osm/tools/overpass/api/interpreter?data=[out:json];(node[%22natural%22](around:2000,${e.latitude},${e.longitude});way[%22natural%22](around:2000,${e.latitude},${e.longitude});relation[%22natural%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
 
                         function(srvData){
                             let natural=JSON.parse(srvData.data);
@@ -192,12 +194,13 @@ $(window).on('load',()=>{
                         },
               
                         function(jqXHR){
+                          console.log(jqXHR.error);
                             navigator.notification.beep(1);
                             navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
                         }
                       )
 
-                      cordova.plugin.http.sendRequest(`http://overpass-api.de/api/interpreter?data=[out:json];(node[%22landuse%22](around:2000,${e.latitude},${e.longitude});way[%22landuse%22](around:2000,${e.latitude},${e.longitude});relation[%22landuse%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
+                      cordova.plugin.http.sendRequest(`https://maps.mail.ru/osm/tools/overpass/api/interpreter?data=[out:json];(node[%22landuse%22](around:2000,${e.latitude},${e.longitude});way[%22landuse%22](around:2000,${e.latitude},${e.longitude});relation[%22landuse%22](around:2000,${e.latitude},${e.longitude}););out;%3E;`,{method:'GET',data:{}},
 
                         function(srvData){
                             let landuse=JSON.parse(srvData.data);
@@ -236,6 +239,7 @@ $(window).on('load',()=>{
                         },
               
                         function(jqXHR){
+                            console.log(jqXHR.error);
                             navigator.notification.beep(1);
                             navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
                         }

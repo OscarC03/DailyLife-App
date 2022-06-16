@@ -13,6 +13,7 @@ $(window).on('load',()=>{
         },
 
         function(jqXHR){
+            localStorage.clear();
             navigator.notification.beep(1);
             navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
@@ -41,6 +42,7 @@ function addPreference(id){
             },
 
             function(jqXHR){
+                localStorage.clear();
                 navigator.notification.beep(1);
                 navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }

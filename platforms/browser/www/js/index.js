@@ -1,24 +1,22 @@
-$(document).ready(()=>{
-    if(sessionStorage.getItem("Available")==null)
-        navigator.splashscreen.show();
-    else
-        navigator.splashscreen.hide();
-})
-
 $(window).on("load",()=>{
+    cordova.plugins.notification.local.requestPermission(function (granted) {
+        console.log(granted);
+        cordova.plugins.notification.local.setDefaults({
+            led: { color: '#50CB93', on: 500, off: 500 },
+            vibrate: true
+        });
+    });
+    
     //CONTROLLO SE SONO NEL PRIMO AVVIO DELL'APP
     let User=localStorage.getItem('Username');
     if(User==null){
-        navigator.splashscreen.show();
         window.location.replace("../page/main.html");
     }
     else{   
         //controllo reinserimento pc a chiusura app
         if(sessionStorage.getItem('Available')==null){
-            navigator.splashscreen.show();
             window.location.replace("../page/pin.html");
         }
-        //$('#txtName').text(localStorage.getItem("Username"));
     }
 
     if(localStorage.getItem('Indexed')!=undefined){
@@ -118,21 +116,24 @@ $(window).on("load",()=>{
     })
     $("#btnCalendar").click(()=>{
         window.location.replace("../page/calendar.html");
-        //navigator.splashscreen.show();
     })
 
     $("#btnOption").click(()=>{
-        window.location.replace("../page/calendar.html");
-        //navigator.splashscreen.show();
+        window.location.replace("../page/option.html");
     });
 
     $('#btnList').click(()=>{
         window.location.replace('../page/list.html');
-        //navigator.splashscreen.show();
     })
 
     $('#btnMap').click(()=>{
         navigator.splashscreen.show();
         window.location.replace('../page/map.html');
     })
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        if(localStorage.getItem('Available')!=null)
+            navigator.splashscreen.hide();
+    }
 })

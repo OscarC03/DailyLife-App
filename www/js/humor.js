@@ -49,7 +49,7 @@ $(window).on('load',()=>{
     $('#rngMentale').change(()=>{
         if($('#rngMentale').val()<6)
             $('#rngMentale').css({backgroundColor:'lime'});
-        else if($('#rngFisica').val()>=6 && $('#rngMentale').val()<7)
+        else if($('#rngMentale').val()>=6 && $('#rngMentale').val()<7)
             $('#rngMentale').css({backgroundColor:'yellow'});
         else
             $('#rngMentale').css({backgroundColor:'red'});
@@ -70,7 +70,8 @@ $(window).on('load',()=>{
     
             cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertUmore',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU')),Stress:Stress,Felicita:Felicita,Fisico:Fisica,Mentale:Mentale,Media:Media,Data:new Date().toISOString().slice(0, 10)}},
                 function(srvData){
-                    setCookie('Humor',"Oggi hai già inserito il tuo umore, riprova domani!",1)
+                    setCookie('Humor',"Oggi hai già inserito il tuo umore, riprova domani!",1);
+
                     navigator.notification.beep(1);
                     navigator.notification.confirm("Complimenti il tuo umore è stato registrato", ()=>{window.location.replace('../index.html');}, "Complimenti", ["Fine"])
                 },
@@ -112,6 +113,16 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                    
+    cordova.plugins.notification.local.schedule({
+        title: 'Ciao, Come stai?',
+        text: `E' passato un giorno, inserisci le tue sensazioni!\n\nVuoi inserirle ora?`,
+        smallIcon: 'res://icon.png',
+        trigger: { at: d },
+        actions: [{ id: 'yes', title: 'SI' }],
+        foreground: true
+    },
+    { skipPermission: true });
 }
 
 function getCookie(cname) {
@@ -129,3 +140,7 @@ function getCookie(cname) {
     }
     return "";
   }
+
+  cordova.plugins.notification.local.on('yes', function (notification, eopts) {
+    window.location.replace('../page/insertUmore.html');
+  });

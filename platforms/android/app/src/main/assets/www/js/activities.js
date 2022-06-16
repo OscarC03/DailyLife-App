@@ -15,10 +15,12 @@ $(window).on('load',()=>{
                 function(srvData){
                     cordova.plugins.notification.local.schedule({
                         title: $('#txtTitolo').val(),
-                        text: 'Il: '+data.split(' ')[0]+' Alle: '+data.split(' ')[1]+'\n'+$('#txtDescrizione').val(),
+                        text: `${data.split(' ')[1]}\n${$('#txtDescrizione').val()}`,
                         smallIcon: 'res://icon.png',
-                        trigger: { at: new Date(data) }
-                    },{ skipPermission: true });
+                        trigger: { at: new Date(data) },
+                        foreground: true
+                    },
+                    { skipPermission: true });
 
                     navigator.notification.beep(1);
                     navigator.notification.confirm("Complimenti la tua attività è stata registrata", ()=>{window.location.replace('../index.html');}, "Complimenti", ["Fine"])

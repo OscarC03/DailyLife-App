@@ -6,7 +6,6 @@ $(document).ready(()=>{
 })
 
 $(window).on("load",()=>{
-    navigator.splashscreen.hide();
     $('#divUserPin').hide();
     $('#divNewUser').show();
 
@@ -228,5 +227,10 @@ $(window).on("load",()=>{
         }
 
         function isAvailableError(error) {}
+    }    
+    
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        navigator.splashscreen.hide();
     }
 })
