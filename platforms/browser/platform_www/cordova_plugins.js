@@ -418,6 +418,21 @@ module.exports = [
         "id": "cordova-plugin-camera.CameraProxy",
         "pluginId": "cordova-plugin-camera",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-email/www/email_composer.js",
+        "id": "cordova-plugin-email.EmailComposer",
+        "pluginId": "cordova-plugin-email",
+        "clobbers": [
+            "cordova.plugins.email",
+            "plugin.email"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-email/src/browser/EmailComposerProxy.js",
+        "id": "cordova-plugin-email.EmailComposerProxy",
+        "pluginId": "cordova-plugin-email",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -436,7 +451,8 @@ module.exports.metadata =
     "cordova-plugin-androidx-adapter": "1.1.3",
     "cordova-plugin-geolocation": "4.1.0",
     "skwas-cordova-plugin-datetimepicker": "2.1.2",
-    "cordova-plugin-camera": "6.0.0"
+    "cordova-plugin-camera": "6.0.0",
+    "cordova-plugin-email": "1.2.7"
 }
 // BOTTOM OF METADATA
 });

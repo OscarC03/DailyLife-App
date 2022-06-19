@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'; img-src * 'self' data: https:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -20,12 +20,72 @@
                 <h5 id="txtPosition">OPZIONI</h5>
             </div>
         </header>
-        <section class="container-fluid d-flex justify-content-center main-content">
-            <div class="container-image">
-                <img src="../Assets/IMG/Default-User.png" class="rounded-circle bg-success" alt="user image">
-                <button class="btn-image btn btn-success pe-3 ps-3" id="btnAddImg"><i class="fa-solid fa-plus"></i></button>
+        <section class="container-fluid main-content">
+            <div id="newIMG">
+                <div class="container-image">
+                    <img src="../Assets/IMG/Default-User.png" class="rounded-circle bg-success" width="524" height="470" alt="user image">
+                    <button class="btn-image btn btn-success pe-3 ps-3" id="btnAddImg"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div id="justIMG">
+                <div class="container-image">
+                    <img class="rounded-circle bg-success" id="imgUser" alt="user image">
+                    <button class="btn-image btn btn-success pe-3 ps-3" id="btnModImg"><i class="fa-solid fa-camera"></i></button>
+                </div>
             </div>
         </section>
+        <section class="container main-content">
+            <h1 class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Impostazioni</h1>
+        </section>
+        <section class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-12 mb-2 inpButton">
+                    <div class="d-flex justify-content-between my-auto h-100">
+                        <h5>Modifica Profilo</h5>
+                        <i class="fa-solid fa-arrow-right" id="btnOptProfilo"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-2 inpButton">
+                    <div class="d-flex justify-content-between my-auto h-100">
+                        <h5>Modifica Preferenze</h5>
+                        <i class="fa-solid fa-arrow-right" id="btnOptPreferenze"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-2 inpButton">
+                    <div class="d-flex justify-content-between my-auto h-100">
+                        <h5>Esci dall'account</h5>
+                        <i class="fa-solid fa-arrow-right" id="btnOptEsci"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Modal-->
+        <div class="modal fade" id="infoOpt">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="optTitle"></h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body" id="optBody">
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer d-flex justify-content-center" id="optFooter">
+                    <button type="button" class="btn btn-danger" id="btnSuccessOpt" data-bs-dismiss="modal">SI</button>
+                    <button type="button" class="btn btn-success" id="btnUndoOpt" data-bs-dismiss="modal">NO</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
 
 
         <script src="../cordova.js"></script>

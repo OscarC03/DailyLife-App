@@ -19,7 +19,7 @@ $(window).on("load",()=>{
         }
     }
 
-    if(localStorage.getItem('Indexed')!=undefined){
+    if(localStorage.getItem('Indexed')!=null){
         cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreferenceUser',{method:'POST',data:{User:localStorage.getItem('IDU')}},
     
             function(srvData){

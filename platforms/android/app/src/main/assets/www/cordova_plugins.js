@@ -392,6 +392,15 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "CameraPopoverHandle"
       ]
+    },
+    {
+      "id": "cordova-plugin-email.EmailComposer",
+      "file": "plugins/cordova-plugin-email/www/email_composer.js",
+      "pluginId": "cordova-plugin-email",
+      "clobbers": [
+        "cordova.plugins.email",
+        "plugin.email"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -408,6 +417,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-androidx-adapter": "1.1.3",
     "cordova-plugin-geolocation": "4.1.0",
     "skwas-cordova-plugin-datetimepicker": "2.1.2",
-    "cordova-plugin-camera": "6.0.0"
+    "cordova-plugin-camera": "6.0.0",
+    "cordova-plugin-email": "1.2.7"
   };
 });

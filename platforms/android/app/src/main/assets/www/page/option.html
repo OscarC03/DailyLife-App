@@ -34,6 +34,58 @@
                 </div>
             </div>
         </section>
+        <section class="container main-content">
+            <h1 class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Impostazioni</h1>
+        </section>
+        <section class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-12 mb-2 inpButton">
+                    <div class="d-flex justify-content-between my-auto h-100">
+                        <h5>Modifica Profilo</h5>
+                        <i class="fa-solid fa-arrow-right" id="btnOptProfilo"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-2 inpButton">
+                    <div class="d-flex justify-content-between my-auto h-100">
+                        <h5>Modifica Preferenze</h5>
+                        <i class="fa-solid fa-arrow-right" id="btnOptPreferenze"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-2 inpButton">
+                    <div class="d-flex justify-content-between my-auto h-100">
+                        <h5>Esci dall'account</h5>
+                        <i class="fa-solid fa-arrow-right" id="btnOptEsci"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Modal-->
+        <div class="modal fade" id="infoOpt">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="optTitle"></h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body" id="optBody">
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer d-flex justify-content-center" id="optFooter">
+                    <button type="button" class="btn btn-danger" id="btnSuccessOpt" data-bs-dismiss="modal">SI</button>
+                    <button type="button" class="btn btn-success" id="btnUndoOpt" data-bs-dismiss="modal">NO</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
 
 
         <script src="../cordova.js"></script>

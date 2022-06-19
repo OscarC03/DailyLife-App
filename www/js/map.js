@@ -131,11 +131,11 @@ $(window).on('load',()=>{
                                           iconUrl: `https://cristaudo.altervista.org/IMG/Markers/${key.Marker}`,
                                           shadowUrl: '../Assets/IMG/Shadow.png',
                                   
-                                          iconSize:     [80, 80], // size of the icon
-                                          shadowSize:   [50, 64], // size of the shadow
-                                          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                                          shadowAnchor: [4, 62],  // the same for the shadow
-                                          popupAnchor:  [18, -90] // point from which the popup should open relative to the iconAnchor
+                                          iconSize:     [80, 80],
+                                          shadowSize:   [50, 64],
+                                          iconAnchor:   [22, 94],
+                                          shadowAnchor: [4, 62],
+                                          popupAnchor:  [18, -90]
                                         });
 
                                         if(leisure.elements[i].lon != undefined && leisure.elements[i].lat != undefined)
@@ -277,79 +277,3 @@ $(window).on('load',()=>{
       }
     }
 })
-
-/*cordova.plugin.http.sendRequest(`http://overpass-api.de/api/interpreter?data=[out:json];(node[%22amenity%22](around:2000,${PlaceData.lat},${PlaceData.lon});way[%22amenity%22](around:2000,${PlaceData.lat},${PlaceData.lon});relation[%22amenity%22](around:2000,${PlaceData.lat},${PlaceData.lon}););out;%3E;`,{method:'GET',data:{}},
-
-                        function(srvData){
-                            let Place=JSON.parse(srvData.data);
-                            console.log(Place);
-                            if(Place.elements.length>0){
-                              for(let i=0;i<Place.elements.length;i++){
-                                //console.log(Place.elements[i].tags.name);
-    
-                                for(let item of Result){
-                                  if(Place.elements[i].tags.amenity==item.Key){
-                                    var Icon = L.icon({
-                                      iconUrl: `https://cristaudo.altervista.org/IMG/Markers/${item.Marker}`,
-                                      shadowUrl: '../Assets/IMG/Shadow.png',
-                              
-                                      iconSize:     [80, 80], // size of the icon
-                                      shadowSize:   [50, 64], // size of the shadow
-                                      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                                      shadowAnchor: [4, 62],  // the same for the shadow
-                                      popupAnchor:  [18, -90] // point from which the popup should open relative to the iconAnchor
-                                    });
-    
-                                    if(Place.elements[i].tags.name !="" && Place.elements[i].tags.name !=undefined)
-                                      L.marker([parseFloat(Place.elements[i].lat), parseFloat(Place.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup(Place.elements[i].tags.name);
-                                    else
-                                      L.marker([parseFloat(Place.elements[i].lat), parseFloat(Place.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup("Elemento Senza Nome");
-                                  }
-                                }
-                              }
-                            }
-                        },
-                
-                        function(jqXHR){
-                            navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
-                        }
-                      )
-
-                      cordova.plugin.http.sendRequest(`http://overpass-api.de/api/interpreter?data=[out:json];(node[%22building%22](around:2000,${PlaceData.lat},${PlaceData.lon});way[%22building%22](around:2000,${PlaceData.lat},${PlaceData.lon});relation[%22building%22](around:2000,${PlaceData.lat},${PlaceData.lon}););out;%3E;`,{method:'GET',data:{}},
-
-                        function(srvData){
-                            let Leisure=JSON.parse(srvData.data);
-                            console.log(Leisure);
-                            if(Leisure.elements.length>0){
-                              for(let i=0;i<Leisure.elements.length;i++){
-                                console.log(Leisure.elements[i]);
-    
-                                for(let item of Result){
-                                  if(Leisure.elements[i].tags.amenity==item.Key){
-                                    var Icon = L.icon({
-                                      iconUrl: `https://cristaudo.altervista.org/IMG/Markers/${item.Marker}`,
-                                      shadowUrl: '../Assets/IMG/Shadow.png',
-                              
-                                      iconSize:     [80, 80], // size of the icon
-                                      shadowSize:   [50, 64], // size of the shadow
-                                      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                                      shadowAnchor: [4, 62],  // the same for the shadow
-                                      popupAnchor:  [18, -90] // point from which the popup should open relative to the iconAnchor
-                                    });
-    
-                                    if(Place.elements[i].tags.name !="" && Place.elements[i].tags.name !=undefined)
-                                      L.marker([parseFloat(Place.elements[i].lat), parseFloat(Place.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup(Place.elements[i].tags.name);
-                                    else
-                                      L.marker([parseFloat(Place.elements[i].lat), parseFloat(Place.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup("Elemento Senza Nome");
-                                  }
-                                }
-                              }
-                            }
-                        },
-                
-                        function(jqXHR){
-                            navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
-                        }
-                      )*/

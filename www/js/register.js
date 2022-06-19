@@ -46,6 +46,11 @@ $(window).on("load",()=>{
         else
             $('#txtCognome').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
 
+        if($('#txtMail').val().trim()!="")
+            dati.push($('#txtMail').val());
+        else
+            $('#txtMail').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
+
         if($('#txtUsername').val().trim()!=""){
             cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUsername',{method:'POST',data:{Username:$('#txtUsername').val()}},
                 function(srvData){
@@ -57,17 +62,17 @@ $(window).on("load",()=>{
                             if($('#txtPassword').val().length>=8){
                                 dati.push($('#txtPassword').val());
                                 //Aggiunta campi sul db
-                                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/newUser',{method:'POST',data:{Nome:dati[0],Cognome:dati[1],Username:dati[2],Password:dati[3]}},
+                                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/newUser',{method:'POST',data:{Nome:dati[0],Cognome:dati[1],Mail:dati[2],Username:dati[3],Password:dati[4]}},
                                     function(srvData){
                                         localStorage.clear();
-                                        localStorage.setItem('Username',dati[2]);
+                                        localStorage.setItem('Username',dati[3]);
                                         cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
 
                                             function(srvData){
                                                 let Result=JSON.parse(srvData.data)[0];
                                                 if(Result.Nome!=undefined)
                                                     localStorage.setItem('IDU',Result.IDUser)
-                                                localStorage.setItem('key',CryptoJS.MD5(dati[2]+dati[3]).toString())
+                                                localStorage.setItem('key',CryptoJS.MD5(dati[3]+dati[4]).toString())
                                             },
                             
                                             function(jqXHR){
@@ -127,7 +132,7 @@ $(window).on("load",()=>{
             if(CryptoJS.MD5($('#txtPin').val().trim())==localStorage.getItem("PIN")){
                 sessionStorage.setItem('Available',true);
                 //navigator.splashscreen.show();
-                localStorage.setItem('Indexed',true);
+                localStorage.setItem('Indexed',"true");
                 window.location.replace('../index.html');
             }
             else
@@ -227,7 +232,11 @@ $(window).on("load",()=>{
         }
 
         function isAvailableError(error) {}
-    }    
+    }
+    
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min) ) + min;
+      }
     
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {

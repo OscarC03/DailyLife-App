@@ -57,4 +57,15 @@ $(window).on('load',()=>{
     $('#btnBack').click(()=>{
         window.location.replace('../index.html');
     })
+
+    $('#btnOptEsci').click(()=>{
+        $('#optTitle').append(`<h5 class="text-black">Log-out Daily Life</h5>`)
+        $('#optBody').append(`<h6 class="text-black">Sei sicuro di voler uscire dall'account di <mark>${localStorage.getItem('Username')}</mark>?</h6>`)
+        $('#infoOpt').modal('show');
+    })
+
+    $('#btnSuccessOpt').click(()=>{
+        localStorage.clear();
+        window.location.replace('../index.html');
+    })
 });
