@@ -7,6 +7,7 @@ $(document).ready(()=>{
 
 $(window).on("load",()=>{
     $('#divUserPin').hide();
+    $('#divRecPassword').hide();
     $('#divNewUser').show();
 
 
@@ -107,6 +108,7 @@ $(window).on("load",()=>{
 
                                             function(srvData){
                                                 let Result=JSON.parse(srvData.data)[0];
+                                                alert(srvData.data);
                                                 if(Result.Nome!=undefined)
                                                     localStorage.setItem('IDU',Result.IDUser)
                                                 localStorage.setItem('key',CryptoJS.MD5(dati[3]+dati[4]).toString())
@@ -116,7 +118,7 @@ $(window).on("load",()=>{
                                                 connected=false;
                                                 localStorage.clear();
                                                 navigator.notification.beep(1);
-                                                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                                                navigator.notification.confirm("Qualcosa è andato storto: 3 "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                                             }
                                         )
                                         $('#divUserPin').show();
@@ -125,7 +127,7 @@ $(window).on("load",()=>{
 
                                     function(jqXHR){
                                         navigator.notification.beep(1);
-                                        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                                        navigator.notification.confirm("Qualcosa è andato storto: 2 "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                                     }
                                 )
                             }
@@ -144,7 +146,7 @@ $(window).on("load",()=>{
                 function(jqXHR){
                     localStorage.clear();
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                    navigator.notification.confirm("Qualcosa è andato storto: 1 "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 })
         }
         else
@@ -257,7 +259,7 @@ $(window).on("load",()=>{
             function(srvData){
                 let Result=JSON.parse(srvData.data)[0];
 
-                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/recupero.php',{method:'POST',data:{Mail:Result.Mail,Username:localStorage.getItem('Username')}},
+                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/recupero.php',{method:'POST',data:{Mail:Result.Mail,Username:localStorage.getItem('Username'),Pin:'true'}},
 
                     function(srvData){
                         let sucRes=JSON.parse(srvData.data);
@@ -280,6 +282,50 @@ $(window).on("load",()=>{
                 navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
         )
+    })
+
+    $('#btnShowRecPassword').click(()=>{
+        $('#divUserPin').hide();
+        $('#divRecPassword').show();
+        $('#divLoginUser').hide();
+    })
+
+    $('#btnRecPassword').click(()=>{
+        if($('#txtRecPass').val()!=''){
+            cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:$('#txtRecPass').val()}},
+    
+                function(srvData){
+                    let Result=JSON.parse(srvData.data)[0];
+    
+                    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/recuperoP.php',{method:'POST',data:{Mail:Result.Mail,Username:$('#txtRecPass').val()}},
+    
+                        function(srvData){
+                            let sucRes=JSON.parse(srvData.data);
+                            navigator.notification.beep(1);
+                            navigator.notification.confirm(sucRes.msg, ()=>{
+                                $('#divUserPin').hide();
+                                $('#divRecPassword').hide();
+                                $('#divLoginUser').show();
+                            }, "Perfetto", ["OK"])
+                        },
+    
+                        function(jqXHR){
+                            navigator.notification.beep(1);
+                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.msg, ()=>{}, "Attenzione", ["Chiudi"])
+                        }
+                    )
+                },
+    
+                function(jqXHR){
+                    navigator.notification.beep(1);
+                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                }
+            )
+        }
+        else{
+            navigator.notification.beep(1);
+            navigator.notification.confirm("Qualcosa è andato storto: Inserire l'username", ()=>{}, "Attenzione", ["Chiudi"])
+        }
     })
 
     $('#btnRelPin').click(()=>{

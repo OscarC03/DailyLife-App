@@ -31,6 +31,43 @@ $(window).on("load",()=>{
         )
     }
 
+    if(localStorage.getItem('newGen')!=null){
+        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getHash',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+
+            function(srvData){
+                let Result=JSON.parse(srvData.data)[0];
+                if(Result.newGen==localStorage.getItem('newGen')){
+                    $('#btnVerify').val('Continua');
+                    localStorage.removeItem('newGen');
+                    localStorage.removeItem('PIN');
+                    let newPIN=getRndInteger(1000,9999);
+                    localStorage.setItem('PIN',CryptoJS.MD5(newPIN.toString()));
+                    navigator.notification.beep(1);
+                    navigator.notification.confirm("Complimenti il tuo nuovo PIN è: "+newPIN, ()=>{
+                        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/deleteHash',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+                
+                            function(srvData){
+                                window.location.reload();
+                            },
+                
+                            function(jqXHR){
+                                navigator.notification.beep(1);
+                                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                            }
+                        )
+                    }, "Perfetto", ["Chiudi"])
+                }
+                else
+                    $('#btnVerify').val('Ricarica');
+            },
+
+            function(jqXHR){
+                navigator.notification.beep(1);
+                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+            }
+        )
+    }
+
     //Creazione nuovo USER
     $('#btnRegister').click(()=>{
         let dati=[];
@@ -70,6 +107,7 @@ $(window).on("load",()=>{
 
                                             function(srvData){
                                                 let Result=JSON.parse(srvData.data)[0];
+                                                alert(srvData.data);
                                                 if(Result.Nome!=undefined)
                                                     localStorage.setItem('IDU',Result.IDUser)
                                                 localStorage.setItem('key',CryptoJS.MD5(dati[3]+dati[4]).toString())
@@ -79,7 +117,7 @@ $(window).on("load",()=>{
                                                 connected=false;
                                                 localStorage.clear();
                                                 navigator.notification.beep(1);
-                                                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                                                navigator.notification.confirm("Qualcosa è andato storto: 3 "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                                             }
                                         )
                                         $('#divUserPin').show();
@@ -88,7 +126,7 @@ $(window).on("load",()=>{
 
                                     function(jqXHR){
                                         navigator.notification.beep(1);
-                                        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                                        navigator.notification.confirm("Qualcosa è andato storto: 2 "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                                     }
                                 )
                             }
@@ -107,7 +145,7 @@ $(window).on("load",()=>{
                 function(jqXHR){
                     localStorage.clear();
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                    navigator.notification.confirm("Qualcosa è andato storto: 1 "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 })
         }
         else
@@ -128,17 +166,20 @@ $(window).on("load",()=>{
 
     $('#btnVerify').click(()=>{
         //Verifica del pin
-        if($('#txtPin').val().trim()!="")
-            if(CryptoJS.MD5($('#txtPin').val().trim())==localStorage.getItem("PIN")){
-                sessionStorage.setItem('Available',true);
-                //navigator.splashscreen.show();
-                localStorage.setItem('Indexed',"true");
-                window.location.replace('../index.html');
-            }
+            if($('#txtPin').val().trim()!="" && $('#btnVerify').val()=="Continua")
+                if(CryptoJS.MD5($('#txtPin').val().trim())==localStorage.getItem("PIN")){
+                    sessionStorage.setItem('Available',true);
+                    //navigator.splashscreen.show();
+                    localStorage.setItem('Indexed',"true");
+                    window.location.replace('../index.html');
+                }
+                else
+                    $('#txtPin').attr("placeholder", "PIN errato").addClass('error').focus().val('');
             else
-                $('#txtPin').attr("placeholder", "PIN errato").addClass('error').focus().val('');
-        else
-            $('#txtPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
+                $('#txtPin').attr("placeholder", "Campo Obbligatorio").addClass('error').focus();
+            
+            if($('#btnVerify').val()=="Ricarica")
+                window.location.reload();
     })
 
     $('#btnLog').click(()=>{
@@ -211,6 +252,41 @@ $(window).on("load",()=>{
         }
     });
 
+    $('#btnRecPin').click(()=>{
+        cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
+
+            function(srvData){
+                let Result=JSON.parse(srvData.data)[0];
+
+                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/recupero.php',{method:'POST',data:{Mail:Result.Mail,Username:localStorage.getItem('Username')}},
+
+                    function(srvData){
+                        let sucRes=JSON.parse(srvData.data);
+                        navigator.notification.beep(1);
+                        navigator.notification.confirm(sucRes.msg, ()=>{
+                            localStorage.setItem("newGen",sucRes.hash);
+                            $('#btnVerify').val('Ricarica');
+                        }, "Perfetto", ["OK"])
+                    },
+
+                    function(jqXHR){
+                        navigator.notification.beep(1);
+                        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.msg, ()=>{}, "Attenzione", ["Chiudi"])
+                    }
+                )
+            },
+
+            function(jqXHR){
+                navigator.notification.beep(1);
+                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+            }
+        )
+    })
+
+    $('#btnRelPin').click(()=>{
+        window.location.reload();
+    })
+
 
     if(sessionStorage.getItem("Available")==null && localStorage.getItem("Username")!=null && connected){
         Fingerprint.isAvailable(isAvailableSuccess, isAvailableError);
@@ -232,7 +308,11 @@ $(window).on("load",()=>{
         }
 
         function isAvailableError(error) {}
-    }    
+    }
+    
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min) ) + min;
+      }
     
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {

@@ -54,6 +54,14 @@ $(window).on('load',()=>{
         });
     });
 
+    $('#btnOptPassword').click(()=>{
+        window.location.replace('../page/modificaPassword.html');
+    })
+
+    $('#btnOptPin').click(()=>{
+        window.location.replace('../page/modificaPIN.html');
+    })
+
     $('#btnBack').click(()=>{
         window.location.replace('../index.html');
     })
