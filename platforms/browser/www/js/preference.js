@@ -38,7 +38,7 @@ function addPreference(id){
         cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/insertPreference',{method:'POST',data:{IDP1:vPreference[0],IDP2:vPreference[1],IDP3:vPreference[2],IDP4:vPreference[3],IDP5:vPreference[4],IDU:parseInt(localStorage.getItem('IDU'))}},
             function(srvData){
                 let Result=JSON.parse(srvData.data);
-                window.location.replace('../index.html');
+                window.location.replace('../page/pin.html');
             },
 
             function(jqXHR){

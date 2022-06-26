@@ -1,4 +1,8 @@
+var deviceHeight=Math.max(window.screen.height, window.innerHeight);
+let vSplash=[];
+
 $(window).on("load",()=>{
+    $('body').css({height:deviceHeight- 48+'px'})
     cordova.plugins.notification.local.requestPermission(function (granted) {
         console.log(granted);
         cordova.plugins.notification.local.setDefaults({
@@ -29,14 +33,13 @@ $(window).on("load",()=>{
                         $('#itemCarousel').append('<div class="carousel-item active"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem;"><div class="carousel-caption"><h3 class="text-center" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">'+Result[i].Tipo+'</h3></div></div>')
                     else                
                         $('#itemCarousel').append('<div class="carousel-item"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem;"><div class="carousel-caption"><h3 class="text-center" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">'+Result[i].Tipo+'</h3></div></div>')
-    
+                vSplash.push(true);
+                removeSplash();
             },
     
             function(jqXHR){
-                connected=false;
-                localStorage.clear();
                 navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto:"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                navigator.notification.alert("Qualcosa è andato storto:"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
         )
     
@@ -54,6 +57,8 @@ $(window).on("load",()=>{
                 })
     
                 if(Result.length>4){
+                    vSplash.push(true);
+                    removeSplash();
                     const ctx = document.getElementById('humorChart').getContext('2d');
                     const myChart = new Chart(ctx, {
                         type: 'bar',
@@ -77,6 +82,8 @@ $(window).on("load",()=>{
                     });
                 }
                 else{
+                    vSplash.push(true);
+                    removeSplash();
                     const ctx = document.getElementById('humorChart').getContext('2d');
                     const myChart = new Chart(ctx, {
                         type: 'line',
@@ -103,10 +110,8 @@ $(window).on("load",()=>{
             },
     
             function(jqXHR){
-                connected=false;
-                localStorage.clear();
                 navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto:"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                navigator.notification.alert("Qualcosa è andato storto:"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
         )
     }
@@ -119,6 +124,7 @@ $(window).on("load",()=>{
     })
 
     $("#btnOption").click(()=>{
+        navigator.splashscreen.show();
         window.location.replace("../page/option.html");
     });
 
@@ -137,3 +143,9 @@ $(window).on("load",()=>{
             navigator.splashscreen.hide();
     }
 })
+
+function removeSplash(){
+  if(vSplash.length==2){
+    navigator.splashscreen.hide();
+  }
+}

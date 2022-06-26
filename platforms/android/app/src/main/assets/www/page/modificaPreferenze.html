@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../css/index.css">
+        <title>Daily Life - Modifica Preferenze</title>
+    </head>
+    <body>
+        <header class="divHeader fixed-top">
+            <div class="d-flex justify-content-start my-auto h-100">
+                <i class="fa-solid fa-arrow-left" id="btnBack"></i>
+                <h5 id="txtPosition">Modifica preferenze</h5>
+            </div>
+        </header>
+        <section class="container-fluid mb-4 main-content">
+            <h1 class="text-center text-white p-3 font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Modifica Preferenze</h1>
+            <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Le tue preferenze</p>
+        </section>
+        <div class="row mb-3">
+            <div class="col">
+                <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="itemCarousel">
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <i class="fa-solid fa-angle-left text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <i class="fa-solid fa-angle-right text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
+                    </button>
+                </div>
+            </div>
+            <h1 class="text-center text-white mt-4 font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Lista preferenze disponibili</h1>
+            <p class="text-center text-white font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">scegli 5 cose che ti piacciono maggiormente</p>
+        </div>
+        <div class="row container-fluid" id="rwPreference" class="mb-4"></div>
+        <script src="../cordova.js"></script>
+        <script src="../js/crypto.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="../js/crypto.js"></script>
+        <script src="../js/modPreferenze.js"></script>
+    </body>
+</html>

@@ -78,13 +78,13 @@ $(window).on('load',()=>{
     
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                 }
             )
         }
         else{
             navigator.notification.beep(1);
-            navigator.notification.confirm(humor, ()=>{window.location.replace("../index.html");}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert(humor, ()=>{window.location.replace("../index.html");}, "Attenzione", ["Chiudi"])
         }
     });
 

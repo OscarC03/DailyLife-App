@@ -60,7 +60,7 @@ $(window).on('load',()=>{
     
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                 }
             )
         }
@@ -96,7 +96,7 @@ $(window).on('load',()=>{
 
         function(jqXHR){
             navigator.notification.beep(1);
-            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
     )
 
@@ -156,7 +156,7 @@ $(window).on('load',()=>{
 
             function(jqXHR){
                 navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
         )
     })
@@ -178,7 +178,7 @@ $(window).on('load',()=>{
 
             function(jqXHR){
                 navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
         )
     })
@@ -254,7 +254,7 @@ $(window).on('load',()=>{
     
                     function(jqXHR){
                         navigator.notification.beep(1);
-                        navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                        navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                     }
                 )
             })
@@ -262,7 +262,7 @@ $(window).on('load',()=>{
 
         function(jqXHR){
             navigator.notification.beep(1);
-            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
         )
         

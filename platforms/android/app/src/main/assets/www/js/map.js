@@ -110,7 +110,7 @@ $(window).on('load',()=>{
                         function(jqXHR){
                           console.log(jqXHR.error);
                             navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+                            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
                         }
                       )
 
@@ -155,7 +155,7 @@ $(window).on('load',()=>{
                         function(jqXHR){
                           console.log(jqXHR.error);
                             navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{/*window.location.replace('../index.html')*/}, "Attenzione", ["Chiudi"])
+                            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{/*window.location.replace('../index.html')*/}, "Attenzione", ["Chiudi"])
                         }
                       )
 
@@ -196,7 +196,7 @@ $(window).on('load',()=>{
                         function(jqXHR){
                           console.log(jqXHR.error);
                             navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+                            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
                         }
                       )
 
@@ -241,7 +241,7 @@ $(window).on('load',()=>{
                         function(jqXHR){
                             console.log(jqXHR.error);
                             navigator.notification.beep(1);
-                            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+                            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
                         }
                       )
 
@@ -250,21 +250,21 @@ $(window).on('load',()=>{
         
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
                 }
             )
           },
 
           function (jqXHR){
             navigator.notification.beep(1);
-            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
           }
         )
     }
 
     function onLocationError(e) {
       navigator.notification.beep(1);
-      navigator.notification.confirm("Qualcosa è andato storto: "+e.message, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+      navigator.notification.alert("Qualcosa è andato storto: "+e.message, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
     }
   
     $('#btnBack').click(()=>{

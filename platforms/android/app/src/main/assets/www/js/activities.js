@@ -28,13 +28,13 @@ $(window).on('load',()=>{
     
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                 }
             )
         }
         else{
             navigator.notification.beep(1);
-            navigator.notification.confirm("Compila tutti i campi!", ()=>{}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Compila tutti i campi!", ()=>{}, "Attenzione", ["Chiudi"])
         }
     });
 

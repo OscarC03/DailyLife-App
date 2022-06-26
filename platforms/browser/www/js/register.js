@@ -27,7 +27,10 @@ $(window).on("load",()=>{
                 connected=false;
                 localStorage.clear();
                 navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto: aaa"+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                navigator.notification.confirm("Qualcosa è andato storto: aaa"+jqXHR.error, ()=>{
+                    localStorage.clear();
+                    window.location.reload();
+                }, "Attenzione", ["Chiudi"])
             }
         )
     }
@@ -217,6 +220,7 @@ $(window).on("load",()=>{
                     if(Result!=undefined && Result=="Login OK"){
                         localStorage.setItem("Username",dati[0]);
                         localStorage.setItem("JustUser",true);
+                        localStorage.getItem('Indexed',true);
 
                         cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUser',{method:'POST',data:{Username:localStorage.getItem('Username')}},
 

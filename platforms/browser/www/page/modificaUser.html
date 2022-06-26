@@ -11,34 +11,40 @@
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
         <link rel="stylesheet" href="../css/index.css">
-        <title>Daily Life - ModificaPIN</title>
+        <title>Daily Life - ModificaProfilo</title>
     </head>
     <body>
         <header class="divHeader fixed-top">
             <div class="d-flex justify-content-start my-auto h-100">
                 <i class="fa-solid fa-arrow-left" id="btnBack"></i>
-                <h5 id="txtPosition">Modifica PIN</h5>
+                <h5 id="txtPosition">Modifica Profilo</h5>
             </div>
         </header>
         <div class="centered-div">
           <section class="container mb-3">
-              <h1 class="text-center text-white p-3 font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Modifca il tuo PIN</h1>
+              <h1 class="text-center text-white p-3 font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Modifca il tuo profilo</h1>
           </section>
             <section class="container mt-3 mb-3">
               <div class="mb-3 mt-3">
-                <label for="txtPinA" class="form-label text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Inserisci il PIN attuale:</label>
-                <input type="number" class="form-control inputField inputSecret" id="txtPinA" placeholder="Inserisci il tuo Pin" required autofocus style="border:1px solid black ;">
+                <label for="txtPinA" class="form-label text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Nome:</label>
+                <input type="text" class="form-control inputField" id="txtNome" placeholder="Inserisci il tuo nome" required autofocus style="border:1px solid black ;">
               </div>
               <div class="mb-3 mt-3">
-                <label for="txtPinN" class="form-label text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Inserisci il nuovo PIN:</label>
-                <input type="number" class="form-control inputField inputSecret" id="txtPinN" placeholder="Inserisci il nuovo PIN" required autofocus style="border:1px solid black ;">
+                <label for="txtPinN" class="form-label text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Cognome:</label>
+                <input type="text" class="form-control inputField" id="txtCognome" placeholder="Inserisci il tuo cognome" required autofocus style="border:1px solid black ;">
               </div>
               <div class="mb-3 mt-3">
-                <label for="txtPinN1" class="form-label text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Reinserisci il nuovo PIN:</label>
-                <input type="number" class="form-control inputField inputSecret" id="txtPinN1" placeholder="Inserisci dinuovo il PIN" required autofocus style="border:1px solid black ;">
+                <label for="txtPinN1" class="form-label text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Username:</label>
+                <input type="text" class="form-control inputField" id="txtUser" placeholder="Inserisci il tuo username" required autofocus style="border:1px solid black ;">
+                <p id="userResult" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></p>
+              </div>
+              <div class="mb-3 mt-3">
+                <label for="txtPinN1" class="form-label text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Mail:</label>
+                <input type="mail" class="form-control inputField" id="txtMail" placeholder="Inserisci la tua Mail" required autofocus style="border:1px solid black ;">
+                <p id="mailResult" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></p>
               </div>
               <div class="mb-3 mt-3 d-flex justify-content-center">
-                <input type="submit" class="btn btn-success btn-lg" id="btnChangePIN" value="Cambia" style="border:1px solid black ;">
+                <input type="submit" class="btn btn-success btn-lg" id="btnChangeProf" value="Modifica" style="border:1px solid black ;">
               </div>
             </section>
         </div>
