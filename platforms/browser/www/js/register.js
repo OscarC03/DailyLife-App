@@ -28,8 +28,7 @@ $(window).on("load",()=>{
                 connected=false;
                 localStorage.clear();
                 navigator.notification.beep(1);
-                navigator.notification.alert("Qualcosa è andato storto: aaa"+jqXHR.error, ()=>{
-                    localStorage.clear();
+                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{
                     window.location.reload();
                 }, "Attenzione", ["Chiudi"])
             }
@@ -124,9 +123,8 @@ $(window).on("load",()=>{
                                         
                                                         function(jqXHR){
                                                             connected=false;
-                                                            localStorage.clear();
                                                             navigator.notification.beep(1);
-                                                            navigator.notification.alert("Qualcosa è andato storto: 3 "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                                                            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                                                         }
                                                     )
                                                     $('#divUserPin').show();
@@ -134,8 +132,10 @@ $(window).on("load",()=>{
                                                 },
             
                                                 function(jqXHR){
+                                                    connected=false;
+                                                    localStorage.clear();
                                                     navigator.notification.beep(1);
-                                                    navigator.notification.alert("Qualcosa è andato storto: 2 "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                                                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                                                 }
                                             )
                                         }
@@ -151,9 +151,8 @@ $(window).on("load",()=>{
             
                             function(jqXHR){
                                 connected=false;
-                                localStorage.clear();
                                 navigator.notification.beep(1);
-                                navigator.notification.alert("Qualcosa è andato storto: 3 "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                             }
                         )
                     }
@@ -164,9 +163,9 @@ $(window).on("load",()=>{
                 },
 
                 function(jqXHR){
-                    localStorage.clear();
+                    connected=false;
                     navigator.notification.beep(1);
-                    navigator.notification.alert("Qualcosa è andato storto: 1 "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 })
         }
         else
@@ -192,7 +191,7 @@ $(window).on("load",()=>{
             if($('#txtPin').val().trim()!="" && $('#btnVerify').val()=="Continua")
                 if(CryptoJS.MD5($('#txtPin').val().trim())==localStorage.getItem("PIN")){
                     sessionStorage.setItem('Available',true);
-                    //navigator.splashscreen.show();
+                    history.go(1);
                     localStorage.setItem('Indexed',"true");
                     navigator.splashscreen.show();
                     window.location.replace('../index.html');
@@ -256,7 +255,6 @@ $(window).on("load",()=>{
         
                             function(jqXHR){
                                 connected=false;
-                                localStorage.clear();
                                 navigator.notification.beep(1);
                                 navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                             }
@@ -271,8 +269,7 @@ $(window).on("load",()=>{
                     }
                 },
 
-                function(jqXHR){                    
-                    localStorage.clear();
+                function(jqXHR){
                     navigator.notification.beep(1);
                     navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/main.html");}, "Attenzione", ["Chiudi"]);
                 }
@@ -305,6 +302,7 @@ $(window).on("load",()=>{
             },
 
             function(jqXHR){
+                connected=false;
                 navigator.notification.beep(1);
                 navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
@@ -434,7 +432,8 @@ function validateUsername(){
                 },
 
                 function(jqXHR){
-                    $('#userResult').css({color:'red'}).text('Inserire un username valido');
+                    navigator.notification.beep(1);
+                    navigator.notification.alert("Qualcosa è andato storto: Inserire un username valido", ()=>{}, "Attenzione", ["Chiudi"])
                 }
             )
         else

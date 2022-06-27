@@ -7,6 +7,10 @@ body{
     height: 100%;
 }
 
+#centered{
+    margin-bottom: 80px;
+}
+
 #btnInsert{
     text-decoration: none;
     font-weight: bold;
@@ -67,6 +71,11 @@ body{
 
 .font-humor{
     font-size: clamp(12px, 3vw, 30px) !important;
+}
+
+.font-btn{
+    font-size: clamp(15px, 4vw, 33px) !important;
+    margin-bottom: 0px !important;
 }
 
 .disabledDiv {

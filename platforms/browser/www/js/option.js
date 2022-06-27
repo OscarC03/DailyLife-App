@@ -63,12 +63,12 @@ $(window).on('load',()=>{
         
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.alert("Qualcosa è andato storto insert: "+jqXHR.error, ()=>{window.location.replace('../index.html');}, "Attenzione", ["Chiudi"])
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html');}, "Attenzione", ["Chiudi"])
                 }
             )
         },(err)=>{
             navigator.notification.beep(1);
-            navigator.notification.alert("Qualcosa è andato storto camera: "+err, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Qualcosa è andato storto: "+err, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
         }, 
         {
             sourceType:Camera.PictureSourceType.CAMERA,
@@ -176,8 +176,6 @@ $(window).on('load',()=>{
                                 },
             
                                 function(jqXHR){
-                                    connected=false;
-                                    localStorage.clear();
                                     navigator.notification.beep(1);
                                     navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                                 }
@@ -195,10 +193,9 @@ $(window).on('load',()=>{
                     $('#txtPassA').attr("placeholder", "La vecchia password non corrisponde").addClass('error').val('').focus();
             },
 
-            function(jqXHR){                    
-                localStorage.clear();
+            function(jqXHR){
                 navigator.notification.beep(1);
-                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/option.html");}, "Attenzione", ["Chiudi"]);
+                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"]);
             }
         );
     })
@@ -216,6 +213,8 @@ $(window).on('load',()=>{
                 },
 
                 function(jqXHR){
+                    navigator.notification.beep(1);
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"]);
                 }
             )
         else

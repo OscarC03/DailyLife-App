@@ -14,9 +14,9 @@ $(window).on('load',()=>{
     $('#rngMentale').val(1)
 
     $('#rngStress').change(()=>{
-        if($('#rngStress').val()<6)
+        if($('#rngStress').val()<5)
             $('#rngStress').css({backgroundColor:'lime'});
-        else if($('#rngStress').val()>=6 && $('#rngStress').val()<7)
+        else if($('#rngStress').val()>=5 && $('#rngStress').val()<7)
             $('#rngStress').css({backgroundColor:'yellow'});
         else
             $('#rngStress').css({backgroundColor:'red'});
@@ -25,9 +25,9 @@ $(window).on('load',()=>{
     })
     
     $('#rngFelicita').change(()=>{
-        if($('#rngFelicita').val()<6)
+        if($('#rngFelicita').val()<5)
             $('#rngFelicita').css({backgroundColor:'red'});
-        else if($('#rngFelicita').val()>=6 && $('#rngFelicita').val()<7)
+        else if($('#rngFelicita').val()>=5 && $('#rngFelicita').val()<7)
             $('#rngFelicita').css({backgroundColor:'yellow'});
         else
             $('#rngFelicita').css({backgroundColor:'lime'});
@@ -36,9 +36,9 @@ $(window).on('load',()=>{
     })
 
     $('#rngFisica').change(()=>{
-        if($('#rngFisica').val()<6)
+        if($('#rngFisica').val()<5)
             $('#rngFisica').css({backgroundColor:'lime'});
-        else if($('#rngFisica').val()>=6 && $('#rngFisica').val()<7)
+        else if($('#rngFisica').val()>=5 && $('#rngFisica').val()<7)
             $('#rngFisica').css({backgroundColor:'yellow'});
         else
             $('#rngFisica').css({backgroundColor:'red'});
@@ -47,9 +47,9 @@ $(window).on('load',()=>{
     })
 
     $('#rngMentale').change(()=>{
-        if($('#rngMentale').val()<6)
+        if($('#rngMentale').val()<5)
             $('#rngMentale').css({backgroundColor:'lime'});
-        else if($('#rngMentale').val()>=6 && $('#rngMentale').val()<7)
+        else if($('#rngMentale').val()>=5 && $('#rngMentale').val()<7)
             $('#rngMentale').css({backgroundColor:'yellow'});
         else
             $('#rngMentale').css({backgroundColor:'red'});

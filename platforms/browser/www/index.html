@@ -13,49 +13,51 @@
         <title>Daily Life</title>
     </head>
     <body>
-        <div class="dTitle">
-            <h1 class="text-center text-white" id="txtName" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Daily Life</h1>
-        </div>
-        <h1 class="text-center text-white mt-2 mb-2 font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Le tue preferenze</h1>
-        <div class="row">
-            <div class="col">
-                <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner" id="itemCarousel">
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                        <i class="fa-solid fa-angle-left text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                        <i class="fa-solid fa-angle-right text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
-                    </button>
-                </div>
+        <div id="centered">
+            <div class="dTitle">
+                <h1 class="text-center text-white" id="txtName" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Daily Life</h1>
             </div>
-        </div>
-
-        <div class="row mt-4">            
-            <h2 class="text-center text-white font-responsive mb-2 mt-4" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Riepilogo umore</h2>
-            <div class="col" style="width:inherit; height:20rem;">
-                <canvas id="humorChart" width="inherit" height="50rem"></canvas>
-            </div>
-        </div>
-        <section class=" container-fluid" style="margin-top: 3rem;">
-            <div class="row mb-2">
-                <div class="col me-2 d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeMap" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
-                    <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-map-location-dot align-middle"></i> Mappa</h4>
-                </div>
-                <div class="col d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeCalendar" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
-                    <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-calendar-days"></i> Calendario</h4>
-                </div>
-            </div>
+            <h1 class="text-center text-white mt-2 mb-2 font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Le tue preferenze</h1>
             <div class="row">
-                <div class="col me-2 d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeList" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
-                    <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-list-ol"></i> Umore</h4>
-                </div>
-                <div class="col d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeOption" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
-                    <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-gear"></i> Impostazioni</h4>
+                <div class="col">
+                    <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner" id="itemCarousel">
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                            <i class="fa-solid fa-angle-left text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                            <i class="fa-solid fa-angle-right text-white" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </section>
+    
+            <div class="row mt-4">            
+                <h2 class="text-center text-white font-responsive mb-4 mt-4" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">Riepilogo umore</h2>
+                <div class="col" style="width:inherit; height:20rem;">
+                    <canvas id="humorChart" width="inherit" height="50rem"></canvas>
+                </div>
+            </div>
+            <section class=" container-fluid" style="margin-top: 3rem;">
+                <div class="row mb-2">
+                    <div class="col me-2 d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeMap" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
+                        <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-map-location-dot align-middle"></i> Mappa</h4>
+                    </div>
+                    <div class="col d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeCalendar" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
+                        <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-calendar-days"></i> Calendario</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col me-2 d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeList" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
+                        <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-list-ol"></i> Umore</h4>
+                    </div>
+                    <div class="col d-flex aligns-items-center justify-content-center ps-3 pt-3 pe-3 pb-3" id="btnHomeOption" style="border: 2px solid white; background-color: #50CB93; border-radius: 10px 10px 10px 10px;">
+                        <h4 class="text-center text-white font-btn" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);"><i class="fa-solid fa-gear"></i> Impostazioni</h4>
+                    </div>
+                </div>
+            </section>
+        </div>
         
 
         <footer>

@@ -63,16 +63,17 @@ $(window).on('load',()=>{
         
                 function(jqXHR){
                     navigator.notification.beep(1);
-                    navigator.notification.alert("Qualcosa è andato storto insert: "+jqXHR.error, ()=>{window.location.replace('../index.html');}, "Attenzione", ["Chiudi"])
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace('../index.html');}, "Attenzione", ["Chiudi"])
                 }
             )
         },(err)=>{
             navigator.notification.beep(1);
-            navigator.notification.alert("Qualcosa è andato storto camera: "+err, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Qualcosa è andato storto: "+err, ()=>{window.location.replace('../index.html')}, "Attenzione", ["Chiudi"])
         }, 
         {
             sourceType:Camera.PictureSourceType.CAMERA,
             destinationType: Camera.DestinationType.DATA_URL,
+            cameraDirection:Camera.Direction.FRONT,
             correctOrientation:true,
             quality:50
         });
@@ -100,6 +101,7 @@ $(window).on('load',()=>{
         {
             sourceType:Camera.PictureSourceType.CAMERA,
             destinationType: Camera.DestinationType.DATA_URL,
+            cameraDirection:Camera.Direction.FRONT,
             correctOrientation:true,
             quality:50
         });
@@ -174,8 +176,6 @@ $(window).on('load',()=>{
                                 },
             
                                 function(jqXHR){
-                                    connected=false;
-                                    localStorage.clear();
                                     navigator.notification.beep(1);
                                     navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
                                 }
@@ -193,10 +193,9 @@ $(window).on('load',()=>{
                     $('#txtPassA').attr("placeholder", "La vecchia password non corrisponde").addClass('error').val('').focus();
             },
 
-            function(jqXHR){                    
-                localStorage.clear();
+            function(jqXHR){
                 navigator.notification.beep(1);
-                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{window.location.replace("../page/option.html");}, "Attenzione", ["Chiudi"]);
+                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"]);
             }
         );
     })
@@ -207,13 +206,15 @@ $(window).on('load',()=>{
 
                 function(srvData){
                     let Result=JSON.parse(srvData.data)[0];
-                    if(Result.UserExist==0 || Result.Username==$('#txtUser').val())
+                    if(Result.UserExist==0 || Result.Username==localStorage.getItem('Username'))
                         $('#userResult').css({color:'lime'}).text($('#txtUser').val()+' è valido');
                     else
                         $('#userResult').css({color:'red'}).text($('#txtUser').val()+' non è valido');
                 },
 
                 function(jqXHR){
+                    navigator.notification.beep(1);
+                    navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"]);
                 }
             )
         else
@@ -223,12 +224,14 @@ $(window).on('load',()=>{
     $('#txtMail').on('input',validate);
 
     $('#btnChangeProf').click(()=>{
-        if(validate())
+        if($('#txtNome').val().length==0)
+            $('#txtMail').attr("placeholder", "Campo Obbligatorio").addClass('error').val('').focus();
+        else if($('#txtCognome').val().length==0)
+            $('#txtCognome').attr("placeholder", "Campo Obbligatorio").addClass('error').val('').focus();
+        else if(validate())
             validateUsername();
-        else{
-            navigator.notification.beep(1);
-            navigator.notification.alert("Inserire una mail valida per poter modificare il profilo", ()=>{}, "Attenzione", ["Chiudi"]);
-        }
+        else
+            $('#txtMail').attr("placeholder", "Inserire una mail valida").addClass('error').val('').focus();
     })
 
     $('#btnSuccessOpt').click(()=>{
@@ -269,14 +272,31 @@ function validateUsername(){
 
             function(srvData){
                 let Result=JSON.parse(srvData.data)[0];
-                if(parseInt(Result.UserExist)==0 || Result.Username==$('#txtUser').val()){
-                    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyUser',{method:'POST',data:{Username:$('#txtUser').val(),Mail:$('#txtMail').val(),Nome:$('#txtNome').val(),Cognome:$('#txtCognome').val(),IDU:localStorage.getItem('IDU')}},
+                alert(srvData.data);
+                if(parseInt(Result.UserExist)==0 || Result.Username==localStorage.getItem('Username')){
+                    cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getMail',{method:'POST',data:{Mail:$('#txtMail').val()}},
             
                         function(srvData){
-                            let Result=JSON.parse(srvData.data)[0];
-                            localStorage.setItem('Username',$('#txtUser').val());
-                            navigator.notification.beep(1);
-                            navigator.notification.confirm("Modifica del profilo effettuata con successo", ()=>{window.location.replace('../page/option.html')}, "Perfetto", ["OK"]);
+                            let Mail=JSON.parse(srvData.data)[0];
+                            if(parseInt(Mail.MailExist)==0 || Mail.Mail==localStorage.getItem('Mail'))
+                                cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/modifyUser',{method:'POST',data:{Username:$('#txtUser').val(),Mail:$('#txtMail').val(),Nome:$('#txtNome').val(),Cognome:$('#txtCognome').val(),IDU:localStorage.getItem('IDU')}},
+                        
+                                    function(srvData){
+                                        let Result=JSON.parse(srvData.data)[0];
+                                        localStorage.setItem('Username',$('#txtUser').val());
+                                        navigator.notification.beep(1);
+                                        navigator.notification.confirm("Modifica del profilo effettuata con successo", ()=>{window.location.replace('../page/option.html')}, "Perfetto", ["OK"]);
+                                    },
+                        
+                                    function(jqXHR){
+                                        navigator.notification.beep(1);
+                                        navigator.notification.alert("Qualcosa è andato storto durante la modifica del profilo", ()=>{window.location.replace('../page/option.html')}, "Attenzione", ["Chiudi"]);
+                                    }
+                                )
+                            else{
+                                navigator.notification.beep(1);
+                                $('#txtMail').attr("placeholder", "La mail inserita è già stata utilizzata").addClass('error').val('').focus();
+                            }
                         },
             
                         function(jqXHR){
@@ -284,6 +304,10 @@ function validateUsername(){
                             navigator.notification.alert("Qualcosa è andato storto durante la modifica del profilo", ()=>{window.location.replace('../page/option.html')}, "Attenzione", ["Chiudi"]);
                         }
                     )
+                }
+                else{
+                    navigator.notification.beep(1);
+                    $('#txtUser').attr("placeholder", "L'Username è già stato utilizzato").addClass('error').val('').focus();
                 }
             },
 
@@ -294,7 +318,7 @@ function validateUsername(){
         )
     else{
         navigator.notification.beep(1);
-        navigator.notification.alert("Inserire un username valido", ()=>{}, "Attenzione", ["Chiudi"]);
+        $('#txtUsername').attr("placeholder", "Inserire un username valido").addClass('error').val('').focus();
     }
 }
 

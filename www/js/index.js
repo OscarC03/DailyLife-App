@@ -1,13 +1,13 @@
 let vSplash=[];
+var deviceHeight=Math.max(window.screen.height, window.innerHeight);
 
 $(window).on("load",()=>{
-    var deviceHeight=Math.max(window.screen.height, window.innerHeight);
 
     $('#btnHomeMap').css({backgroundColor:'#50CB93'});
     $('#btnHomeCalendar').css({backgroundColor:'#50CB93'});
     $('#btnHomeList').css({backgroundColor:'#50CB93'});
     $('#btnHomeOption').css({backgroundColor:'#50CB93'});
-    $('body').css({height:deviceHeight - 50+'px'});
+    //$('#centered').css({height:deviceHeight - 80+'px','overflow-y':'auto'});
 
     cordova.plugins.notification.local.requestPermission(function (granted) {
         console.log(granted);

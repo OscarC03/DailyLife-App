@@ -1,11 +1,14 @@
+let vSplash=[];
+
 $(document).ready(()=>{
-    navigator.splashscreen.hide();
 })
 
 $(window).on('load',()=>{
 
     cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getUmoreUtente',{method:'POST',data:{IDU:parseInt(localStorage.getItem('IDU'))}},
         function(srvData){
+            vSplash.push(true);
+
             let Happy="";
             let Stress="";
             let Mind="";
@@ -21,7 +24,7 @@ $(window).on('load',()=>{
             let Result=JSON.parse(srvData.data);
 
             for(let item of Result){
-                if(parseInt(CryptoJS.AES.decrypt(item.Felicita,key).toString(CryptoJS.enc.Utf8))>=6 && parseInt(CryptoJS.AES.decrypt(item.Felicita,key).toString(CryptoJS.enc.Utf8))<7){
+                if(parseInt(CryptoJS.AES.decrypt(item.Felicita,key).toString(CryptoJS.enc.Utf8))>=5 && parseInt(CryptoJS.AES.decrypt(item.Felicita,key).toString(CryptoJS.enc.Utf8))<7){
                     Happy='<i class="fa-regular fa-face-meh"></i> Felice';
                     txtHappy="text-warning";
                 }
@@ -34,7 +37,7 @@ $(window).on('load',()=>{
                     txtHappy="text-danger";
                 }
                 
-                if(parseInt(CryptoJS.AES.decrypt(item.Stress,key).toString(CryptoJS.enc.Utf8))>=6 && parseInt(CryptoJS.AES.decrypt(item.Stress,key).toString(CryptoJS.enc.Utf8))<7){
+                if(parseInt(CryptoJS.AES.decrypt(item.Stress,key).toString(CryptoJS.enc.Utf8))>=5 && parseInt(CryptoJS.AES.decrypt(item.Stress,key).toString(CryptoJS.enc.Utf8))<7){
                     Stress='<i class="fa-regular fa-face-meh"></i> Stressato';
                     txtStress="text-warning";
                 }
@@ -47,7 +50,7 @@ $(window).on('load',()=>{
                     txtStress="text-success";
                 }
                     
-                if(parseInt(CryptoJS.AES.decrypt(item.Fisico,key).toString(CryptoJS.enc.Utf8))>=6 && parseInt(CryptoJS.AES.decrypt(item.Fisico,key).toString(CryptoJS.enc.Utf8))<7){
+                if(parseInt(CryptoJS.AES.decrypt(item.Fisico,key).toString(CryptoJS.enc.Utf8))>=5 && parseInt(CryptoJS.AES.decrypt(item.Fisico,key).toString(CryptoJS.enc.Utf8))<7){
                     Body='<i class="fa-regular fa-face-meh"></i> Stanco Fisicamente';
                     txtBody="text-warning";
                 }
@@ -60,7 +63,7 @@ $(window).on('load',()=>{
                     txtBody="text-success";
                 }
                 
-                if(parseInt(CryptoJS.AES.decrypt(item.Mentale,key).toString(CryptoJS.enc.Utf8))>=6 && parseInt(CryptoJS.AES.decrypt(item.Mentale,key).toString(CryptoJS.enc.Utf8))<7){
+                if(parseInt(CryptoJS.AES.decrypt(item.Mentale,key).toString(CryptoJS.enc.Utf8))>=5 && parseInt(CryptoJS.AES.decrypt(item.Mentale,key).toString(CryptoJS.enc.Utf8))<7){
                     Mind='<i class="fa-regular fa-face-meh"></i> Stanco Mentalmente';
                     txtMind="text-warning";
                 }
@@ -73,7 +76,7 @@ $(window).on('load',()=>{
                     txtMind="text-success";
                 }
 
-                if(parseInt(CryptoJS.AES.decrypt(item.Media,key).toString(CryptoJS.enc.Utf8))>=6 && parseInt(CryptoJS.AES.decrypt(item.Media,key).toString(CryptoJS.enc.Utf8))<7){
+                if(parseInt(CryptoJS.AES.decrypt(item.Media,key).toString(CryptoJS.enc.Utf8))>=5 && parseInt(CryptoJS.AES.decrypt(item.Media,key).toString(CryptoJS.enc.Utf8))<7){
                     bg="bg-warning";
                     txtMedia="text-warning";
                     Media="In bilico";
@@ -95,26 +98,30 @@ $(window).on('load',()=>{
 
         function(jqXHR){
             navigator.notification.beep(1);
-            navigator.notification.alert("Qualcosa è andato storto:sss "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
 )
 
     $('#btnBack').click(()=>{
+        navigator.splashscreen.show();
         window.location.replace('../index.html');
     })
 
     $("#btnCalendar").click(()=>{
         window.location.replace("../page/calendar.html");
-        navigator.splashscreen.show();
     })
 
     $("#btnOption").click(()=>{
         window.location.replace("../page/calendar.html");
-        navigator.splashscreen.show();
     });
 
     $('#btnList').click(()=>{
         window.location.replace('../page/list.html');
-        navigator.splashscreen.show();
     })
 })
+
+function removeSplash(){
+  if(vSplash.length==1){
+    navigator.splashscreen.hide();
+  }
+}
