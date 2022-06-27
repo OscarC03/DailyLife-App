@@ -16,7 +16,7 @@ $(window).on('load',()=>{
       attribution: '© OpenStreetMap'
     });
 
-    var satellite = L.tileLayer("http://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {id: 'MapID', tileSize: 512, zoomOffset: -1});
+    var satellite = L.tileLayer("https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {id: 'MapID', tileSize: 512, zoomOffset: -1});
 
     var map = L.map('map', {
       zoom: 17,
@@ -38,13 +38,13 @@ $(window).on('load',()=>{
         map.setZoom(17)
         var radius = e.accuracy;
         //console.log(e);
-        L.marker(e.latlng).addTo(map).bindPopup("sei in questa zona di raggio: " + radius);
+        L.marker(e.latlng).addTo(map).bindPopup("sei in questa zona di raggio: " + Math.round(radius));
 
         cordova.plugin.http.sendRequest(`https://nominatim.openstreetmap.org/reverse?format=json&lon=${e.longitude}&lat=${e.latitude}`,{method:'GET',data:{}},
 
           function (srvData){
             let PlaceData=JSON.parse(srvData.data);
-            //console.log(PlaceData);
+            console.log(PlaceData);
             cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getPreferenceUser',{method:'POST',data:{User:localStorage.getItem('IDU')}},
 
                 function(srvData){
@@ -139,8 +139,26 @@ $(window).on('load',()=>{
                                         });
 
                                         if(leisure.elements[i].lon != undefined && leisure.elements[i].lat != undefined)
-                                          if(leisure.elements[i].tags.sport !="" && leisure.elements[i].tags.sport !=undefined)
-                                            L.marker([parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup(leisure.elements[i].tags.sport);
+                                          if(leisure.elements[i].tags.name !="" && leisure.elements[i].tags.name !=undefined)
+                                            L.marker([parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup(leisure.elements[i].tags.name);
+                                          else
+                                            L.marker([parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup("Elemento Senza Nome");
+                                      }
+                                      if(leisure.elements[i].tags.sport!=undefined && leisure.elements[i].tags.sport==key.key){
+                                        var Icon = L.icon({
+                                          iconUrl: `https://cristaudo.altervista.org/IMG/Markers/${key.Marker}`,
+                                          shadowUrl: '../Assets/IMG/Shadow.png',
+                                  
+                                          iconSize:     [80, 80],
+                                          shadowSize:   [50, 64],
+                                          iconAnchor:   [22, 94],
+                                          shadowAnchor: [4, 62],
+                                          popupAnchor:  [18, -90]
+                                        });
+
+                                        if(leisure.elements[i].lon != undefined && leisure.elements[i].lat != undefined)
+                                          if(leisure.elements[i].tags.name !="" && leisure.elements[i].tags.name !=undefined)
+                                            L.marker([parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup(leisure.elements[i].tags.name);
                                           else
                                             L.marker([parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon)], {icon: Icon}).addTo(map).bindPopup("Elemento Senza Nome");
                                       }

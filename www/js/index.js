@@ -1,8 +1,14 @@
-var deviceHeight=Math.max(window.screen.height, window.innerHeight);
 let vSplash=[];
 
 $(window).on("load",()=>{
-    $('body').css({height:deviceHeight- 48+'px'})
+    var deviceHeight=Math.max(window.screen.height, window.innerHeight);
+
+    $('#btnHomeMap').css({backgroundColor:'#50CB93'});
+    $('#btnHomeCalendar').css({backgroundColor:'#50CB93'});
+    $('#btnHomeList').css({backgroundColor:'#50CB93'});
+    $('#btnHomeOption').css({backgroundColor:'#50CB93'});
+    $('body').css({height:deviceHeight - 50+'px'});
+
     cordova.plugins.notification.local.requestPermission(function (granted) {
         console.log(granted);
         cordova.plugins.notification.local.setDefaults({
@@ -30,9 +36,9 @@ $(window).on("load",()=>{
                 let Result=JSON.parse(srvData.data);
                 for(let i=0;i<5;i++)
                     if(i==0)
-                        $('#itemCarousel').append('<div class="carousel-item active"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem;"><div class="carousel-caption"><h3 class="text-center" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">'+Result[i].Tipo+'</h3></div></div>')
+                        $('#itemCarousel').append('<div class="carousel-item active"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem; border:2px solid white;"><div class="carousel-caption"><h3 class="text-center" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">'+Result[i].Tipo+'</h3></div></div>')
                     else                
-                        $('#itemCarousel').append('<div class="carousel-item"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem;"><div class="carousel-caption"><h3 class="text-center" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">'+Result[i].Tipo+'</h3></div></div>')
+                        $('#itemCarousel').append('<div class="carousel-item"><img class="rounded-3" data-bs-interval="4000" src="https://cristaudo.altervista.org/IMG/'+Result[i].IMG+'" alt="'+Result[i].Tipo+'" style="width:inherit; height:10rem; border:2px solid white;"><div class="carousel-caption"><h3 class="text-center" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">'+Result[i].Tipo+'</h3></div></div>')
                 vSplash.push(true);
                 removeSplash();
             },
@@ -135,6 +141,28 @@ $(window).on("load",()=>{
     $('#btnMap').click(()=>{
         navigator.splashscreen.show();
         window.location.replace('../page/map.html');
+    })
+
+    $('#btnHomeMap').click(()=>{
+        $('#btnHomeMap').css({backgroundColor:'#26b662'}); 
+        navigator.splashscreen.show();
+        window.location.replace('../page/map.html');
+    })
+
+    $('#btnHomeCalendar').click(()=>{
+        $('#btnHomeCalendar').css({backgroundColor:'#26b662'});
+        window.location.replace("../page/calendar.html");
+    })
+
+    $('#btnHomeList').click(()=>{
+        $('#btnHomeList').css({backgroundColor:'#26b662'});
+        window.location.replace('../page/list.html');
+    })
+
+    $('#btnHomeOption').click(()=>{
+        $('#btnHomeOption').css({backgroundColor:'#26b662'});
+        navigator.splashscreen.show();
+        window.location.replace("../page/option.html");
     })
 
     document.addEventListener("deviceready", onDeviceReady, false);

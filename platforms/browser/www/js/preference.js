@@ -1,4 +1,5 @@
 let vPreference=[];
+let vSplash=[];
 
 $(window).on('load',()=>{
     //Scelta preferenze
@@ -8,14 +9,16 @@ $(window).on('load',()=>{
             let Result=JSON.parse(srvData.data);
             if(Result.length>0){
                 for(let item of Result)
-                    $('#rwPreference').append('<div class="col-6 bg-success mb-1" id="P-'+item.IDPreferenza+'" style="background-image: url(https://cristaudo.altervista.org/IMG/'+item.IMG+'); background-repeat: no-repeat; background-size: cover; border: 1px solid white;" onclick="addPreference(this.id)"><h4 class="text-center text-white ps-3 pe-3 pt-3 pb-3 font-responsive">'+item.Tipo+'</h4></div>')
+                    $('#rwPreference').append('<div class="col-6 bg-success mb-1" id="P-'+item.IDPreferenza+'" style="background-image: url(https://cristaudo.altervista.org/IMG/'+item.IMG+'); background-repeat: no-repeat; background-size: cover; border: 1px solid white;" onclick="addPreference(this.id)"><h4 class="text-center text-white ps-3 pe-3 pt-3 pb-3 font-responsive" style="text-shadow: 1px 1px 2px black, 0 0 25px rgb(30, 30, 32), 0 0 5px rgb(17, 17, 17);">'+item.Tipo+'</h4></div>');
+                vSplash.push(true);
+                removeSplash();
             }
         },
 
         function(jqXHR){
             localStorage.clear();
             navigator.notification.beep(1);
-            navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+            navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
         }
     )
 })
@@ -44,8 +47,14 @@ function addPreference(id){
             function(jqXHR){
                 localStorage.clear();
                 navigator.notification.beep(1);
-                navigator.notification.confirm("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
+                navigator.notification.alert("Qualcosa è andato storto: "+jqXHR.error, ()=>{navigator.app.exitApp();}, "Attenzione", ["Chiudi"])
             }
         )
     }
+}
+
+function removeSplash(){
+  if(vSplash.length==1){
+    navigator.splashscreen.hide();
+  }
 }

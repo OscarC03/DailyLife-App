@@ -69,6 +69,11 @@ body{
     font-size: clamp(12px, 3vw, 30px) !important;
 }
 
+.font-btn{
+    font-size: clamp(15px, 4vw, 33px) !important;
+    margin-bottom: 0px !important;
+}
+
 .disabledDiv {
     /*pointer-events: none;*/
     border:1px solid yellow;
