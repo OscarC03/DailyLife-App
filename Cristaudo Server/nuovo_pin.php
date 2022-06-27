@@ -17,7 +17,7 @@ if(isset($_GET['hash'])){
 	$sqlID="SELECT * FROM Users WHERE IDUser=".intval($id)." AND Password='".$password_old."'";
     $userData=eseguiQuery($con,$sqlID);
 	
-	 if($userData[0]['Username']!=""){
+	 if($userData[0]['Username']!="" && $userData[0]['newGen']==NULL){
 
 		$header= "From: Supporto profilo Daily Life APP <info@cristaudo.altervista.org>\n";
 		$header .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
@@ -41,6 +41,10 @@ if(isset($_GET['hash'])){
             exit(200);
 		}                         
 	}
+    else{		
+    	echo('<font color="red" size="4rem" face="Verdana, Geneva, sans-serif" size="1.2rem"><h1 align="center">Mail già inviata!</h1></font><br /><font color="black" face="Verdana, Geneva, sans-serif" size="2rem"><p align="center">Il suo nuovo PIN utente è stato generato, controlli le email per concludere la procedura</p>');
+        exit(401);
+    }
 
 	
 

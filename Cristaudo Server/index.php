@@ -31,13 +31,16 @@
                 $sql="INSERT INTO Users (Nome,Cognome,Username,Mail,Password) VALUES ('".$_POST["Nome"]."','".$_POST["Cognome"]."','".$_POST["Username"]."','".$_POST["Mail"]."','".md5($_POST["Password"])."')";
                 break;
             case "getUser":
-                $sql="SELECT Nome,IDUser,Mail FROM Users WHERE Username='".$_POST["Username"]."'";
+                $sql="SELECT Nome,Cognome,IDUser,Mail,Username,userIMG FROM Users WHERE Username='".$_POST["Username"]."'";
                 break;
             case "getPreferenceUser":
                 $sql="SELECT * FROM Preferenze AS P,PreferenzeUser AS PU,Users AS U WHERE U.IDUser=PU.IDUser AND P.IDPreferenza=PU.IDPreferenza AND U.IDUser=".$_POST["User"];
                 break;
             case "getUsername":
-                $sql="SELECT COUNT(IDUser) AS UserExist FROM Users WHERE Username='".$_POST["Username"]."'";
+                $sql="SELECT Username,COUNT(IDUser) AS UserExist FROM Users WHERE Username='".$_POST["Username"]."'";
+                 break;
+            case "getMail":
+                $sql="SELECT Mail,COUNT(Mail) AS MailExist FROM Users WHERE Mail='".$_POST["Mail"]."'";
                  break;
             case "getPin":
                 $sql="SELECT Password FROM Users WHERE Username='".$_POST["Username"]."'";
@@ -52,8 +55,28 @@
                 else
                 	echo("Error: Username o Password errate ".$userData[0]["Password"]." - ".md5($_POST["Password"]));
                 break;
+            case "updatePass":
+                $sql="UPDATE Users SET Password='".md5($_POST["Password"])."' WHERE IDUser=".intval($_POST["IDU"]);
+                break;
             case "insertPreference":
             	$sql="INSERT INTO PreferenzeUser (IDPreferenza,IDUser) VALUES (".intval($_POST["IDP1"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP2"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP3"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP4"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP5"]).",".intval($_POST["IDU"]).")";
+            	break;
+            case "modPreference":
+            	$exit=true;
+                $sql="DELETE FROM PreferenzeUser WHERE IDUser=".$_POST['IDU'];
+                $delData=eseguiQuery($con,$sql);
+                if(boolval($delData)){
+            		$sqlINS="INSERT INTO PreferenzeUser (IDPreferenza,IDUser) VALUES (".intval($_POST["IDP1"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP2"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP3"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP4"]).",".intval($_POST["IDU"])."),(".intval($_POST["IDP5"]).",".intval($_POST["IDU"]).")";
+            		$prefData=eseguiQuery($con,$sqlINS);
+                    if(boolval($prefData)){
+                    	echo(json_encode("Preferenze modificate con successo"));
+                    	exit(200);
+                    }
+                    else{
+                    	echo(json_encode("Errore modifica preferenze"));
+                    	exit(500);
+                    }
+                }
             	break;
             case "getPreference":
                 $sql="SELECT * FROM Preferenze";
@@ -78,6 +101,9 @@
             	break;
             case "modifyEvent":
             	$sql="UPDATE Calendar SET Activity = '".$_POST["Event"]."', Descrizione='".$_POST["Descr"]."' WHERE IDUser = ".$_POST["IDU"]." AND IDCalendar =".$_POST["ID"];
+            	break;
+            case "modifyUser":
+            	$sql="UPDATE Users SET Nome = '".$_POST["Nome"]."', Cognome='".$_POST["Cognome"]."', Username='".$_POST["Username"]."', Mail='".$_POST["Mail"]."' WHERE IDUser = ".$_POST["IDU"];
             	break;
             case "deleteEvent":
             	$sql="DELETE FROM Calendar WHERE IDCalendar =".$_POST["ID"];
