@@ -182,7 +182,7 @@ $(window).on('load',()=>{
                             )
                         }
                         else
-                            $('#txtPassN').attr("placeholder", "La password deve essere di 4 cifre").addClass('error').val('').focus();
+                            $('#txtPassN').attr("placeholder", "La password deve essere di almeno 8 cifre").addClass('error').val('').focus();
                     }
                     else{
                         $('#txtPassN').attr("placeholder", "Le due password non corrispondono").addClass('error').val('').focus();
@@ -272,7 +272,6 @@ function validateUsername(){
 
             function(srvData){
                 let Result=JSON.parse(srvData.data)[0];
-                alert(srvData.data);
                 if(parseInt(Result.UserExist)==0 || Result.Username==localStorage.getItem('Username')){
                     cordova.plugin.http.sendRequest('https://cristaudo.altervista.org/index.php/getMail',{method:'POST',data:{Mail:$('#txtMail').val()}},
             

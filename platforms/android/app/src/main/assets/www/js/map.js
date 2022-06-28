@@ -58,10 +58,10 @@ $(window).on('load',()=>{
 
                         if(vAppoggio.length>1)
                           vAppoggio.forEach((item,index,array)=>{
-                            vPreferenze.push({key:item,Marker:Result[i].Marker});
+                            vPreferenze.push({key:item,color:Result[i].color,Pref:Result[i].Tipo});
                           })
                         else
-                          vPreferenze.push({key:Result[i].Key,Marker:Result[i].Marker});
+                          vPreferenze.push({key:Result[i].Key,color:Result[i].color,Pref:Result[i].Tipo});
                       }
                       console.log(vPreferenze);
 
@@ -90,16 +90,16 @@ $(window).on('load',()=>{
 
                                       if(amenities.elements[i].lon != undefined && amenities.elements[i].lat != undefined)
                                         if(amenities.elements[i].tags.name !="" && amenities.elements[i].tags.name !=undefined && amenities.elements[i].lon != undefined && amenities.elements[i].lat != undefined)
-                                          createMarker(amenities.elements[i].tags.name,parseFloat(amenities.elements[i].lat), parseFloat(amenities.elements[i].lon),'#FF5D5D','#A10035');
+                                          createMarker(key.Pref+" - "+amenities.elements[i].tags.name,parseFloat(amenities.elements[i].lat), parseFloat(amenities.elements[i].lon),key.color);
                                         else
-                                          createMarker('Servizio senza nome',parseFloat(amenities.elements[i].lat), parseFloat(amenities.elements[i].lon),'#FF5D5D','#A10035');
+                                          createMarker(key.Pref+" - "+'Servizio senza nome',parseFloat(amenities.elements[i].lat), parseFloat(amenities.elements[i].lon),key.color);
                                           else if(amenities.elements[i].nodes!=undefined){
                                               cordova.plugin.http.sendRequest(`https://api.openstreetmap.org/api/0.6/node/${amenities.elements[i].nodes[0]}`,{method:'GET',data:{}},
                         
                                                 function(srvData){
                                                     let itemNode=x2js.xml_str2json(srvData.data);
                                                     console.log(itemNode);
-                                                    createMarker('Servizio senza nome',itemNode.osm.node._lat,itemNode.osm.node._lon,'#FF5D5D','#A10035');
+                                                    createMarker(key.Pref+" - "+'Servizio senza nome',itemNode.osm.node._lat,itemNode.osm.node._lon,key.color);
                                                       vSplash.push(true);
                                                       removeSplash();
                                                 },
@@ -141,16 +141,16 @@ $(window).on('load',()=>{
                                       if(leisure.elements[i].tags.leisure==key.key){
                                         if(leisure.elements[i].lon != undefined && leisure.elements[i].lat != undefined)
                                           if(leisure.elements[i].tags.name !="" && leisure.elements[i].tags.name !=undefined)
-                                            createMarker(leisure.elements[i].tags.name,parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon),'#1363DF','#47B5FF');
+                                            createMarker(key.Pref+" - "+leisure.elements[i].tags.name,parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon),key.color);
                                           else
-                                            createMarker('Elemento per tempo libero senza nome',parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon),'#1363DF','#47B5FF');
+                                            createMarker(key.Pref+" - "+'Elemento per tempo libero senza nome',parseFloat(leisure.elements[i].lat), parseFloat(leisure.elements[i].lon),key.color);
                                           else if(leisure.elements[i].nodes!=undefined){
                                               cordova.plugin.http.sendRequest(`https://api.openstreetmap.org/api/0.6/node/${leisure.elements[i].nodes[0]}`,{method:'GET',data:{}},
                         
                                                 function(srvData){
                                                     let itemNode=x2js.xml_str2json(srvData.data);
                                                     console.log(itemNode);
-                                                      createMarker('Elemento per tempo libero senza nome',itemNode.osm.node._lat,itemNode.osm.node._lon,'#1363DF','#47B5FF');
+                                                      createMarker(key.Pref+" - "+'Elemento per tempo libero senza nome',itemNode.osm.node._lat,itemNode.osm.node._lon,key.color);
                                                       vSplash.push(true);
                                                       removeSplash();
                                                 },
@@ -189,16 +189,16 @@ $(window).on('load',()=>{
                                     if(value.key=="natural"){
                                       if(natural.elements[i].lon != undefined && natural.elements[i].lat != undefined)
                                         if(natural.elements[i].tags.natural !="" && natural.elements[i].tags.natural !=undefined)
-                                          createMarker(natural.elements[i].tags.natural,parseFloat(natural.elements[i].lat),parseFloat(natural.elements[i].lon),'#1A4D2E','#76BA99');
+                                          createMarker(value.Pref+" - "+natural.elements[i].tags.natural,parseFloat(natural.elements[i].lat),parseFloat(natural.elements[i].lon),value.color);
                                         else
-                                          createMarker('Elemento naturale senza nome',parseFloat(natural.elements[i].lat),parseFloat(natural.elements[i].lon),'#1A4D2E','#76BA99');
+                                          createMarker(value.Pref+" - "+'Elemento naturale senza nome',parseFloat(natural.elements[i].lat),parseFloat(natural.elements[i].lon),value.color);
                                           else if(natural.elements[i].nodes!=undefined){
                                               cordova.plugin.http.sendRequest(`https://api.openstreetmap.org/api/0.6/node/${natural.elements[i].nodes[0]}`,{method:'GET',data:{}},
                         
                                                 function(srvData){
                                                     let itemNode=x2js.xml_str2json(srvData.data);
                                                     console.log(itemNode);
-                                                    createMarker('Elemento naturale senza nome',itemNode.osm.node._lat,itemNode.osm.node._lon,'#1A4D2E','#76BA99');
+                                                    createMarker(value.Pref+" - "+'Elemento naturale senza nome',itemNode.osm.node._lat,itemNode.osm.node._lon,value.color);
                                                       vSplash.push(true);
                                                       removeSplash();
                                                 },
@@ -240,16 +240,16 @@ $(window).on('load',()=>{
                                       if(landuse.elements[i].tags.landuse==key.key){
                                         if(landuse.elements[i].lon != undefined && landuse.elements[i].lat != undefined)
                                           if(landuse.elements[i].tags.landuse !="" && landuse.elements[i].tags.landuse !=undefined)
-                                            createMarker(landuse.elements[i].tags.landuse,parseFloat(landuse.elements[i].lat),parseFloat(landuse.elements[i].lon),'#14C38E','#5FD068');
+                                            createMarker(key.Pref+" - "+landuse.elements[i].tags.landuse,parseFloat(landuse.elements[i].lat),parseFloat(landuse.elements[i].lon),key.color);
                                           else
-                                            createMarker("Elemento natuirale senza nome",parseFloat(landuse.elements[i].lat),parseFloat(landuse.elements[i].lon),'#14C38E','#5FD068');
+                                            createMarker(key.Pref+" - "+"Elemento natuirale senza nome",parseFloat(landuse.elements[i].lat),parseFloat(landuse.elements[i].lon),key.color);
                                             else if(landuse.elements[i].nodes!=undefined){
                                                 cordova.plugin.http.sendRequest(`https://api.openstreetmap.org/api/0.6/node/${landuse.elements[i].nodes[0]}`,{method:'GET',data:{}},
                           
                                                   function(srvData){
                                                       let itemNode=x2js.xml_str2json(srvData.data);
                                                       console.log(itemNode);
-                                                      createMarker("Elemento natuirale senza nome",itemNode.osm.node._lat,itemNode.osm.node._lon,'#14C38E','#5FD068');
+                                                      createMarker(key.Pref+" - "+"Elemento natuirale senza nome",itemNode.osm.node._lat,itemNode.osm.node._lon,key.color);
                                                       vSplash.push(true);
                                                       removeSplash();
                                                   },
@@ -309,12 +309,12 @@ $(window).on('load',()=>{
       }
     }
 
-    function createMarker(title,lat,lon,color,fill){
+    function createMarker(title,lat,lon,color){
       var circle = L.circle([parseFloat(lat),parseFloat(lon)], {
         color: color,
-        fillColor: fill,
+        fillColor: color,
         fillOpacity: 0.2,
-        radius: 30
+        radius: 32
       }).addTo(map).bindPopup(title);
     }
 })

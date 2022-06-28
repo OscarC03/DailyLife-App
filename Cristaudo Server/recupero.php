@@ -33,9 +33,9 @@ if(isset($_POST['Mail'])){
             $mess_invio="<html><body>";
 
             $mess_invio.="
-            Clicca sul <a href=\"http://www.cristaudo.altervista.org/nuovo_pin.php?hash=".$hash."\">link</a> per confermare il nuovo PIN.<br />
+            Clicca sul <a href=\"https://www.cristaudo.altervista.org/nuovo_pin.php?hash=".$hash."\">link</a> per confermare il nuovo PIN.<br />
             Se il link non è visibile, copia la riga qui sotto e incollala sul tuo browser: <br />
-            http://www.cristaudo.altervista.org/nuovo_pin.php?hash=".$hash."
+            https://www.cristaudo.altervista.org/nuovo_pin.php?hash=".$hash."
             ";
 
             $mess_invio.='</body></html>';
@@ -66,9 +66,9 @@ if(isset($_POST['Mail'])){
           $mess_invio="<html><body>";
 
           $mess_invio.="
-          Clicca sul <a href=\"http://www.cristaudo.altervista.org/nuova_password.php?hash=".$hash."\">link</a> per confermare la nuova password.<br />
+          Clicca sul <a href=\"https://www.cristaudo.altervista.org/nuova_password.php?hash=".$hash."\">link</a> per confermare la nuova password.<br />
           Se il link non è visibile, copia la riga qui sotto e incollala sul tuo browser: <br />
-          http://www.sito.it/nuova_password.php?hash=".$hash."
+          https://www.sito.it/nuova_password.php?hash=".$hash."
           ";
 
           $mess_invio.='</body><html>';
